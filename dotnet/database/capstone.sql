@@ -24,15 +24,45 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
 
-CREATE TABLE auctionItem (
-	item_id int IDENTITY(1, 1) NOT NULL,
-	title varchar(50) NOT NULL,
-	subtitle varchar(50) NOT NULL,
-	itemDescription varchar(240) NOT NULL,
-	startingBid decimal NOT NULL,
-	isSold bit
-	CONSTRAINT PK_auctionItem PRIMARY KEY (item_id)
+CREATE TABLE auction (
+	auction_id int IDENTITY(1, 1) NOT NULL,
+	org_name varchar(50) NOT NULL,
+	start_time datetime NOT NULL,
+	end_time datetime NOT NULL
+	CONSTRAINT PK_auction_id PRIMARY KEY (auction_id)
 )
+
+CREATE TABLE item (
+	item_id int IDENTITY(1, 1) NOT NULL,
+	auction_id int NOT NULL,
+	title varchar(50) NOT NULL,
+	subtitle varchar(240) NOT NULL,
+	starting_bid decimal NOT NULL,
+	category_id varchar(50) NOT NULL,
+	is_sold bit
+	CONSTRAINT PK_item PRIMARY KEY (item_id),
+	CONSTRAINT FK_item_auction FOREIGN KEY (auction_id) REFERENCES auction(auction_id)
+)
+
+--CREATE TABLE auction_item (
+--	auction_id int NOT NULL,
+--	item_id int NOT NULL
+--	CONSTRAINT PK_auction_item PRIMARY KEY (auction_id, item_id),
+--	CONSTRAINT FK_auction_item_auction FOREIGN KEY (auction_id) REFERENCES auction(auction_id),
+--	CONSTRAINT FK_auction_item_item FOREIGN KEY (item_id) REFERENCES item(item_id)
+
+--)
+
+
+
+CREATE TABLE PersonArt (
+	PersonId int,
+	ArtId int,
+	CONSTRAINT pk_PersonArt PRIMARY KEY (PersonId, ArtId),
+	CONSTRAINT fk_PersonArt_Person FOREIGN KEY (PersonId) REFERENCES Person(PersonID),
+	CONSTRAINT fk_PersonArt_Art FOREIGN KEY (ArtId) REFERENCES Art(ArtId)
+)
+
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
