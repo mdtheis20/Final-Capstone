@@ -37,6 +37,7 @@ CREATE TABLE item (
 	auction_id int NOT NULL,
 	title varchar(50) NOT NULL,
 	subtitle varchar(240) NOT NULL,
+	pic varchar(200) NOT NULL,
 	starting_bid decimal NOT NULL,
 	category_id varchar(50) NOT NULL,
 	is_sold bit
@@ -69,3 +70,11 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 GO
+
+--Dummy Data--
+
+INSERT INTO auction (org_name, start_time, end_time) VALUES ('Wildcard', '202008150900', '202008160900');
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid, category_id, is_sold) 
+	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
+	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
+	'150', 2, 0);
