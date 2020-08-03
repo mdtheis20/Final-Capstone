@@ -44,6 +44,19 @@ CREATE TABLE item (
 	CONSTRAINT FK_item_auction FOREIGN KEY (auction_id) REFERENCES auction(auction_id)
 )
 
+CREATE TABLE category (
+	category_id int IDENTITY(1, 1) PRIMARY KEY NOT NULL,
+	name varchar(100) NOT NULL,
+)
+
+CREATE TABLE item_category (
+	item_id int NOT NULL,
+	category_id int NOT NULL,
+	CONSTRAINT pk_item_category PRIMARY KEY (item_id, category_id),
+	CONSTRAINT fk_item_category_item FOREIGN KEY (item_id) REFERENCES item(item_id),
+	CONSTRAINT fk_item_category_category FOREIGN KEY (category_id) REFERENCES category(category_id)
+)
+
 --CREATE TABLE auction_item (
 --	auction_id int NOT NULL,
 --	item_id int NOT NULL
@@ -52,17 +65,6 @@ CREATE TABLE item (
 --	CONSTRAINT FK_auction_item_item FOREIGN KEY (item_id) REFERENCES item(item_id)
 
 --)
-
-
-
-CREATE TABLE PersonArt (
-	PersonId int,
-	ArtId int,
-	CONSTRAINT pk_PersonArt PRIMARY KEY (PersonId, ArtId),
-	CONSTRAINT fk_PersonArt_Person FOREIGN KEY (PersonId) REFERENCES Person(PersonID),
-	CONSTRAINT fk_PersonArt_Art FOREIGN KEY (ArtId) REFERENCES Art(ArtId)
-)
-
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
