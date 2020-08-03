@@ -26,7 +26,7 @@ CREATE TABLE users (
 
 CREATE TABLE auction (
 	auction_id int IDENTITY(1, 1) NOT NULL,
-	org_name varchar(50) NOT NULL,
+	--org_name varchar(50) NOT NULL,
 	start_time datetime NOT NULL,
 	end_time datetime NOT NULL
 	CONSTRAINT PK_auction_id PRIMARY KEY (auction_id)
@@ -39,7 +39,7 @@ CREATE TABLE item (
 	subtitle varchar(240) NOT NULL,
 	pic varchar(200) NOT NULL,
 	starting_bid decimal NOT NULL,
-	is_sold bit
+	--is_sold bit
 	CONSTRAINT PK_item PRIMARY KEY (item_id),
 	CONSTRAINT FK_item_auction FOREIGN KEY (auction_id) REFERENCES auction(auction_id)
 )
@@ -74,11 +74,11 @@ GO
 
 --Dummy Data--
 
-INSERT INTO auction (org_name, start_time, end_time) VALUES ('Wildcard', '2020-08-15T09:00:00', '2020-08-16T09:00:00');
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid, is_sold) 
+INSERT INTO auction (start_time, end_time) VALUES ('2020-08-15T09:00:00', '2020-08-16T09:00:00');
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
 	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
-	'150', 0);
+	'150');
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
 
