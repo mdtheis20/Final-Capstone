@@ -1,12 +1,20 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <filter-bar />
+    <item-list />
   </div>
 </template>
 
 <script>
+import FilterBar from '@/components/FilterBar.vue';
+import ItemList from '@/components/ItemList.vue';
+
 export default {
-  name: "home"
+  name: "home",
+  components: {
+    FilterBar,
+    ItemList
+  }
 };
 </script>
