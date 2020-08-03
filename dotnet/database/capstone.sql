@@ -79,6 +79,10 @@ INSERT INTO item (auction_id, title, subtitle, pic, starting_bid)
 	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
 	'150');
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Max''s Waterbottle', 'This waterbottle was drunk from by the one and only Max Michael.', 
+	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
+	'150');
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO category (name) VALUES ('Sports Memorabilia');
 INSERT INTO category (name) VALUES ('Musical Instrument');
@@ -86,6 +90,12 @@ INSERT INTO category (name) VALUES ('Clothes');
 INSERT INTO category (name) VALUES ('Horcrux');
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (1, 2);
+INSERT INTO item_category (item_id, category_id) VALUES (1, 5);
+INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (2, 2);
+INSERT INTO item_category (item_id, category_id) VALUES (2, 5);
+
 
 Select * From item 
 	Join auction on item.auction_id = auction.auction_id

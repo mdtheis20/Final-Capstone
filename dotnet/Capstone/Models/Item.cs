@@ -11,7 +11,9 @@ namespace Capstone.Models
         public int Auction_ID { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
-        public string Pic { get; set; } // Unsure of picture prop
-        public decimal Starting_Bid = 1M; // Unsure of how to set
+        public string Pic { get; set; }
+        public decimal Starting_Bid { get; set; } = 1M;
+        public List<string> Categories { get; set; }
+
     }
 }

@@ -8,6 +8,6 @@ namespace Capstone.DAO
 {
     interface IItemDAO
     {
-        Item GetItemsByCategory(string category);
+        List<Item> GetAllItems();
     }
 }
