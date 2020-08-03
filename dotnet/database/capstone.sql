@@ -80,6 +80,11 @@ INSERT INTO item (auction_id, title, subtitle, pic, starting_bid)
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
 	'150');
 INSERT INTO category (name) VALUES ('Celebrity');
+INSERT INTO category (name) VALUES ('Sports Memorabilia');
+INSERT INTO category (name) VALUES ('Musical Instrument');
+INSERT INTO category (name) VALUES ('Clothes');
+INSERT INTO category (name) VALUES ('Horcrux');
+INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
 
 Select * From item 
