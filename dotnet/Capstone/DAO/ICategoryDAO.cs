@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAO
 {
-    public interface IItemDAO
+    public interface ICategoryDAO
     {
-        List<Item> GetAllItems();
+        List<Category> GetAllCategories();
     }
 }
