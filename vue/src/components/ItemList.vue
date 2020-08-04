@@ -30,5 +30,10 @@ export default {
 </script>
 
 <style>
-
+#item-list {
+  display: flex;
+}
+#item-list >  li {
+  list-style-type: none;
+}
 </style>
