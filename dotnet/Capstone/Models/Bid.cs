@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Capstone.Models
 {
@@ -13,4 +10,12 @@ namespace Capstone.Models
         public decimal Amount { get; set; }
         public DateTime Time_Placed { get; set; }
     }
+    public class ReturnBid
+    {
+        public int Item_ID { get; set; }
+        public int Bid_ID { get; set; }
+        public string User_Name { get; set; }
+        public decimal Amount { get; set; }
+    }
 }
+

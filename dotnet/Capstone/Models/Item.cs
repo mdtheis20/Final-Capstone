@@ -14,6 +14,6 @@ namespace Capstone.Models
         public string Pic { get; set; }
         public decimal Starting_Bid { get; set; } = 1M;
         public List<string> Categories { get; set; }
-
+        public List<ReturnBid> Bids { get; set; } 
     }
 }
