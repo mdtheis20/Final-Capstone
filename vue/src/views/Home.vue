@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     
-    <h1>Home</h1>
+    <auction-header />
     <filter-bar />
     <item-list />
   </div>
@@ -10,12 +10,14 @@
 <script>
 import FilterBar from '@/components/FilterBar.vue';
 import ItemList from '@/components/ItemList.vue';
+import AuctionHeader from '@/components/AuctionHeader.vue';
 
 export default {
   name: "home",  
   components: {
     FilterBar,
-    ItemList
+    ItemList,
+    AuctionHeader,
   },
   created() {
     // This uses an action in Vuex to call API and load to listOfItems
