@@ -13,7 +13,7 @@ Delete from auction
 
 --Dummy Data--
 
-INSERT INTO auction (org_name, start_time, end_time) VALUES ('Non-Profit', '2020-08-15T09:00:00', '2020-08-16T09:00:00');
+INSERT INTO auction (start_time, end_time) VALUES ('2020-08-15T09:00:00', '2020-08-16T09:00:00');
 Declare @auctionID as int = @@IDENTITY
 INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
 	VALUES (@auctionID, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
