@@ -17,7 +17,7 @@ namespace Capstone.Controllers
             this.cDao = categoryDAO;
         }
 
-        [HttpGet("Auction/Category")]
+        [HttpGet("Auction/Categories")]
         public IActionResult GetCategoriesForDisplay()
         {
             List<Category> categoryList = cDao.GetAllCategories();
