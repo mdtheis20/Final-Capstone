@@ -1,7 +1,7 @@
-BEGIN TRAN
+--BEGIN TRAN
 
 USE final_capstone
-GO
+
 
 --empty database
 
@@ -77,9 +77,4 @@ INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category7);
 INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category4);
 
 
-Select * From item 
-	Join auction on item.auction_id = auction.auction_id
-	Join item_category as ic on ic.item_id = item.item_id
-	Join category on category.category_id = ic.category_id
-
-ROLLBACK TRAN
+--ROLLBACK TRAN
