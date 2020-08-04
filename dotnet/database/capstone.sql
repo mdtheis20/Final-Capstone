@@ -56,6 +56,16 @@ CREATE TABLE item_category (
 	CONSTRAINT fk_item_category_item FOREIGN KEY (item_id) REFERENCES item(item_id),
 	CONSTRAINT fk_item_category_category FOREIGN KEY (category_id) REFERENCES category(category_id)
 )
+Create Table bid (
+	bid_id int IDENTITY Not NULL,
+	item_id int NOT NULL,
+	user_id int NOT NULL,
+	amount decimal NOT NUll,
+	time_placed datetime NOT NULL,
+	CONSTRAINT pk_bid PRIMARY KEY (bid_id),
+	CONSTRAINT fk_bid_item FOREIGN KEY (item_id) References item(item_id),
+	CONSTRAINT fk_bid_user FOREIGN KEY (user_id) References users(user_id)
+	)
 
 --CREATE TABLE auction_item (
 --	auction_id int NOT NULL,
@@ -101,3 +111,7 @@ Select * From item
 	Join auction on item.auction_id = auction.auction_id
 	Join item_category as ic on ic.item_id = item.item_id
 	Join category on category.category_id = ic.category_id
+
+	Select name from category
+
+	Select * from bid join item on item.item_id = bid.item_id where item.item_id = @item_id
