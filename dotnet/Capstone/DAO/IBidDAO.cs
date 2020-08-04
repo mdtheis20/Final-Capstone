@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Capstone.DAO
 {
-    interface IBidDAO
+    public interface IBidDAO
     {
-        List<Bid> GetBidsByItemId();
+        List<Bid> GetBidsByItem(int id);
     }
 }

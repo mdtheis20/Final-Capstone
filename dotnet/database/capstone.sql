@@ -1,3 +1,4 @@
+Begin tran
 USE master
 GO
 
@@ -106,7 +107,12 @@ INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
 INSERT INTO item_category (item_id, category_id) VALUES (2, 2);
 INSERT INTO item_category (item_id, category_id) VALUES (2, 5);
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 5.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 10.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 15.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 100.00, '2020-08-15T09:00:00' )
 
+Commit Tran
 Select * From item 
 	Join auction on item.auction_id = auction.auction_id
 	Join item_category as ic on ic.item_id = item.item_id
@@ -114,4 +120,5 @@ Select * From item
 
 	Select name from category
 
-	Select * from bid join item on item.item_id = bid.item_id where item.item_id = @item_id
+	Select * from bid join item on item.item_id = bid.item_id where item.item_id = 1
+	select * from bid

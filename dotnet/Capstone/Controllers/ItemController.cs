@@ -23,7 +23,6 @@ namespace Capstone.Controllers
         {
             List<Item> itemList = dao.GetAllItems();
             return Ok(itemList);
-        }
-  
+        }  
     }
 }
