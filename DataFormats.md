@@ -26,6 +26,14 @@ item_category:
     item_id
     category_id
 
+bid:
+    bid_id
+    items_id
+    amount
+    time_placed
+    user_id
+
+
 ### JSON 
 
 ```json
@@ -49,4 +57,6 @@ item_category:
 GET localhost:4320/auction --gets list of all items
 
 GET localhost:4320/auction/categories  -- gets list of all categories
+
+GET /auction/item?item_id=21  -- gets a list of all bids with username 
 

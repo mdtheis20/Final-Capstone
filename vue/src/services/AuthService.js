@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
+
 export default {
 
   login(user) {
@@ -8,6 +10,11 @@ export default {
 
   register(user) {
     return axios.post('/register', user)
-  }
+  },
+
+  getAllItems() {
+    return axios.get('/auction')
+  },
+
 
 }

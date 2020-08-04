@@ -12,15 +12,20 @@ import itemCard from '@/components/ItemCard.vue'
 export default {
   data() {
     return {
-      items: []
+      
     }
+  },
+  computed: {
+    items(){
+      return this.$store.state.listOfItems
+    }, 
   },
   components: {
     itemCard
   },
-  created() {
+/*   created() {
     this.items = this.$store.state.listOfItems;
-  }
+  } */
 }
 </script>
 
