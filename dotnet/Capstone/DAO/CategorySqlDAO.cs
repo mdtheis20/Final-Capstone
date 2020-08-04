@@ -17,7 +17,7 @@ namespace Capstone.DAO
         }
         public List<Category> GetAllCategories()
         {
-            List<Category> returnCategories = null;
+            List<Category> returnCategories = new List<Category>();
 
             try
             {

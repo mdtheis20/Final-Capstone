@@ -18,7 +18,7 @@ namespace Capstone.DAO
 
         public List<Item> GetAllItems()
         {
-            List<Item> returnItems = null;
+            List<Item> returnItems = new List<Item>();
 
             try
             {

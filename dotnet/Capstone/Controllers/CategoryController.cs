@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
-    [Route("[controller]")]
+    [Route("")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
