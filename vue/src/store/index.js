@@ -26,8 +26,8 @@ export default new Vuex.Store({
     listOfItems: [],
     // TODO: grab data from API
     auctionInfo: {
-      orgName: '',
-      
+      orgName: 'Tech Elevator Auctions',
+      endTime: new Date(2020, 7, 14, 12 )
     }
   },
   mutations: {
