@@ -34,7 +34,7 @@ item_category:
         title: String,
         subtitle: String,
         pic: String,
-        category: String,
+        category: Array of String,
         startingBid: Decimal
     }
 
@@ -43,4 +43,10 @@ item_category:
         endTime: datetime
     }
 ```
+
+# Endpoints
+
+GET localhost:4320/auction --gets list of all items
+
+GET localhost:4320/auction/categories  -- gets list of all categories
 
