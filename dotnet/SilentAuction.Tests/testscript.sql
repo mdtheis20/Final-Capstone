@@ -68,7 +68,6 @@ INSERT INTO item_category (item_id, category_id) VALUES (@item2, @category1);
 INSERT INTO item_category (item_id, category_id) VALUES (@item2, @category4);
 
 INSERT INTO item_category (item_id, category_id) VALUES (@item3, @category6);
-INSERT INTO item_category (item_id, category_id) VALUES (@item3, @category4);
 
 INSERT INTO item_category (item_id, category_id) VALUES (@item4, @category1);
 INSERT INTO item_category (item_id, category_id) VALUES (@item4, @category2);

@@ -23,12 +23,13 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    listOfItems: [],
+    listOfItems: [],    
     // TODO: grab data from API
     auctionInfo: {
       orgName: 'Tech Elevator Auctions',
       endTime: new Date(2020, 7, 14, 12 )
-    }
+    },
+    listOfBids: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     SET_ITEM_LIST(state, list) {
       state.listOfItems = list;
+    },
+    UPDATE_BIDS_ON_CURRENT_ITEM(state, list){      
+      state.listOfBids = list;
     }
   },
   actions: {

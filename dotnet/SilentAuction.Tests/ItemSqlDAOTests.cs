@@ -50,5 +50,19 @@ namespace SilentAuction.Tests
             List<Item> result = dao.GetAllItems();
             Assert.AreEqual(5, result.Count);
         }
+
+        [TestMethod]
+        public void GetAllItemsHasCorrectNumberOfCategoriesInListOfCategories()
+        {
+            ItemSqlDAO dao = new ItemSqlDAO(connectionString);
+            List<Item> result = dao.GetAllItems();
+            int[] testCounts = new int[] { 3, 2, 1, 2, 2};
+            for (int i = 0; i < result.Count; i++)
+            {
+                Assert.AreEqual(testCounts[i], result[i].Categories.Count);
+            }
+        }
+
+
     }
 }
