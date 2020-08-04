@@ -26,7 +26,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("	Select * from bid join item on item.item_id = bid.item_id where item.item_id = @item_id", conn);
+                    SqlCommand cmd = new SqlCommand("Select * from bid join item on item.item_id = bid.item_id where item.item_id = @item_id", conn);
                 }
             }
         }
