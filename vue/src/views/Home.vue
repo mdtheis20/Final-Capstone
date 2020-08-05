@@ -22,6 +22,7 @@ export default {
   created() {
     // This uses an action in Vuex to call API and load to listOfItems
     this.$store.dispatch('getAllItems');
+    this.$store.dispatch('getAllCategories');
   }
 };
 </script>
