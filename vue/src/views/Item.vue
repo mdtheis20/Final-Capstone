@@ -1,7 +1,7 @@
 <template>
   <div>
       <auction-header />
-      <item-detail />
+      <item-detail :item ="found-item"/>
   </div>
 </template>
 
