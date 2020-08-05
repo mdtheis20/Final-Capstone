@@ -1,7 +1,7 @@
 <template>
   <div>
       <auction-header />
-      <item-detail :item ="found-item"/>
+      <item-detail :item="foundItem"/>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     computed: {
         foundItem(){
             const targetID = this.$route.params.itemID;
-            return this.$store.state.listOfItems.find(i => i.itemID === targetID)
+            return this.$store.state.listOfItems.find(i => i.item_ID === targetID)
         }
     }
 }
