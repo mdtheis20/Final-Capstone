@@ -7,7 +7,7 @@
       </li>
   </ul>
 </template>
-
+<!-- this.$store.getters.filteredItems()" -->
 <script>
 import itemCard from '@/components/ItemCard.vue'
 
@@ -21,8 +21,8 @@ export default {
   computed: {
     items(){
       return this.$store.state.listOfItems
-    }, 
-  },
+    },
+  }, 
   components: {
     itemCard
   },

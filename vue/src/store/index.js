@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import authService from '@/services/AuthService.js';
+//import authService from '@/services/AuthService.js';
+import apiService from '@/services/ApiService.js'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -23,11 +24,12 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    listOfItems: [],    
-    // TODO: grab data from API
+    listOfItems: [],
+    listOfCategories: [],
     auctionInfo: {
+      // TODO: get this data from database
       orgName: 'Tech Elevator Auctions',
-      endTime: new Date(2020, 7, 14, 12 )
+      endTime: new Date(2020, 7, 14, 12)
     },
     listOfBids: [],
   },
@@ -39,7 +41,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -51,22 +53,78 @@ export default new Vuex.Store({
     SET_ITEM_LIST(state, list) {
       state.listOfItems = list;
     },
+    SET_CATEGORY_LIST(state, list) {
+      state.listOfCategories = list;
+    },
+    /**
+     * changes filteredItems in $store.state
+     * 
+     * @param {*} state 
+     * @param {Array} arrayOfCategories 
+     */
+    FILTER_ITEMS_BY_CATEGORY(state, arrayOfCategories) {
+      if (arrayOfCategories.length > 0 && state.listOfItems.length > 0) {
+        arrayOfCategories.forEach(cat => {
+          state.filteredItems = state.listOfItems.filter(i => {
+            return i.categories.includes(cat.name);
+          })
+        });
+      } else {
+        state.filteredItems = state.listOfItems;
+      }
+    }
+  },
+  getters: {
+    filteredItems:(state) => {
+      if (state.listOfCategories.length > 0 && state.listOfItems.length > 0){
+        let result = null;
+        // if an item has a category that matches one in listOfCategories, add it to result
+        // find a matching category name in listOfCategories and then add to 
+        state.listOfItems.forEach( i => {
+          const categoryMatch = i.categories.find( cat => {
+            const match = state.listOfCategories.find( c => {
+              return cat === c;
+            });
+            return match !== undefined;
+          });
+          if (categoryMatch !== undefined){
+            result.unshift(i);
+          }
+        });
+        return result;
+      } else {
+       return state.listOfItems;
+      }
+    }
   },
   actions: {
-    getAllItems(){
-      authService.getAllItems().then( r => {
-          this.commit('SET_ITEM_LIST', r.data);
-      }).catch( e => {
-        if (e.response){
+    getAllItems() {
+      apiService.getAllItems().then(r => {
+        this.commit('SET_ITEM_LIST', r.data);
+      }).catch(e => {
+        if (e.response) {
           console.error(e.response)
         } else if (e.request) {
-          console.error(e.request) 
+          console.error(e.request)
         } else {
           console.error('There was an error!')
         }
       });
     },
-    
-  }
+    getAllCategories() {
+      apiService.getAllCategories().then(r => {
+        this.commit('SET_CATEGORY_LIST', r.data);
+      }).catch(e => {
+        if (e.response) {
+          console.error(e.response)
+        } else if (e.request) {
+          console.error(e.request)
+        } else {
+          console.error('There was an error!')
+        }
+      });
+    }
+
+  },
 })
 

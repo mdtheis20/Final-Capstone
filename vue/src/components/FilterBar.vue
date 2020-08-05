@@ -8,24 +8,23 @@
               <label :for="category.name"> {{category.name}}</label>
           </li>
       </ul>
-      <label for="searchTitle">Title: </label>
-      <input type="text" name="searchTitle" v-model="searchTitle" />      
+      <!-- <label for="searchTitle">Title: </label>
+      <input type="text" name="searchTitle" v-model="searchTitle" />  -->     
   </div>
 </template>
 
 <script>
-// TODO: how can multiple categories be selected?
+// TODO: search by title?
 export default {
     data() {
-        return {
-            categories: [
-                {categoryID: 1, name: 'Celebrity'},
-                {categoryID: 2, name: 'Things Touched by Josh Tucholski'},
-                {categoryID: 3, name: 'Musical'},
-                {categoryID: 4, name: 'Having to do with the Browns'}
-            ],
+        return {          
             searchTitle: '',
             filterSelections: [],
+        }
+    },
+    computed: {
+        categories() {
+            return this.$store.state.listOfCategories;
         }
     }
 }
