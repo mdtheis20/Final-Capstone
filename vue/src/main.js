@@ -13,3 +13,10 @@ new Vue({
   store,
   render: h => h(Auction)
 }).$mount('#auction')
+
+const defaultTitle = 'TE Auctions';
+router.afterEach((to) => {
+  Vue.nextTick(() => {
+    document.title = to.meta.title || defaultTitle;
+  });
+});

@@ -27,7 +27,8 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
+        title: 'Tech Elevator Auctions'
       }
     },
     {
@@ -57,10 +58,14 @@ const router = new Router({
     {
       path: '/:itemID',
       name: 'item',
-      component: Item
+      component: Item,
+      meta: {
+        title: 'Omar Vizquel'
+      }
     }
   ]
 })
+
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
