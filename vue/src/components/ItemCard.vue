@@ -1,5 +1,5 @@
 <template>
-  <div id="item-card">
+  <div id="item-card" :class="{'has-bid': item.bids.length > 0}">
       <h3>{{item.title}}</h3>
       <h4>{{item.startingBid}}</h4>      
       <img :src="item.pic" :alt="item.subtitle" />
@@ -10,29 +10,14 @@
 <script>
 export default {
     data() {
-        return {
-            /* item: {
-                itemID: Number,
-                title: '',
-                subtitle: '',
-                pic: '',
-                startingBid: Number,
-                category: []
-            } */
+        return {          
             // TODO: display top bid instead of starting bid if there are bids
             // TODO: display how many bids have benn placed
         }
     },
     props: {
-        item: {
-                itemID: Number,
-                title: '',
-                subtitle: '',
-                pic: '',
-                startingBid: Number,
-                category: []
-            }
-    }
+        item: Object
+    },
 }
 </script>
 
@@ -45,5 +30,8 @@ export default {
     border: 1px solid navy;
 
     
+ }
+ .has-bid {
+     border: 5px solid greenyellow;
  }
 </style>
