@@ -1,7 +1,9 @@
 <template>
   <ul id="item-list">
-      <li v-for="item in items" :key="item.itemID">
+      <li v-for="item in items" :key="item.item_ID">
+        <router-link tag="a" :to="{name: 'item', params: {itemID: item.item_ID}}" >
         <item-card :item="item" />
+        </router-link>
       </li>
   </ul>
 </template>
