@@ -30,7 +30,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand("Select * From Item order by title; " +
                                                      "Select * From item_category IC " +
                                                      "JOIN Category C on IC.category_id = c.category_id; " +
-                                                     "SELECT TOP(10) * From bid " +
+                                                     "SELECT  * From bid " +
                                                      "JOIN item on bid.item_id = item.item_id " +
                                                      "JOIN users on users.user_id = bid.user_id", conn);
                     SqlDataReader reader = cmd.ExecuteReader();

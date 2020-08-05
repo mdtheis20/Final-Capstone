@@ -139,6 +139,8 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid)
 	10);
 
 
+
+
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
 INSERT INTO item_category (item_id, category_id) VALUES (2, 6);
 INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
@@ -181,6 +183,9 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 10.00, '20
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 11.00, '2020-08-15T09:01:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 21.00, '2020-08-15T09:02:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '2020-08-15T09:03:00' )
+
+
+
 
 
 
