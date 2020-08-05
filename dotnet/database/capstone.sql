@@ -149,11 +149,10 @@ INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
 
 
 
-<<<<<<< HEAD
-=======
+
 INSERT INTO item_category (item_id, category_id) VALUES (5, 7);
 INSERT INTO item_category (item_id, category_id) VALUES (5, 4);
->>>>>>> 509357371db5d4547e2070b1183a1118f0448a3a
+
 
 
 
@@ -185,7 +184,6 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 10.00, '20
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 11.00, '2020-08-15T09:01:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 21.00, '2020-08-15T09:02:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '2020-08-15T09:03:00' )
-
 
 
 
