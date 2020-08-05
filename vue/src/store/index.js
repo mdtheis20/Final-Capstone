@@ -26,6 +26,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     listOfItems: [],
     listOfCategories: [],
+    categoriesToFilter: [],
     auctionInfo: {
       // TODO: get this data from database
       orgName: 'Tech Elevator Auctions',
@@ -56,42 +57,24 @@ export default new Vuex.Store({
     SET_CATEGORY_LIST(state, list) {
       state.listOfCategories = list;
     },
-    /**
-     * changes filteredItems in $store.state
-     * 
-     * @param {*} state 
-     * @param {Array} arrayOfCategories 
-     */
-    FILTER_ITEMS_BY_CATEGORY(state, arrayOfCategories) {
-      if (arrayOfCategories.length > 0 && state.listOfItems.length > 0) {
-        arrayOfCategories.forEach(cat => {
-          state.filteredItems = state.listOfItems.filter(i => {
-            return i.categories.includes(cat.name);
-          })
-        });
-      } else {
-        state.filteredItems = state.listOfItems;
-      }
-    }
+    UPDATE_FILTER_CATEGORIES(state, filterCategories){
+      state.categoriesToFilter = filterCategories;
+    },
   },
   getters: {
     filteredItems:(state) => {
-      if (state.listOfCategories.length > 0 && state.listOfItems.length > 0){
-        let result = null;
+      if (state.categoriesToFilter.length > 0 && state.listOfItems.length > 0){
         // if an item has a category that matches one in listOfCategories, add it to result
         // find a matching category name in listOfCategories and then add to 
-        state.listOfItems.forEach( i => {
-          const categoryMatch = i.categories.find( cat => {
-            const match = state.listOfCategories.find( c => {
-              return cat === c;
-            });
-            return match !== undefined;
+        return state.listOfItems.filter( item => {
+          let match = false;
+          item.categories.forEach( cat => {
+            if( state.categoriesToFilter.some( filterCat => filterCat === cat)){
+              match = true;
+            }
           });
-          if (categoryMatch !== undefined){
-            result.unshift(i);
-          }
+          return match;
         });
-        return result;
       } else {
        return state.listOfItems;
       }

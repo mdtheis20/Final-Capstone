@@ -4,7 +4,7 @@
       <ul>
           <li v-for="category in categories" :key="category.categoryID" >
               
-              <input type="checkbox" :name="category.name" :value="category.name" v-model="filterSelections">
+              <input type="checkbox" :name="category.name" :value="category.name" v-model="filterSelections" v-on:change="updateFilter">
               <label :for="category.name"> {{category.name}}</label>
           </li>
       </ul>
@@ -25,6 +25,11 @@ export default {
     computed: {
         categories() {
             return this.$store.state.listOfCategories;
+        }
+    },
+    methods: {
+        updateFilter(){
+            this.$store.commit('UPDATE_FILTER_CATEGORIES', this.filterSelections);
         }
     }
 }
