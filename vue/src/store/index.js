@@ -75,14 +75,14 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    filteredItems() {
-      if (this.$store.state.listOfCategories.length > 0 && this.$store.state.listOfItems.length > 0){
+    filteredItems:(state) => {
+      if (state.listOfCategories.length > 0 && state.listOfItems.length > 0){
         let result = null;
         // if an item has a category that matches one in listOfCategories, add it to result
         // find a matching category name in listOfCategories and then add to 
-        this.$store.state.listOfItems.forEach( i => {
+        state.listOfItems.forEach( i => {
           const categoryMatch = i.categories.find( cat => {
-            const match = this.$store.state.listOfCategories.find( c => {
+            const match = state.listOfCategories.find( c => {
               return cat === c;
             });
             return match !== undefined;
@@ -93,7 +93,7 @@ export default new Vuex.Store({
         });
         return result;
       } else {
-       return this.$store.state.listOfItems;
+       return state.listOfItems;
       }
     }
   },
