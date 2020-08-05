@@ -31,7 +31,7 @@ export default {
 
     
  }
- .has-bid {
+ #item-card.has-bid {
      border: 5px solid greenyellow;
  }
 </style>
