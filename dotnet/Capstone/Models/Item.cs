@@ -9,6 +9,7 @@ namespace Capstone.Models
     {
         public int Item_ID { get; set; }
         public int Auction_ID { get; set; }
+        public string Donor { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string Pic { get; set; }
