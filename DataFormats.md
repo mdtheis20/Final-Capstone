@@ -37,14 +37,37 @@ bid:
 ### JSON 
 
 ```json
-    item {
-        itemID: Number,
-        title: String,
-        subtitle: String,
-        pic: String,
-        category: Array of String,
-        startingBid: Decimal
-    }
+    {
+    "item_ID": 2,
+    "auction_ID": 1,
+    "title": "Josh's Waterbottle",
+    "subtitle": null,
+    "pic": "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80",
+    "starting_Bid": 150.0,
+    "categories": [
+      
+    ],
+    "bids": [
+      {
+        "item_ID": 2,
+        "bid_ID": 9,
+        "user_Name": "user",
+        "amount": 10.0
+      },
+      {
+        "item_ID": 2,
+        "bid_ID": 10,
+        "user_Name": "admin",
+        "amount": 11.0
+      },
+      {
+        "item_ID": 2,
+        "bid_ID": 11,
+        "user_Name": "user",
+        "amount": 15.0
+      }
+    ]
+  }
 
     auction {
         startTime: datetime,

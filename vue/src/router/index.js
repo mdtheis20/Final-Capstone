@@ -17,7 +17,7 @@ Vue.use(Router)
  * If the user has not yet authenticated (and needs to) they are redirected to /login
  * If they have (or don't need to) they're allowed to go about their way.
  */
-
+ //TODO: add title page names, Tech Elevator Auctions is hard coded on main index.html
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,

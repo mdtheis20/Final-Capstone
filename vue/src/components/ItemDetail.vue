@@ -26,7 +26,7 @@ export default {
      
     };
   },
-
+  
   props: {
      item: Object
   }
