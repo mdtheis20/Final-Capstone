@@ -86,31 +86,18 @@ GO
 --Dummy Data--
 
 INSERT INTO auction (start_time, end_time) VALUES ('2020-08-15T09:00:00', '2020-08-16T09:00:00');
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
-	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
-	'150');
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Max''s Waterbottle', 'This waterbottle was drunk from by the one and only Max Michael.', 
-	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
-	'150');
+
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO category (name) VALUES ('Sports Memorabilia');
 INSERT INTO category (name) VALUES ('Musical Instrument');
 INSERT INTO category (name) VALUES ('Clothes');
 INSERT INTO category (name) VALUES ('Horcrux');
-INSERT INTO category (name) VALUES ('Celebrity');
-INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
-INSERT INTO item_category (item_id, category_id) VALUES (1, 2);
-INSERT INTO item_category (item_id, category_id) VALUES (1, 5);
-INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
-INSERT INTO item_category (item_id, category_id) VALUES (2, 2);
-INSERT INTO item_category (item_id, category_id) VALUES (2, 5);
+INSERT INTO category (name) VALUES ('Animals');
+INSERT INTO category (name) VALUES ('Relaxation');
+INSERT INTO category (name) VALUES ('Vacation');
+INSERT INTO category (name) VALUES ('Food');
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 5.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 10.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 15.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 100.00, '2020-08-15T09:00:00' )
+
 
 --Commit Tran
 Select * From item 
@@ -118,10 +105,7 @@ Select * From item
 	Join item_category as ic on ic.item_id = item.item_id
 	Join category on category.category_id = ic.category_id
 
-	Select * from category
-
-	Select * from bid join item on item.item_id = bid.item_id where item.item_id = 1
-	select * from bid
+	
 
 
 INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
@@ -155,24 +139,18 @@ INSERT INTO item (auction_id, title, subtitle, pic, starting_bid)
 
 
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
-INSERT INTO item_category (item_id, category_id) VALUES (3, 9);
-INSERT INTO item_category (item_id, category_id) VALUES (3, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (2, 6);
+INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (3, 7);
+INSERT INTO item_category (item_id, category_id) VALUES (3, 8);
+INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (4, 2);
+INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
 
-INSERT INTO item_category (item_id, category_id) VALUES (4, 7);
-INSERT INTO item_category (item_id, category_id) VALUES (4, 10);
 
-INSERT INTO item_category (item_id, category_id) VALUES (5, 1);
 
-INSERT INTO item_category (item_id, category_id) VALUES (5, 2);
-INSERT INTO item_category (item_id, category_id) VALUES (6, 8);
 
-INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category7);
-INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category4);
 
-delete from item_category where item_id = 1
-select * from users
-
-select * from bid
 
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 150.00, '2020-08-15T09:00:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 155.00, '2020-08-15T09:01:00' )
@@ -180,31 +158,34 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 160.00, '2
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 170.00, '2020-08-15T09:03:00' )
 
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 10.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 11.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 15.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 20.00, '2020-08-15T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 10.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 11.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 15.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 20.00, '2020-08-15T09:03:00' )
 
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 150.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 160.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 161.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 171.00, '2020-08-15T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 150.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 160.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 161.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 171.00, '2020-08-15T09:03:00' )
 
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 250.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 255.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 265.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 270.00, '2020-08-15T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 250.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 255.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 265.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 270.00, '2020-08-15T09:03:00' )
 
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 1, 10.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 11.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 1, 21.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 26.00, '2020-08-15T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 10.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 11.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 21.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '2020-08-15T09:03:00' )
 
-	
-	
+
+
+
+
+
 	
 	
 	
