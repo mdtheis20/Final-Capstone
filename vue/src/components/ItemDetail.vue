@@ -22,38 +22,14 @@ export default {
   data() {
     return {
       // Dummy data
-      item: {
-        item_ID: 1,
-        auction_ID: 1,
-        title: "Josh's Waterbottle",
-        subtitle: null,
-        pic:
-          "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80",
-        starting_Bid: 150.0,
-        categories: ["Celebrity", "Sports Memorabilia", "Horcrux"],
-        bids: [
-          {
-            item_ID: 1,
-            bid_ID: 1,
-            user_Name: "user",
-            amount: 5.0,
-          },
-          {
-            item_ID: 1,
-            bid_ID: 2,
-            user_Name: "admin",
-            amount: 10.0,
-          },
-          {
-            item_ID: 1,
-            bid_ID: 3,
-            user_Name: "user",
-            amount: 15.0,
-          },
-        ]
-      },
+   
+     
     };
   },
+
+  props: {
+     item: Object
+  }
 };
 </script>
 

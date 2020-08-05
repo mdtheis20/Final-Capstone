@@ -149,6 +149,11 @@ INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
 
 
 
+<<<<<<< HEAD
+=======
+INSERT INTO item_category (item_id, category_id) VALUES (5, 7);
+INSERT INTO item_category (item_id, category_id) VALUES (5, 4);
+>>>>>>> 509357371db5d4547e2070b1183a1118f0448a3a
 
 
 

@@ -35,6 +35,7 @@ export default {
 <style>
 #item-list {
   display: flex;
+  flex-direction: column;
 }
 #item-list >  li {
   list-style-type: none;
