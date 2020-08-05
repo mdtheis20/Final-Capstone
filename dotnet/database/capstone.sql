@@ -166,8 +166,8 @@ INSERT INTO item_category (item_id, category_id) VALUES (5, 1);
 INSERT INTO item_category (item_id, category_id) VALUES (5, 2);
 INSERT INTO item_category (item_id, category_id) VALUES (6, 8);
 
-INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category7);
-INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category4);
+INSERT INTO item_category (item_id, category_id) VALUES (5, 7);
+INSERT INTO item_category (item_id, category_id) VALUES (5, 4);
 
 delete from item_category where item_id = 1
 select * from users
