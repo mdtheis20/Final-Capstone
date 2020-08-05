@@ -21,6 +21,9 @@
 
 <script>
 export default {
+  title () {
+    return `Auction Item - ${this.item.title}`
+  },
   data() {
     return {
       // Dummy data
