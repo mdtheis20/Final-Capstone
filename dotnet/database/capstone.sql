@@ -118,7 +118,93 @@ Select * From item
 	Join item_category as ic on ic.item_id = item.item_id
 	Join category on category.category_id = ic.category_id
 
-	Select name from category
+	Select * from category
 
 	Select * from bid join item on item.item_id = bid.item_id where item.item_id = 1
 	select * from bid
+
+
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
+	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
+	150);
+
+
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
+	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
+	10);
+
+
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Hotel Stay at the beach for 2', 'One night with a lovely ocean view', 
+	'https://www.simplemost.com/wp-content/uploads/2016/08/beach-vacation-e1470663653924.jpeg',
+	150);
+
+
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
+	'https://i1.wp.com/www.cooperstowncred.com/wp-content/uploads/2018/12/OMAR-VIZQUEL-CHUCK-CROW.png?fit=922%2C644&ssl=1',
+	250);
+
+
+INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
+	VALUES (1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
+	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
+	10);
+
+
+INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (3, 9);
+INSERT INTO item_category (item_id, category_id) VALUES (3, 1);
+
+INSERT INTO item_category (item_id, category_id) VALUES (4, 7);
+INSERT INTO item_category (item_id, category_id) VALUES (4, 10);
+
+INSERT INTO item_category (item_id, category_id) VALUES (5, 1);
+
+INSERT INTO item_category (item_id, category_id) VALUES (5, 2);
+INSERT INTO item_category (item_id, category_id) VALUES (6, 8);
+
+INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category7);
+INSERT INTO item_category (item_id, category_id) VALUES (@item5, @category4);
+
+delete from item_category where item_id = 1
+select * from users
+
+select * from bid
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 150.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 155.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 160.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 170.00, '2020-08-15T09:03:00' )
+
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 10.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 11.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 15.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 20.00, '2020-08-15T09:03:00' )
+
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 150.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 160.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 161.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 171.00, '2020-08-15T09:03:00' )
+
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 250.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 255.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 265.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 270.00, '2020-08-15T09:03:00' )
+
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 1, 10.00, '2020-08-15T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 11.00, '2020-08-15T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 1, 21.00, '2020-08-15T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 26.00, '2020-08-15T09:03:00' )
+
+	
+	
+	
+	
+	
