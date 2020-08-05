@@ -2,6 +2,7 @@
   <div id="item-detail">
     <h2>{{item.title}}</h2>
     <h3>{{item.subtitle}}</h3>
+    <h4> Donated by: {{item.donor}}</h4>
     <div class="img-container">
       <img :src="item.pic" :alt="item.subtitle" />
     </div>
