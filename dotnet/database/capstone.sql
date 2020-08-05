@@ -150,13 +150,6 @@ INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
 
 
 
-<<<<<<< HEAD
-=======
-
-INSERT INTO item_category (item_id, category_id) VALUES (5, 7);
-INSERT INTO item_category (item_id, category_id) VALUES (5, 4);
-
->>>>>>> a175c34030ce12a6370e7e134f4bf946ff64a648
 
 
 
@@ -193,13 +186,4 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '20
 
 
 
-<<<<<<< HEAD
 
-
-
-select * from item  
-=======
-	
-	
-	
->>>>>>> a175c34030ce12a6370e7e134f4bf946ff64a648
