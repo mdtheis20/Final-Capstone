@@ -51,9 +51,6 @@ export default new Vuex.Store({
     SET_ITEM_LIST(state, list) {
       state.listOfItems = list;
     },
-    UPDATE_BIDS_ON_CURRENT_ITEM(state, list){      
-      state.listOfBids = list;
-    }
   },
   actions: {
     getAllItems(){
