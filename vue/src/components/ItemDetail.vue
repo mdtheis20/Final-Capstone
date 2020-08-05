@@ -2,12 +2,9 @@
   <div id="item-detail">
     <h2>{{item.title}}</h2>
     <h3>{{item.subtitle}}</h3>
-<<<<<<< HEAD
     <h4> Donated by: {{item.donor}}</h4>
-=======
-    <h4>{{item.donor}}</h4>
->>>>>>> 8e415e9c6b81e07355736723f47ac97f65f32f67
-    <div class="img-container">
+    
+   <div class="img-container">
       <img :src="item.pic" :alt="item.subtitle" />
     </div>
     <ul class="category-container" v-for="cat in item.categories" :key="cat">
