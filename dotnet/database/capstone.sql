@@ -35,6 +35,7 @@ CREATE TABLE auction (
 
 CREATE TABLE item (
 	item_id int IDENTITY(1, 1) NOT NULL,
+	donor varchar(100) NOT NULL,
 	auction_id int NOT NULL,
 	title varchar(50) NOT NULL,
 	subtitle varchar(240) NOT NULL,
@@ -108,32 +109,32 @@ Select * From item
 	
 
 
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+	VALUES ('Michael Scott', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
 	150);
+	
 
-
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+	VALUES ('Michael Scott', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
 	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
 	10);
 
 
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Hotel Stay at the beach for 2', 'One night with a lovely ocean view', 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+	VALUES ('Michael Scott', 1, 'Hotel Stay at the beach for 2', 'One night with a lovely ocean view', 
 	'https://www.simplemost.com/wp-content/uploads/2016/08/beach-vacation-e1470663653924.jpeg',
 	150);
 
 
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+	VALUES ('Michael Scott', 1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
 	'https://i1.wp.com/www.cooperstowncred.com/wp-content/uploads/2018/12/OMAR-VIZQUEL-CHUCK-CROW.png?fit=922%2C644&ssl=1',
 	250);
 
 
-INSERT INTO item (auction_id, title, subtitle, pic, starting_bid) 
-	VALUES (1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+	VALUES ('Michael Scott', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
 	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
 	10);
 
@@ -149,11 +150,6 @@ INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
 
 
 
-<<<<<<< HEAD
-=======
-INSERT INTO item_category (item_id, category_id) VALUES (5, 7);
-INSERT INTO item_category (item_id, category_id) VALUES (5, 4);
->>>>>>> 509357371db5d4547e2070b1183a1118f0448a3a
 
 
 
@@ -191,6 +187,6 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '20
 
 
 
-	
-	
-	
+
+
+select * from item  
