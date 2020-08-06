@@ -19,6 +19,10 @@ GO
 CREATE TABLE users (
 	user_id int IDENTITY(1,1) NOT NULL,
 	username varchar(50) NOT NULL,
+	name varchar(50) NOT NULL, 
+	address varchar(200) NOT NULL,
+	phone_number varchar(15) NOT NULL,
+	contact_times varchar(50) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	salt varchar(200) NOT NULL,
 	user_role varchar(50) NOT NULL
@@ -39,6 +43,7 @@ CREATE TABLE item (
 	auction_id int NOT NULL,
 	title varchar(50) NOT NULL,
 	subtitle varchar(240) NOT NULL,
+	description varchar(400) NOT NULL,
 	pic varchar(200) NOT NULL,
 	starting_bid decimal NOT NULL,
 	--is_sold bit
@@ -79,8 +84,8 @@ Create Table bid (
 --)
 
 --populate default data
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('admin', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 GO
 
@@ -109,34 +114,34 @@ Select * From item
 	
 
 
-INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Michael Scott', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
-	150);
+	150, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
 	
 
-INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Michael Scott', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
 	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
-	10);
+	10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
 
 
-INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Michael Scott', 1, 'Hotel Stay at the beach for 2', 'One night with a lovely ocean view', 
 	'https://www.simplemost.com/wp-content/uploads/2016/08/beach-vacation-e1470663653924.jpeg',
-	150);
+	150, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
 
 
-INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Michael Scott', 1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
 	'https://i1.wp.com/www.cooperstowncred.com/wp-content/uploads/2018/12/OMAR-VIZQUEL-CHUCK-CROW.png?fit=922%2C644&ssl=1',
-	250);
+	250, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
 
 
-INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid) 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Michael Scott', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
 	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
-	10);
+	10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
 
 
 
@@ -192,3 +197,4 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '20
 
 
 
+select * from item
