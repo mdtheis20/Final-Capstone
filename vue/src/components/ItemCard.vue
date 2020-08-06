@@ -22,16 +22,19 @@ export default {
 </script>
 
 <style >
+
  #item-card {
     height: 400px;
     width: 95%;
-    background-color: lightblue; 
+    background-color: #204051; 
     border-radius: 5px;
     border: 1px solid navy;
-
     
  }
  #item-card.has-bid {
      border: 5px solid greenyellow;
+ }
+ div#filter.menu-bar{
+     background-color: #284853;
  }
 </style>

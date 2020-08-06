@@ -26,5 +26,8 @@ namespace Capstone.Controllers
             List<Bid> bid = bDao.GetBidsByItem(id);
             return Ok(bid);
         }
+       // [HttpGet(")]
+        // /item/{item_id}/bids
     }
+    
 }
