@@ -56,7 +56,7 @@ const router = new Router({
       }
     },
     {
-      path: '/:itemID',
+      path: '/items/:itemID',
       name: 'item',
       component: Item,
      

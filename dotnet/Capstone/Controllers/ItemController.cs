@@ -9,7 +9,8 @@ namespace Capstone.Controllers
 {
     [Route("")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
+
     public class ItemController : ControllerBase
     {
         private readonly IItemDAO itemDao;
