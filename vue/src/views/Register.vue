@@ -5,7 +5,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
         <router-link :to="{ name: 'login' }">Have an account?</router-link>
       </div>
-      
+
       <div
         class="alert alert-danger"
         role="alert"
@@ -13,101 +13,102 @@
       >{{ registrationErrorMsg }}</div>
 
       <div id="enterName">
-      <label for="first name">First Name:</label>
-      <input type="text" required placeholder="First Name" v-model="user.firstName" />
+        <label for="first name">First Name:</label>
+        <input type="text" required placeholder="First Name" v-model="user.name.firstName" />
 
-      <label for="last name">Last Name:</label>
-      <input type="text" required placeholder="Last Name" v-model="user.lastName" />
+        <label for="last name">Last Name:</label>
+        <input type="text" required placeholder="Last Name" v-model="user.name.lastName" />
       </div>
 
       <div id="streetAddress">
-      <label for="address">Address:</label>
-      <input type="text" required placeholder="Address" v-model="user.address" />
+        <label for="address">Address:</label>
+        <input type="text" required placeholder="Address" v-model="user.address.streetAddress" />
       </div>
 
       <div id="cityStateZip">
-      <label for="city">City:</label>
-      <input type="text" required placeholder="City" v-model="user.city" />
+        <label for="city">City:</label>
+        <input type="text" required placeholder="City" v-model="user.address.city" />
 
-      <label for="state">State:</label>
-      <select required v-model="user.state">
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="DC">District Of Columbia</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-        <option value="ID">Idaho</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="IA">Iowa</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="ME">Maine</option>
-        <option value="MD">Maryland</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MS">Mississippi</option>
-        <option value="MO">Missouri</option>
-        <option value="MT">Montana</option>
-        <option value="NE">Nebraska</option>
-        <option value="NV">Nevada</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NY">New York</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VT">Vermont</option>
-        <option value="VA">Virginia</option>
-        <option value="WA">Washington</option>
-        <option value="WV">West Virginia</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WY">Wyoming</option>
-      </select>
+        <label for="state">State:</label>
+        <select required v-model="user.address.state">
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District Of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
 
-      <label for="zip code">Zip Code:</label>
-      <input type="text" required placeholder="Zip" v-model="user.zip" />
+        <label for="zip code">Zip Code:</label>
+        <input type="text" required placeholder="Zip" pattern="[0-9]*" v-model="user.address.zip" />
       </div>
 
-      <div id="phoneEmail">
-      <label for="phone number">Phone Number (xxx-xxx-xxxx): </label>
-      <input type="tel" required placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" v-model="user.phone" />
+      <div id="phoneContact">
+        <label for="phone number">Phone Number (xxx-xxx-xxxx):</label>
+        <input
+          type="tel"
+          required
+          placeholder="xxx-xxx-xxxx"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          v-model="user.phone"
+        />
 
-      <label for="email">Email: </label>
-      <input type="email" required placeholder="email address" v-model="user.email" />
-      </div>
-
-      <div id="contactTimes">
-      <label for="available times">Best time to contact you: </label>
-      <select name="times" id="times" required v-model="user.availableTimes">
-        <option value="morning">Morning</option>
-        <option value="afternoon">Afternoon</option>
-        <option value="evening">Evening</option>
-      </select>
+        <label for="available times">Best time to contact you:</label>
+        <select name="times" id="times" required v-model="user.availableTimes">
+          <option value="morning">Morning</option>
+          <option value="afternoon">Afternoon</option>
+          <option value="evening">Evening</option>
+        </select>
       </div>
 
       <label for="username" class="sr-only">Username</label>
       <input
-        type="text"
+        type="email"
         id="username"
         class="form-control"
         placeholder="Username"
@@ -117,25 +118,25 @@
       />
 
       <div id="passwords">
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
+        <label for="password" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Password"
+          v-model="user.password"
+          required
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          v-model="user.confirmPassword"
+          required
+        />
       </div>
-      
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
     </form>
   </div>
@@ -153,15 +154,18 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        state: "",
-        country: "",
-        zip: "",
+        name: {
+          firstName: "",
+          lastName: "",
+        },
+        address: {
+          streetAddress: "",
+          city: "",
+          state: "",
+          country: "",
+          zip: "",
+        },
         phone: "",
-        email: "",
         availableTimes: "",
       },
       registrationErrors: false,
