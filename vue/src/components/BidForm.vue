@@ -20,7 +20,15 @@
 // TODO: items do not load if you go straight to the url without going to home
 export default {
   data() {
-    return {};
+    return {
+      bid: {
+        bid_id: 0,
+        item_id: 0,
+        user_id: this.$store.state.user,
+        amount: 0.0,
+        time_placed: null,
+      }
+    };
   },
   props: {
     itemID: Number,
