@@ -51,8 +51,8 @@ namespace Capstone.Controllers
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )
             {
-                bidDao.AddBid(bid);
-                return Ok();
+                Bid returnedBid = bidDao.AddBid(bid);
+                return Created($"/items/{returnedBid.Bid_ID}", returnedBid);
             }
           else
             {

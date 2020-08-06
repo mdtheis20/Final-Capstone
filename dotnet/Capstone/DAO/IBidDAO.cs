@@ -8,7 +8,7 @@ namespace Capstone.DAO
 {
     public interface IBidDAO
     {
-        void AddBid(Bid bid);
+        Bid AddBid(Bid bid);
         List<Bid> GetBidsByItem(int id);
         decimal GetHighestBidAmountForItem(int id);
     }
