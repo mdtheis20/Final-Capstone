@@ -73,6 +73,14 @@ bid:
         startTime: datetime,
         endTime: datetime
     }
+
+    bid {
+      bid_ID:
+      item_ID:
+      user_ID:
+      time_placed:
+      amount:
+    }
 ```
 
 # Endpoints
@@ -81,5 +89,7 @@ GET localhost:4320/auction --gets list of all items
 
 GET localhost:4320/auction/categories  -- gets list of all categories
 
-GET /auction/item?item_id=21  -- gets a list of all bids with username 
+GET /auction/item/{item_id}
+
+POST /auction/item/{item_id}  --post a bid
 
