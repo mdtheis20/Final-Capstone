@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace Capstone.DAO
 {
@@ -35,11 +37,41 @@ namespace Capstone.DAO
                         bidsByIDs.Add(bid);
                     }
                     return bidsByIDs;
-                }              
+                }
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw;
+            }
+        }
+        // TODO: Fix this!
+        public int UserId
+        {
+            get
+            {
+                int userId = 0;
+                Claim subjectClaim = User?.Claims?.Where(cl => cl.Type == "sub").FirstOrDefault();
+                if (subjectClaim != null)
+                {
+                    int.TryParse(subjectClaim.Value, out userId);
+                }
+                return userId;
+            }
+        }
+
+        // Alternate non-working method
+        private int userId
+        {
+            get
+            {
+                foreach (Claim claim in User.Claims)
+                {
+                    if (claim.Type == "sub")
+                    {
+                        return Convert.ToInt32(claim.Value);
+                    }
+                }
+                return 0;
             }
         }
         public void AddBid(Bid bid)
@@ -53,7 +85,7 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now)", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
-                    cmd.Parameters.AddWithValue("@user_id", bid.User_ID); //TODO Change to authorized logged in user
+                    cmd.Parameters.AddWithValue("@user_id", ); //TODO Change to authorized logged in user
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", DateTime.Now);
                     cmd.ExecuteNonQuery();
