@@ -83,13 +83,16 @@ namespace Capstone.DAO
                     conn.Open();
                     //TODO: Add logic to ensure bid is $1 higher than current bid
 
-                    SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now)", conn);
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", ); //TODO Change to authorized logged in user
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", DateTime.Now);
-                    cmd.ExecuteNonQuery();
-                    return;
+                    int newID = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    bid.Bid_ID = newID;
+                    
+                    return bid;
                 }
             }
             catch (SqlException)
@@ -97,6 +100,35 @@ namespace Capstone.DAO
                 throw;
             }
         }
+        public decimal GetHighestBidAmountForItem(int id)
+        {
+            decimal topAmount = 0;
+
+            Bid highestBid = new Bid();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("Select MAX(amount) from bid where item_id = @item_id", conn);
+                    cmd.Parameters.AddWithValue("@item_id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        highestBid = RowToObject(reader);
+                        topAmount = highestBid.Amount;
+                    }
+                    return topAmount;
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+       
         private static Bid RowToObject(SqlDataReader rdr)
         {
             Bid bid = new Bid();
