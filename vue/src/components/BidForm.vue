@@ -21,7 +21,17 @@
 export default {
   data() {
     return {
+<<<<<<< HEAD
 
+=======
+      bid: {
+        bid_id: 0,
+        item_id: 0,
+        user_id: this.$store.state.user,
+        amount: 0.0,
+        time_placed: null,
+      }
+>>>>>>> be6ff54ccf8003fe2405cd59dd9f11cae3a4ad48
     };
   },
   props: {
