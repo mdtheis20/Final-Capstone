@@ -7,6 +7,8 @@
    <div class="img-container">
       <img :src="item.pic" :alt="item.subtitle" />
     </div>
+    <h5>{{item.description}}</h5>
+    
     <ul class="category-container" v-for="cat in item.categories" :key="cat">
       <li>{{cat}}</li>
     </ul>

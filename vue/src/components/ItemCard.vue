@@ -22,19 +22,24 @@ export default {
 </script>
 
 <style >
-
  #item-card {
     height: 400px;
     width: 95%;
-    background-color: #204051; 
+    background-color: lightblue; 
     border-radius: 5px;
     border: 1px solid navy;
-    
+    margin: 15px auto;
+    /* TODO: the items need to be centered, something is up with list items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+ }
+ #item-card img {
+     max-height: 200px;
+     max-width: 100%;
  }
  #item-card.has-bid {
      border: 5px solid greenyellow;
- }
- div#filter.menu-bar{
-     background-color: #284853;
  }
 </style>
