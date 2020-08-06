@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     items(){
-      return this.$store.state.listOfItems
+      return this.$store.getters.filteredItems;
     },
   }, 
   components: {
