@@ -10,5 +10,6 @@ namespace Capstone.DAO
     {
         void AddBid(Bid bid);
         List<Bid> GetBidsByItem(int id);
+        decimal GetHighestBidAmountForItem(int id);
     }
 }
