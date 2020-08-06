@@ -59,9 +59,7 @@ const router = new Router({
       path: '/:itemID',
       name: 'item',
       component: Item,
-      meta: {
-        title: 'Omar Vizquel'
-      }
+     
     }
   ]
 })
