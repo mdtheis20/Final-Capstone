@@ -60,6 +60,10 @@ export default new Vuex.Store({
     UPDATE_FILTER_CATEGORIES(state, filterCategories){
       state.categoriesToFilter = filterCategories;
     },
+    ADD_BID(state, bid) {
+      let foundItem = state.listOfItems.find(i => i.item_ID === bid.item_ID);
+      foundItem.bids.push(bid);
+    }
   },
   getters: {
     filteredItems:(state) => {
@@ -78,6 +82,15 @@ export default new Vuex.Store({
       } else {
        return state.listOfItems;
       }
+    },
+    listAllTopBids: (state) => {
+      //TODO get list of top bids
+      const highestBidsByItem = [];
+      state.listOfItems.forEach( item => {
+        const highestBid = item.bids[item.bids.length - 1];
+        highestBidsByItem.unshift( {item_ID: item.item_ID, topBid: highestBid} );
+      });
+      return highestBidsByItem;
     }
   },
   actions: {

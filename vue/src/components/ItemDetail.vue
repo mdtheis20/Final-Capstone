@@ -12,12 +12,12 @@
     <ul class="category-container" v-for="cat in item.categories" :key="cat">
       <li>{{cat}}</li>
     </ul>
-    <ol class="bid-container" v-for="bid in item.bids" :key="bid.bid_ID">
-      <li>
-        <span>{{bid.amount}}</span>
+    <div class="bid-container" v-for="bid in item.bids.reverse()" :key="bid.bid_ID">
+      <div class="bid-row">
+        <span>{{bid.amount}}</span>&nbsp;
         <span>{{bid.user_Name}}</span>
-      </li>
-    </ol>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,8 +45,9 @@ export default {
     display: inline-block;
     list-style-type: none;
 }
-.bid-container > li {
-    list-style-type: none;
-    display: flex;
+
+#item-detail div.bid-container {
+  display: flex;
+  flex-direction: column;
 }
 </style>
