@@ -47,10 +47,20 @@ namespace Capstone.Controllers
         [HttpPost("/items/{itemID}/bids")]
         public IActionResult AddNewBid(int itemID, Bid bid)
         {
+
+            decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
+            if (bid.Amount >= amountToCheck )
+            {
+                bidDao.AddBid(bid);
+                return Ok();
+            }
+          else
+            {
+                return BadRequest();
+            }
+
             // Error check that item_id inside the bid object matches url item_id
-            // User id will be pulled by authorized logged in user, not userid from json            
-            bidDao.AddBid(bid);
-            return Ok();
+            // User id will be pulled by authorized logged in user, not userid from json  
         }
     }
 }

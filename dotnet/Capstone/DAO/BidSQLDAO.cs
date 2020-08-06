@@ -65,6 +65,35 @@ namespace Capstone.DAO
                 throw;
             }
         }
+        public decimal GetHighestBidAmountForItem(int id)
+        {
+            decimal topAmount = 0;
+
+            Bid highestBid = new Bid();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("Select MAX(amount) from bid where item_id = @item_id", conn);
+                    cmd.Parameters.AddWithValue("@item_id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        highestBid = RowToObject(reader);
+                        topAmount = highestBid.Amount;
+                    }
+                    return topAmount;
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+       
         private static Bid RowToObject(SqlDataReader rdr)
         {
             Bid bid = new Bid();
