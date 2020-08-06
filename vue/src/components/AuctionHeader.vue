@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style>
-
+header {
+  background-color: #1b262c;
+}
 </style>

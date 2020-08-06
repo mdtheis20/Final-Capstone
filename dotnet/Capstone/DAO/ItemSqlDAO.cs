@@ -71,7 +71,7 @@ namespace Capstone.DAO
             Item item = new Item();
             item.Item_ID = Convert.ToInt32(rdr["item_id"]);
             item.Auction_ID = Convert.ToInt32(rdr["auction_id"]);
-            item.Donor = Convert.ToString(rdr["donor"]);
+            //item.Donor = Convert.ToString(rdr["donor"]);
             item.Subtitle = Convert.ToString(rdr["subtitle"]);
             item.Title = Convert.ToString(rdr["Title"]);
             item.Pic = Convert.ToString(rdr["pic"]);
