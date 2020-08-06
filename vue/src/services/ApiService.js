@@ -8,5 +8,8 @@ export default {
       },
     getAllCategories() {
         return axios.get('/auction/categories')
+    },
+    postBid(id) {
+        return axios.post(`/items/${id}/bids`)
     }
 }
