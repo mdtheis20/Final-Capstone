@@ -42,6 +42,29 @@ namespace Capstone.DAO
                 throw;
             }
         }
+        public void AddBid(Bid bid)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    //TODO: Add logic to ensure bid is $1 higher than current bid
+
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now)", conn);
+                    cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
+                    cmd.Parameters.AddWithValue("@user_id", bid.User_ID); //TODO Change to authorized logged in user
+                    cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
+                    cmd.Parameters.AddWithValue("@now", DateTime.Now);
+                    cmd.ExecuteNonQuery();
+                    return;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
         private static Bid RowToObject(SqlDataReader rdr)
         {
             Bid bid = new Bid();
