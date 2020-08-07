@@ -2,6 +2,7 @@
 using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Capstone.Controllers
 {
@@ -19,7 +20,14 @@ namespace Capstone.Controllers
             passwordHasher = _passwordHasher;
             userDAO = _userDAO;
         }
-        public LoginResponse retUser = null;
+        // TODO
+        //[HttpGet("/test")]
+        //public string GetUserId(User user)
+        //{
+        //    var userId = User.Identity.Name;
+        //    return userId;
+        //}
+        
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
@@ -36,7 +44,7 @@ namespace Capstone.Controllers
                 string token = tokenGenerator.GenerateToken(user.UserId, user.Username, user.Role);
 
                 // Create a ReturnUser object to return to the client
-                retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
+                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
 
                 // Switch to 200 OK
                 result = Ok(retUser);

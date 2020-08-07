@@ -45,35 +45,35 @@ namespace Capstone.DAO
             }
         }
         // TODO: Fix this!
-        public int UserId
-        {
-            get
-            {
-                int userId = 0;
-                Claim subjectClaim = User?.Claims?.Where(cl => cl.Type == "sub").FirstOrDefault();
-                if (subjectClaim != null)
-                {
-                    int.TryParse(subjectClaim.Value, out userId);
-                }
-                return userId;
-            }
-        }
+        //public int UserId
+        //{
+        //    get
+        //    {
+        //        int userId = 0;
+        //        Claim subjectClaim = User?.Claims?.Where(cl => cl.Type == "sub").FirstOrDefault();
+        //        if (subjectClaim != null)
+        //        {
+        //            int.TryParse(subjectClaim.Value, out userId);
+        //        }
+        //        return userId;
+        //    }
+        //}
 
         // Alternate non-working method
-        private int userId
-        {
-            get
-            {
-                foreach (Claim claim in User.Claims)
-                {
-                    if (claim.Type == "sub")
-                    {
-                        return Convert.ToInt32(claim.Value);
-                    }
-                }
-                return 0;
-            }
-        }
+        //private int userId
+        //{
+        //    get
+        //    {
+        //        foreach (Claim claim in )
+        //        {
+        //            if (claim.Type == "sub")
+        //            {
+        //                return Convert.ToInt32(claim.Value);
+        //            }
+        //        }
+        //        return 0;
+        //    }
+        //}
         public void AddBid(Bid bid)
         {
             try
@@ -85,14 +85,14 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
-                    cmd.Parameters.AddWithValue("@user_id", ); //TODO Change to authorized logged in user
+                    cmd.Parameters.AddWithValue("@user_id", bid.User_ID); //TODO Change to authorized logged in user
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", DateTime.Now);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());
 
                     bid.Bid_ID = newID;
-                    
-                    return bid;
+
+                    return; //bid;
                 }
             }
             catch (SqlException)
@@ -138,6 +138,11 @@ namespace Capstone.DAO
             bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
+        }
+
+        Bid IBidDAO.AddBid(Bid bid)
+        {
+            throw new NotImplementedException();
         }
     }
 }
