@@ -74,7 +74,7 @@ namespace Capstone.DAO
         //        return 0;
         //    }
         //}
-        public void AddBid(Bid bid, string userId)
+        public void AddBid(Bid bid, string userId) //TODO: Need to change return type
         {
             try
             {
@@ -92,8 +92,8 @@ namespace Capstone.DAO
 
                     bid.Bid_ID = newID;
                     bid.Time_Placed = timeStamp;
-                    
-                    return bid;
+
+                    return; // bid; //TODO: Need to change return type
                 }
             }
             catch (SqlException)
