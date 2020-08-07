@@ -34,13 +34,28 @@ header {
   background-color: #1b262c;
 }
 header h1 {
-    color: #e7dfd5;
-    font-size: 3em;
-    margin-bottom: 0px;
+    
+    font-family: "Brush Script MT", cursive; font-size: 50px; font-style: normal; font-variant: normal; ;
+    text-align: center;
+
+
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+
+  animation: glow .75s ease-in-out infinite alternate;
 }
-header .header-times {
-  display: flex;
-  justify-content: space-between;
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6, 0 0 50px #0073e6, 0 0 60px #0073e6, 0 0 70px #0073e6;
+  }
+}
+header p {
+  text-align: center;
 }
 
 </style>

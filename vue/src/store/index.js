@@ -29,7 +29,7 @@ export default new Vuex.Store({
     categoriesToFilter: [],
     auctionInfo: {
       // TODO: get this data from database
-      orgName: 'Tech Elevator Auctions',
+      orgName: 'TE: Bay',
       endTime: new Date(2020, 7, 14, 12)
     },
     listOfBids: [],
