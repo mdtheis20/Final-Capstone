@@ -14,23 +14,23 @@
 
       <div id="enterName">
         <label for="first name">First Name:</label>
-        <input type="text" required placeholder="First Name" v-model="user.name.firstName" />
+        <input type="text" required placeholder="First Name" v-model="name.firstName" />
 
         <label for="last name">Last Name:</label>
-        <input type="text" required placeholder="Last Name" v-model="user.name.lastName" />
+        <input type="text" required placeholder="Last Name" v-model="name.lastName" />
       </div>
 
       <div id="streetAddress">
         <label for="address">Address:</label>
-        <input type="text" required placeholder="Address" v-model="user.address.streetAddress" />
+        <input type="text" required placeholder="Address" v-model="address.streetAddress" />
       </div>
 
       <div id="cityStateZip">
         <label for="city">City:</label>
-        <input type="text" required placeholder="City" v-model="user.address.city" />
+        <input type="text" required placeholder="City" v-model="address.city" />
 
         <label for="state">State:</label>
-        <select required v-model="user.address.state">
+        <select required v-model="address.state">
           <option value="AL">Alabama</option>
           <option value="AK">Alaska</option>
           <option value="AZ">Arizona</option>
@@ -85,7 +85,7 @@
         </select>
 
         <label for="zip code">Zip Code:</label>
-        <input type="text" required placeholder="Zip" pattern="[0-9]*" v-model="user.address.zip" />
+        <input type="text" required placeholder="Zip" pattern="[0-9]*" v-model="address.zip" />
       </div>
 
       <div id="phoneContact">
@@ -95,11 +95,11 @@
           required
           placeholder="xxx-xxx-xxxx"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          v-model="user.phone"
+          v-model="user.phone_number"
         />
 
         <label for="available times">Best time to contact you:</label>
-        <select name="times" id="times" required v-model="user.availableTimes">
+        <select name="times" id="times" required v-model="user.contact_times">
           <option value="morning">Morning</option>
           <option value="afternoon">Afternoon</option>
           <option value="evening">Evening</option>
@@ -154,19 +154,22 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
-        name: {
-          firstName: "",
-          lastName: "",
-        },
-        address: {
-          streetAddress: "",
+        name: "",
+        address: "",
+        phone_number: "",
+        contact_times: "",
+      },
+
+      name: {
+        firstName: "",
+        lastName: ""
+      },
+
+      address: {
+        streetAddress: "",
           city: "",
           state: "",
-          country: "",
           zip: "",
-        },
-        phone: "",
-        availableTimes: "",
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
@@ -178,6 +181,8 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
+        this.user.name = this.name.firstName + " " + this.name.lastName
+        this.user.address = this.address.streetAddress + " " + this.address.city + " " + this.address.state + " " + this.address.zip
         authService
           .register(this.user)
           .then((response) => {
@@ -197,6 +202,8 @@ export default {
           });
       }
     },
+
+
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";

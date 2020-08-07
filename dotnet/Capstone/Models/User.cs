@@ -7,7 +7,7 @@
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone_Number { get; set; }
-        public string Contact_Time { get; set; }
+        public string Contact_Times { get; set; }
         public string PasswordHash { get; set; }
         public string Salt { get; set; }
         public string Role { get; set; }
@@ -50,5 +50,13 @@
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
+        public int UserId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Phone_Number { get; set; }
+        public string Contact_Times { get; set; }
+        public string PasswordHash { get; set; }
+        public string Salt { get; set; }
+     
     }
 }
