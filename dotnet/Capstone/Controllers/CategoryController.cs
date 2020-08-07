@@ -8,7 +8,7 @@ namespace Capstone.Controllers
 {
     [Route("")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : SilentAuctionController
     {
         private readonly ICategoryDAO cDao;
 

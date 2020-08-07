@@ -3,12 +3,12 @@ using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
 using Microsoft.Extensions.Configuration.UserSecrets;
-
+using System.Linq;
 namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : SilentAuctionController
     {
         private readonly ITokenGenerator tokenGenerator;
         private readonly IPasswordHasher passwordHasher;
@@ -20,14 +20,20 @@ namespace Capstone.Controllers
             passwordHasher = _passwordHasher;
             userDAO = _userDAO;
         }
-        // TODO
-        //[HttpGet("/test")]
-        //public string GetUserId(User user)
-        //{
-        //    var userId = User.Identity.Name;
-        //    return userId;
-        //}
         
+       [HttpGet("test")]
+        public string GetUserId()
+        {
+            return User.Claims.Where(c => c.Type == "sub").FirstOrDefault()?.Value;
+
+            //System.Security.Claims.Claim claim = User.Claims.Where(c => c.Type == "sub").FirstOrDefault();
+            //if (claim != null)
+            //{
+            //    return claim.Value;
+            //}
+            //return null;
+        }
+
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
