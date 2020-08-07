@@ -1,15 +1,17 @@
 <template>
   <div id="item-detail">
     <h2>{{item.title}}</h2>
-    <h3>{{item.subtitle}}</h3>
-    <h4> Donated by: {{item.donor}}</h4>
-    
     <div class="img-container">
       <img :src="item.pic" :alt="item.subtitle" />
     </div>
+    <h3>{{item.subtitle}}</h3>
     <p>{{item.description}}</p>
+    <h4> Donated by: {{item.donor}}</h4>
     
     <category-bar :item_ID="this.item.item_ID" />
+
+    <bid-form :item_ID="item_ID" />
+
     <div class="bid-container" v-for="bid in item.bids" :key="bid.bid_ID">
       <div class="bid-row">
         <span>{{bid.amount}}</span>&nbsp;
@@ -22,10 +24,12 @@
 
 <script>
 import CategoryBar from '@/components/CategoryBar.vue';
+import BidForm from './BidForm.vue'
 
 export default {
   components: {
-    CategoryBar
+    CategoryBar,
+    BidForm
   },
   title () {
     return `Auction Item - ${this.item.title}`

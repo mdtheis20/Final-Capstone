@@ -4,8 +4,7 @@
         <h3>{{item.title}}</h3>
         <span :class="{'bid-flag': this.item.bids.length > 0}">{{currentBid}}</span>
       </div>
-      
-      <h4>{{item.startingBid}}</h4>      
+         
       <img :src="item.pic" :alt="item.subtitle" />
       <!-- <p>{{item.subtitle}}</p> -->
       <category-bar :item_ID="this.item.item_ID" />
@@ -26,7 +25,7 @@ export default {
     computed: {
         currentBid() {
             if (this.item.bids.length > 0) {
-                return `Current Bid: ${this.item.bids[this.item.bids.length - 1].amount}`;
+                return /* `Current Bid: ${this.item.bids[0].amount}` */ 'error';
             } else {
                 return `Starting Bid: ${this.item.starting_Bid}`;
             } 

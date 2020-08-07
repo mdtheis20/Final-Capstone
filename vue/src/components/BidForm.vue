@@ -56,29 +56,34 @@ export default {
   },
   methods: {
     placeBid() {
-      // TODO: should server take care of adding user_ID?
-      apiService
-        .postBid(this.newBid.item_ID, this.newBid)
-        .then((r) => {
-          if (r.status === 201) {
-            this.$store.commit("ADD_BID", r.data);
-          }
-        })
-        .catch((e) => {
-          if (e.response) {
-            console.error(e.response);
-          } else if (e.request) {
-            console.error(e.request);
-          } else {
-            console.error("There was an error!");
-          }
-        });
+      if (this.$store.state.token == "") {
+        this.$router.push({ name: "login" });
+      } else if (this.newBid.amount < this.findHighestBid() + 1) {
+        alert('You must bid at least $1 more than the current bid')
+      } else {
+        apiService
+          .postBid(this.newBid.item_ID, this.newBid)
+          .then((r) => {
+            if (r.status === 201) {
+              this.$store.commit("ADD_BID", r.data);
+            }
+          })
+          .catch((e) => {
+            if (e.response) {
+              console.error(e.response);
+            } else if (e.request) {
+              console.error(e.request);
+            } else {
+              console.error("There was an error!");
+            }
+          });
+      }
     },
     findHighestBid() {
       const foundItem = this.$store.state.listOfItems.find(
         (item) => item.item_ID === this.$route.params.itemID
       );
-      return foundItem.bids[foundItem.bids.length - 1].amount;
+      return foundItem.bids[0].amount;
     },
   },
   created() {
@@ -94,7 +99,6 @@ export default {
   justify-content: space-evenly;
 }
 #left-bid {
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -111,7 +115,6 @@ button {
   margin: 15px;
 }
 #right-bid {
-
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -120,7 +123,8 @@ button {
 input {
   width: 100%;
 }
-h3, h4 {
+h3,
+h4 {
   color: #e7dfd5;
   text-align: center;
 }

@@ -3,9 +3,9 @@
     <auction-header />
     <nav id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link>
-      <router-link :to="{ name: 'login' }">Login</router-link>
+      <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
        <router-link :to="{ name: 'register' }">Register</router-link>
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">Logout</router-link>
     </nav>
     <router-view />
   </div>
@@ -16,6 +16,11 @@ import AuctionHeader from './components/AuctionHeader.vue'
 export default {
   components: {
     AuctionHeader
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.token != '';
+    }
   }
 }
 </script>
