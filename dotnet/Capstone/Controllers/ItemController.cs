@@ -4,15 +4,29 @@ using Capstone.Models;
 using Capstone.Security;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Capstone.Controllers
 {
     [Route("")]
     [ApiController]
-    //[Authorize]
-
+    [Authorize]
+    
     public class ItemController : ControllerBase
     {
+        //private readonly UserManager<User> _userManager;
+
+        //public ItemController(UserManager<User> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+           var UserName = HttpContext.User.Identity.Name;
+            return Ok(UserName);
+        }
+
         private readonly IItemDAO itemDao;
         private readonly IBidDAO bidDao;
         public ItemController(IItemDAO itemDAO, IBidDAO bidDAO)

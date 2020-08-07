@@ -19,7 +19,7 @@ namespace Capstone.Controllers
             passwordHasher = _passwordHasher;
             userDAO = _userDAO;
         }
-
+        public LoginResponse retUser = null;
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
@@ -36,7 +36,7 @@ namespace Capstone.Controllers
                 string token = tokenGenerator.GenerateToken(user.UserId, user.Username, user.Role);
 
                 // Create a ReturnUser object to return to the client
-                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
+                retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
 
                 // Switch to 200 OK
                 result = Ok(retUser);
