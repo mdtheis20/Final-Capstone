@@ -126,6 +126,9 @@
           placeholder="Password"
           v-model="user.password"
           required
+          minlength="8"
+          pattern =""
+          title="Must contain at least one number, one symbol, one uppercase letter, one lowercase letter, and at least 8 or more characters"
         />
         <input
           type="password"
