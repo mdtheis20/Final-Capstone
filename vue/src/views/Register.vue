@@ -106,12 +106,12 @@
         </select>
       </div>
 
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Email address:</label>
       <input
         type="email"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="email"
         v-model="user.username"
         required
         autofocus
@@ -126,8 +126,7 @@
           placeholder="Password"
           v-model="user.password"
           required
-          minlength="8"
-          pattern =""
+          pattern ="(?=.*?[!?@#$%^*])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}"
           title="Must contain at least one number, one symbol, one uppercase letter, one lowercase letter, and at least 8 or more characters"
         />
         <input
@@ -140,6 +139,15 @@
         />
       </div>
 
+      <!-- <input type="checkbox" required>
+      <label for="Verify you have read the privacy policy">I confirm that I have read and agree to the <a class="trigger_popup_fricc">Privacy Policy</a></label>
+      <div class="hover_background_fricc">
+        <span class="helper"></span>
+        <div>
+          <div class="popupCloseButton">&times;</div>
+          <p>I consent to donate all purchased items directly back to team Wildcard</p>
+        </div>
+      </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
     </form>
   </div>
@@ -213,6 +221,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style>
