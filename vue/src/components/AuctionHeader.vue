@@ -1,7 +1,10 @@
 <template>
   <header>
       <h1>{{organizationName}}</h1>
-      <p>End time: {{endTime}}</p>
+      <div class="header-times">
+        <p>End time: {{endTime}}</p>
+        <p>Countdown: </p>
+      </div>
       
   </header>
 </template>
@@ -32,6 +35,12 @@ header {
 }
 header h1 {
     color: #e7dfd5;
+    font-size: 3em;
+    margin-bottom: 0px;
+}
+header .header-times {
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>

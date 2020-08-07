@@ -1,23 +1,43 @@
 <template>
-  <div id="item-card" :class="{'has-bid': item.bids.length > 0}">
-      <h3>{{item.title}}</h3>
+  <div id="item-card">
+      <div id="item-card-heading">
+        <h3>{{item.title}}</h3>
+        <span :class="{'bid-flag': this.item.bids.length > 0}">{{currentBid}}</span>
+      </div>
+      
       <h4>{{item.startingBid}}</h4>      
       <img :src="item.pic" :alt="item.subtitle" />
       <!-- <p>{{item.subtitle}}</p> -->
+      <category-bar :item_ID="this.item.item_ID" />
   </div>
 </template>
 
 <script>
+import CategoryBar from './CategoryBar.vue'
+
 export default {
     data() {
-        return {          
+        return {      
+            item: this.$store.state.listOfItems.find( i => i.item_ID === this.item_ID),    
             // TODO: display top bid instead of starting bid if there are bids
             // TODO: display how many bids have benn placed
         }
     },
-    props: {
-        item: Object
+    computed: {
+        currentBid() {
+            if (this.item.bids.length > 0) {
+                return `Current Bid: ${this.item.bids[this.item.bids.length - 1].amount}`;
+            } else {
+                return `Starting Bid: ${this.item.starting_Bid}`;
+            } 
+        }
     },
+    props: {
+        item_ID: Number
+    },
+    components: {
+        CategoryBar
+    }
 }
 </script>
 
@@ -29,7 +49,6 @@ export default {
     border-radius: 5px;
     border: 1px solid navy;
     margin: 15px auto;
-    /* TODO: the items need to be centered, something is up with list items */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,5 +60,9 @@ export default {
  }
  #item-card.has-bid {
      border: 5px solid greenyellow;
+ }
+ .bid-flag {
+     border: 3px solid yellow;
+     border-radius: 5px;
  }
 </style>

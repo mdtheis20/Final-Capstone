@@ -1,18 +1,29 @@
 <template>
   <div id="auction">
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link :to="{ name: 'login' }">Login</router-link>&nbsp;|&nbsp;
-       <router-link :to="{ name: 'register' }">Register</router-link>&nbsp;|&nbsp;
+    <auction-header />
+    <nav id="nav">
+      <router-link :to="{ name: 'home' }">Home</router-link>
+      <router-link :to="{ name: 'login' }">Login</router-link>
+       <router-link :to="{ name: 'register' }">Register</router-link>
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div>
+    </nav>
     <router-view />
   </div>
 </template>
 
+<script>
+import AuctionHeader from './components/AuctionHeader.vue'
+export default {
+  components: {
+    AuctionHeader
+  }
+}
+</script>
+
 <style>
 body {
   background-color: #1b262c;
+
 }
 #auction {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -21,6 +32,21 @@ body {
   text-align: left;
   color: #e7dfd5;  
   max-width: 800px;
-  margin: 60px auto 0 auto;
+  margin: 0 auto 0 auto;
+}
+#nav {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+#nav a {
+  padding: 8px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+a {
+  text-decoration: none;
 }
 </style>
