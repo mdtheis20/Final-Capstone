@@ -19,7 +19,7 @@ export default {
     organizationName(){
       return this.$store.state.auctionInfo.orgName;
     },
-    countdown(){
+    setInterval(countdown(){
       const endTime = this.$store.state.auctionInfo.endTime;
 
       let now = new Date().getTime();
@@ -30,7 +30,7 @@ export default {
       let seconds = Math.floor((t%(1000*60))/1000);
 
       return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-    },
+    }, 1000)
   }
 }
 </script>

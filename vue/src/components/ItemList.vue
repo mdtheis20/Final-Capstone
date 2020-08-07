@@ -2,7 +2,7 @@
   <ul id="item-list">
       <li v-for="item in items" :key="item.item_ID">
         <router-link tag="a" :to="{name: 'item', params: {itemID: item.item_ID}}" >
-        <item-card :item="item" />
+        <item-card :item_ID="item.item_ID" />
         </router-link>
       </li>
   </ul>
@@ -36,6 +36,7 @@ export default {
 #item-list {
   display: flex;
   flex-direction: column;
+  padding: 0px;
 }
 #item-list >  li {
   list-style-type: none;

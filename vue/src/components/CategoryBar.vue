@@ -1,8 +1,8 @@
 <template>
-<div>
-  <ul class="category-container" v-for="cat in item.categories" :key="cat">
-      <li>{{cat}}</li>
-  </ul>
+<div class="category-container">
+  <div v-for="cat in item.categories" :key="cat">
+    {{cat}}
+  </div>
 </div>
 
 </template>
@@ -22,6 +22,15 @@ export default {
 
 <style scoped>
 .category-container {
-    display: flex;
+    display: flex; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: flex-start;
+}
+.category-container > div {
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid #1b262c;
+    border-radius: 5px;
 }
 </style>
