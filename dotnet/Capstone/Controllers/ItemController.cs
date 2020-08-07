@@ -12,7 +12,7 @@ namespace Capstone.Controllers
     [ApiController]
     [Authorize]
     
-    public class ItemController : ControllerBase
+    public class ItemController : SilentAuctionController
     {
         //private readonly UserManager<User> _userManager;
 
@@ -65,7 +65,7 @@ namespace Capstone.Controllers
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )
             {
-                Bid returnedBid = bidDao.AddBid(bid);
+                Bid returnedBid = bidDao.AddBid(bid, UserId);
                 return Created($"/items/{returnedBid.Bid_ID}", returnedBid);
             }
           else

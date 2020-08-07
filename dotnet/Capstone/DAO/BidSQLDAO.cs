@@ -74,25 +74,23 @@ namespace Capstone.DAO
         //        return 0;
         //    }
         //}
-        public void AddBid(Bid bid)
+        public void AddBid(Bid bid, string userId)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    //TODO: Add logic to ensure bid is $1 higher than current bid
-
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
-                    cmd.Parameters.AddWithValue("@user_id", bid.User_ID); //TODO Change to authorized logged in user
+                    cmd.Parameters.AddWithValue("@user_id", int.Parse(userId));  
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", DateTime.Now);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());
 
                     bid.Bid_ID = newID;
 
-                    return; //bid;
+                    return;
                 }
             }
             catch (SqlException)
@@ -140,9 +138,9 @@ namespace Capstone.DAO
             return bid;
         }
 
-        Bid IBidDAO.AddBid(Bid bid)
-        {
-            throw new NotImplementedException();
-        }
+        //Bid IBidDAO.AddBid(Bid bid)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
