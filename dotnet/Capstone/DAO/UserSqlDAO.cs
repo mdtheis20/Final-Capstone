@@ -45,10 +45,10 @@ namespace Capstone.DAO
         }
 
 
-        public User AddUser(string username, string password, string role)
+        public User AddUser(RegisterUser user)
         {
             IPasswordHasher passwordHasher = new PasswordHasher();
-            PasswordHash hash = passwordHasher.ComputeHash(password);
+            PasswordHash hash = passwordHasher.ComputeHash(user.Password);
 
             try
             {
@@ -56,11 +56,15 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role) VALUES (@username, @password_hash, @salt, @user_role)", conn);
-                    cmd.Parameters.AddWithValue("@username", username);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES (@username, @name, @address, @phone_number, @contact_times, @password_hash, @salt, @user_role)", conn);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@name", user.Name);
+                    cmd.Parameters.AddWithValue("@address", user.Address);
+                    cmd.Parameters.AddWithValue("@phone_number", user.Phone_Number);
+                    cmd.Parameters.AddWithValue("@contact_times", user.Contact_Times);
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
-                    cmd.Parameters.AddWithValue("@user_role", role);
+                    cmd.Parameters.AddWithValue("@user_role", user.Role);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -69,7 +73,7 @@ namespace Capstone.DAO
                 throw;
             }
 
-            return GetUser(username);
+            return GetUser(user.Username);
         }
 
         private User GetUserFromReader(SqlDataReader reader)
@@ -78,10 +82,10 @@ namespace Capstone.DAO
             {
                 UserId = Convert.ToInt32(reader["user_id"]),
                 Username = Convert.ToString(reader["username"]),
-                ///Name = Convert.ToString(reader["name"]),
-                //Address = Convert.ToString(reader["address"]),
-                //Phone_Number = Convert.ToString(reader["phone_number"]),
-                //Contact_Time = Convert.ToString(reader["contact_times"]),
+                Name = Convert.ToString(reader["name"]),
+                Address = Convert.ToString(reader["address"]),
+                Phone_Number = Convert.ToString(reader["phone_number"]),
+                Contact_Times = Convert.ToString(reader["contact_times"]),
                 PasswordHash = Convert.ToString(reader["password_hash"]),
                 Salt = Convert.ToString(reader["salt"]),
                 Role = Convert.ToString(reader["user_role"]),
