@@ -80,6 +80,7 @@ namespace Capstone.DAO
         {
             User u = new User()
             {
+                //TODO: these items are commented so login works
                 UserId = Convert.ToInt32(reader["user_id"]),
                 Username = Convert.ToString(reader["username"]),
                // Name = Convert.ToString(reader["name"]),
