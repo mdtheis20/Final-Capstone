@@ -8,7 +8,7 @@ namespace Capstone.Models
         public int Item_ID { get; set; }
         public int User_ID { get; set; }
         public decimal Amount { get; set; }
-        public DateTime Time_Placed { get; set; }
+        public DateTime? Time_Placed { get; set; }
     }
     public class ReturnBid
     {

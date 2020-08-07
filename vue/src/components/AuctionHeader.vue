@@ -30,4 +30,8 @@ export default {
 header {
   background-color: #1b262c;
 }
+header h1 {
+    color: #e7dfd5;
+}
+
 </style>

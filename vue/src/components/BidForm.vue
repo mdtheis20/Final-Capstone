@@ -28,8 +28,9 @@ export default {
   data() {
     return {
       newBid: {
+        bid_ID: 0,
         item_ID: this.$route.params.itemID,
-        user_ID: this.$store.state.user.user_ID,
+        user_ID: 1, //TODO: make dynamic in API
         amount: 0,
         time_placed: null,
       }
@@ -40,6 +41,7 @@ export default {
   },
   methods: {
       placeBid() {
+          // TODO: should server take care of adding user_ID?
           apiService.postBid(this.newBid.item_ID, this.newBid).then( r => {
               if (r.status === 201){
                   this.$store.commit('ADD_BID', r.data);

@@ -74,7 +74,7 @@ namespace Capstone.DAO
         //        return 0;
         //    }
         //}
-        public void AddBid(Bid bid)
+        public Bid AddBid(Bid bid)
         {
             try
             {
@@ -82,17 +82,18 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     //TODO: Add logic to ensure bid is $1 higher than current bid
-
+                    DateTime timeStamp = DateTime.Now;
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", bid.User_ID); //TODO Change to authorized logged in user
-                    cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
-                    cmd.Parameters.AddWithValue("@now", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@bid_amount", (decimal)bid.Amount);
+                    cmd.Parameters.AddWithValue("@now", timeStamp);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());
 
                     bid.Bid_ID = newID;
+                    bid.Time_Placed = timeStamp;
 
-                    return; //bid;
+                    return bid;
                 }
             }
             catch (SqlException)
@@ -102,9 +103,6 @@ namespace Capstone.DAO
         }
         public decimal GetHighestBidAmountForItem(int id)
         {
-            decimal topAmount = 0;
-
-            Bid highestBid = new Bid();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -113,14 +111,9 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand("Select MAX(amount) from bid where item_id = @item_id", conn);
                     cmd.Parameters.AddWithValue("@item_id", id);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        highestBid = RowToObject(reader);
-                        topAmount = highestBid.Amount;
-                    }
-                    return topAmount;
+                    decimal topAmount = Convert.ToDecimal(cmd.ExecuteScalar());
 
+                    return topAmount;
                 }
             }
             catch (SqlException)
@@ -138,11 +131,6 @@ namespace Capstone.DAO
             bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
-        }
-
-        Bid IBidDAO.AddBid(Bid bid)
-        {
-            throw new NotImplementedException();
         }
     }
 }

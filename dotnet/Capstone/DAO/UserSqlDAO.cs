@@ -80,12 +80,13 @@ namespace Capstone.DAO
         {
             User u = new User()
             {
+                //TODO: these items are commented so login works
                 UserId = Convert.ToInt32(reader["user_id"]),
                 Username = Convert.ToString(reader["username"]),
-                Name = Convert.ToString(reader["name"]),
-                Address = Convert.ToString(reader["address"]),
-                Phone_Number = Convert.ToString(reader["phone_number"]),
-                Contact_Times = Convert.ToString(reader["contact_times"]),
+                //Name = Convert.ToString(reader["name"]),
+                //Address = Convert.ToString(reader["address"]),
+                //Phone_Number = Convert.ToString(reader["phone_number"]),
+                //Contact_Times = Convert.ToString(reader["contact_times"]),
                 PasswordHash = Convert.ToString(reader["password_hash"]),
                 Salt = Convert.ToString(reader["salt"]),
                 Role = Convert.ToString(reader["user_role"]),

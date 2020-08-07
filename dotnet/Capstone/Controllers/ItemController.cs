@@ -36,7 +36,7 @@ namespace Capstone.Controllers
         }
 
         //TODO: Should be '/items' GET 
-        [HttpGet("items")] 
+        [HttpGet("/items")] 
         public IActionResult GetAllItemsForDisplay()
         {
             List<Item> itemList = itemDao.GetAllItems();
@@ -59,14 +59,14 @@ namespace Capstone.Controllers
         // Add new bid
         // POST '/items/{id}/bids
         [HttpPost("/items/{itemID}/bids")]
-        public IActionResult AddNewBid(int itemID, Bid bid)
+        public ActionResult<Bid> AddNewBid(int itemID, Bid bid)
         {
 
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )
             {
                 Bid returnedBid = bidDao.AddBid(bid);
-                return Created($"/items/{returnedBid.Bid_ID}", returnedBid);
+                return Created("", returnedBid);
             }
           else
             {

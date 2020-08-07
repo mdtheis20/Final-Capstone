@@ -2,7 +2,7 @@
   <div id="filter" class="menu-bar">
       <button v-on:click="toggleVisible">{{isFilterVisible ? 'Filter by Category' : 'Hide Filter'}}</button>
       <div v-show="!isFilterVisible">
-          <label for="filter">Category</label>
+
       <ul>
           <li v-for="category in categories" :key="category.categoryID" >
               
