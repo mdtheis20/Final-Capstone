@@ -1,10 +1,7 @@
 <template>
   <header>
       <h1>{{organizationName}}</h1>
-      <div class="header-times">
-        <p>End time: {{endTime}}</p>
-        <p>Countdown: </p>
-      </div>
+      <p>Time Remaining: {{countdown}}</p>
       
   </header>
 </template>
@@ -22,9 +19,18 @@ export default {
     organizationName(){
       return this.$store.state.auctionInfo.orgName;
     },
-    endTime(){
-      return this.$store.state.auctionInfo.endTime;
-    },
+    setInterval(countdown(){
+      const endTime = this.$store.state.auctionInfo.endTime;
+
+      let now = new Date().getTime();
+      let t = endTime - now;
+      let days = Math.floor(t/ (1000 * 60 * 60 * 24));
+      let hours = Math.floor((t%(1000*60*60*24))/(1000*60*60));
+      let minutes = Math.floor((t%(1000*60*60))/(1000*60));
+      let seconds = Math.floor((t%(1000*60))/1000);
+
+      return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
+    }, 1000)
   }
 }
 </script>
@@ -34,28 +40,7 @@ header {
   background-color: #1b262c;
 }
 header h1 {
-    
-    font-family: "Brush Script MT", cursive; font-size: 50px; font-style: normal; font-variant: normal; ;
-    text-align: center;
-
-
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-
-  animation: glow .75s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-  }
-  to {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6, 0 0 50px #0073e6, 0 0 60px #0073e6, 0 0 70px #0073e6;
-  }
-}
-header p {
-  text-align: center;
+    color: #e7dfd5;
 }
 
 </style>

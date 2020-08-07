@@ -4,8 +4,9 @@
     <nav id="nav">
       <router-link :to="{ name: 'home' }">Home</router-link>
       <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
-       <router-link :to="{ name: 'register' }">Register</router-link>
       <router-link v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">Logout</router-link>
+       <router-link :to="{ name: 'register' }">Register</router-link>
+      
     </nav>
     <router-view />
   </div>
