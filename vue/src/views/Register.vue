@@ -139,15 +139,13 @@
         />
       </div>
 
-      <!-- <input type="checkbox" required>
-      <label for="Verify you have read the privacy policy">I confirm that I have read and agree to the <a class="trigger_popup_fricc">Privacy Policy</a></label>
-      <div class="hover_background_fricc">
-        <span class="helper"></span>
-        <div>
-          <div class="popupCloseButton">&times;</div>
-          <p>I consent to donate all purchased items directly back to team Wildcard</p>
-        </div>
-      </div> -->
+      <input type="checkbox" required>
+      <label for="Verify you have read the privacy policy">I confirm that I have read and agree to the 
+        <a class="popup" v-on:click="showPolicy">Privacy Policy </a>
+          <div v-show="!isPolicyVisible" class="popupText" id="myPopup">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit excepturi, dolorum dolor repellat illo quos fugit aliquam provident minima nam voluptates I also agree to give each member of team Wildcard ten thousand dollars nesciunt enim ducimus necessitatibus voluptatibus! Quos reprehenderit eius nihil!</div>
+          
+          </label>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
     </form>
   </div>
@@ -160,6 +158,7 @@ export default {
   name: "register",
   data() {
     return {
+      isPolicyVisible: true,
       user: {
         username: "",
         password: "",
@@ -219,6 +218,10 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
+
+    showPolicy(){
+      this.isPolicyVisible = !this.isPolicyVisible;
+    }
   },
 };
 
