@@ -13,7 +13,8 @@
     <div class="bid-container" v-for="bid in item.bids" :key="bid.bid_ID">
       <div class="bid-row">
         <span>{{bid.amount}}</span>&nbsp;
-        <span>{{bid.user_Name}}</span>
+        <span>{{bid.user_Name}}</span>&nbsp;
+        <span>{{bid.time_Placed}}</span>
       </div>
     </div>
   </div>
