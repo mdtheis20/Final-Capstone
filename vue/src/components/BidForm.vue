@@ -23,8 +23,9 @@
           v-model.number="newBid.amount"
           :min="findHighestBid + 1"
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" id="btn-submit" />
         <input
+          id="btn-clear"
           type="reset"
           value="Clear"
           v-on:click.prevent="() => newBid.amount = findHighestBid()"
@@ -127,5 +128,11 @@ h3,
 h4 {
   color: #e7dfd5;
   text-align: center;
+}
+#btn-clear {
+  background-color: red;
+}
+#btn-submit {
+  background-color: green;
 }
 </style>

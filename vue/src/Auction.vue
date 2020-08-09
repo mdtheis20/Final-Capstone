@@ -1,12 +1,15 @@
 <template>
   <div id="auction">
-    <auction-header />
-    <nav id="nav">
-      <router-link :to="{ name: 'home' }">Home</router-link>
-      <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
-      <router-link v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">Logout</router-link>
-       <router-link :to="{ name: 'register' }">Register</router-link>
-      
+    <auction-header />    
+    
+    <nav id="nav" :class="{'nav-active': isShow}">
+      <img src="@/assets/icons8-menu-384.png" alt="hamburger menu icon" id="hamburger-menu" v-on:click="showHide()" />
+      <div id="nav-menu" v-if="isShow">
+        <router-link :to="{ name: 'home' }">Home</router-link>
+        <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
+        <router-link v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">Logout</router-link>
+        <router-link :to="{ name: 'register' }">Register</router-link>
+      </div> 
     </nav>
     <router-view />
   </div>
@@ -18,9 +21,19 @@ export default {
   components: {
     AuctionHeader
   },
+  data() {
+    return {
+      isShow: false
+    }
+  },
   computed: {
     isLoggedIn() {
       return this.$store.state.token != '';
+    },    
+  },
+  methods: {
+    showHide() {
+      this.isShow = !this.isShow;
     }
   }
 }
@@ -41,18 +54,36 @@ body {
   margin: 0 auto 0 auto;
 }
 #nav {
-  display: flex;
+  display: inline-block;
+  overflow: hidden;
   flex-wrap: nowrap;
   justify-content: space-evenly;
   margin-bottom: 10px;
+  width: 50%;
+
 }
 #nav a {
-  padding: 8px;
-  background-color: white;
-  border: 2px solid white;
-  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  color: white;
+  font-size: 1.25em;
 }
 a {
   text-decoration: none;
+}
+#hamburger-menu {
+  height: 50px;
+  margin: 0px;
+  cursor: pointer;  
+}
+.nav-active {
+/* change this color   */
+background-color: grey;
+border: 1px solid grey;
+border-radius: 8px;
+}
+#nav-menu {
+  display: flex;
+  flex-direction: column;
 }
 </style>

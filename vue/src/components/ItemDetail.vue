@@ -1,5 +1,6 @@
 <template>
   <div id="item-detail">
+    <button id="please-log-in" v-show="this.$store.state.token == ''" v-on:click="() => this.$router.push({name: 'login'})">Log in to Place a Bid</button>
     <h2>{{item.title}}</h2>
     <div class="img-container">
       <img :src="item.pic" :alt="item.subtitle" />
@@ -41,11 +42,10 @@ export default {
      
     };
   },
-  
   props: {
-    //TODO don't pass in whole item, go to store instead
      item_ID: Number
-  }
+  },
+
 };
 </script>
 
@@ -64,5 +64,9 @@ h2, h3, h4, p {
 
 .img-container img {
     max-width: 75%;
+}
+#please-log-in {
+  width: 100%;
+  background-color: red;
 }
 </style>

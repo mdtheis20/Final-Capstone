@@ -25,7 +25,7 @@ export default {
     computed: {
         currentBid() {
             if (this.item.bids.length > 0) {
-                return /* `Current Bid: ${this.item.bids[0].amount}` */ 'error';
+                return `Current Bid: ${this.item.bids[0].amount}`;
             } else {
                 return `Starting Bid: ${this.item.starting_Bid}`;
             } 

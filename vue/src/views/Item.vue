@@ -14,11 +14,11 @@ export default {
     components: {
         ItemDetail,
     },
-    computed: {
+    computed: {        
         foundItem_ID(){
             return this.$route.params.itemID;
         }
-    }
+    },
 }
 </script>
 

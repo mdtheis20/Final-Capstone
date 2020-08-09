@@ -1,7 +1,7 @@
 <template>
   <header>
       <h1>{{organizationName}}</h1>
-      <p>Time Remaining: {{countdown}}</p>
+      <!-- <p>Time Remaining: {{countdown}}</p> -->
       
   </header>
 </template>
@@ -19,7 +19,8 @@ export default {
     organizationName(){
       return this.$store.state.auctionInfo.orgName;
     },
-    setInterval(countdown(){
+    // TODO: finish countdown
+    /* setInterval(countdown(){
       const endTime = this.$store.state.auctionInfo.endTime;
 
       let now = new Date().getTime();
@@ -30,7 +31,7 @@ export default {
       let seconds = Math.floor((t%(1000*60))/1000);
 
       return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-    }, 1000)
+    }, 1000) */
   }
 }
 </script>
