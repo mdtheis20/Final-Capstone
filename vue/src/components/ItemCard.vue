@@ -1,13 +1,15 @@
 <template>
   <div id="item-card">
-      <div id="item-card-heading">
-        <h3>{{item.title}}</h3>
-        <span :class="{'bid-flag': this.item.bids.length > 0}">{{currentBid}}</span>
+
+      <h3>{{item.title}}</h3>
+      <div id="card-stat">
+        <h4>{{currentBid}}</h4>
+        <category-bar :item_ID="this.item.item_ID" />
       </div>
-         
+
       <img :src="item.pic" :alt="item.subtitle" />
-      <!-- <p>{{item.subtitle}}</p> -->
-      <category-bar :item_ID="this.item.item_ID" />
+      <p>{{item.subtitle}}</p>
+      
   </div>
 </template>
 
@@ -40,7 +42,7 @@ export default {
 }
 </script>
 
-<style >
+<style>
  #item-card {
     height: 400px;
     width: 95%;
@@ -48,20 +50,35 @@ export default {
     border-radius: 5px;
     border: 1px solid navy;
     margin: 15px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
- }
- #item-card img {
-     max-height: 200px;
-     max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas: 
+    "title title title"
+    "img img stats"
+    "sub sub sub"
+    ;
  }
  #item-card.has-bid {
      border: 5px solid greenyellow;
  }
- .bid-flag {
-     border: 3px solid yellow;
-     border-radius: 5px;
+ #item-card > h3 {
+     grid-area: title;
+
  }
+  #item-card > img {
+     grid-area: img;
+     border: 1px solid navy;
+     border-radius: 5px;
+     max-height: 250px;
+     max-width: 100%;
+     margin: 0px auto;
+ }
+ #item-card > p {
+    grid-area: sub;
+}
+ #card-stats {
+    grid-area: stats;
+}
 </style>

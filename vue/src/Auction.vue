@@ -8,7 +8,7 @@
         <router-link :to="{ name: 'home' }">Home</router-link>
         <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
         <router-link v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">Logout</router-link>
-        <router-link :to="{ name: 'register' }">Register</router-link>
+        <router-link :to="{ name: 'register'}"  v-if="isLoggedIn">Register</router-link>
       </div> 
     </nav>
     <router-view />
@@ -42,7 +42,7 @@ export default {
 <style>
 body {
   background-color: #1b262c;
-
+  text-align: center;
 }
 #auction {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -85,5 +85,10 @@ border-radius: 8px;
 #nav-menu {
   display: flex;
   flex-direction: column;
+}
+button {
+  padding: 15px;
+  margin: 20px;
+  background-color: #0070F3;
 }
 </style>
