@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Identity;
 namespace Capstone.Controllers
 {
     [Route("")]
-    [ApiController]       
+    [ApiController]
+    
     public class ItemController : SilentAuctionController
     {
         //private readonly UserManager<User> _userManager;
@@ -27,46 +28,86 @@ namespace Capstone.Controllers
 
         private readonly IItemDAO itemDao;
         private readonly IBidDAO bidDao;
+
         public ItemController(IItemDAO itemDAO, IBidDAO bidDAO)
         {
             this.itemDao = itemDAO;
             this.bidDao = bidDAO;
         }
 
-        //TODO: Should be '/items' GET 
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    var UserName = HttpContext.User.Identity.Name;
+        //    return Ok(UserName);
+        //}
+
         [HttpGet("/items")] 
         public IActionResult GetAllItemsForDisplay()
         {
             List<Item> itemList = itemDao.GetAllItems();
             return Ok(itemList);
-        } 
-        
+        }
 
         // Might want endpoint to add an item
         // POST '/items'
-        
+        [HttpPost("/items")] //TODO: Finish implementing
+        [Authorize]
+        public IActionResult AddItem(Item item)
+        {
+            IActionResult result;
+            Item newItem = itemDao.AddNewItem(item);
+            if (item != null)
+            {
+                result = Created(item.Title, null);
+            }
+            else
+            {
+                result = BadRequest(new { message = "An error occurred and the item was not added." });
+            }
+            return result;
+        }
+
         // Might want endpoint to update existing item
         // PUT '/items/{id}
+        [HttpPut("/items/{itemID}")]
+        [Authorize]
+        public IActionResult UpdateItem(Item item)
+        {
+            return Ok();
+        }
+
 
         // Might want endpoint that gets one item
         // GET '/items/{id}
+        [HttpGet("/items/{itemID}")]
+        public IActionResult GetSingleItem(int itemID)
+        {
+            Item item = itemDao.GetSingleItem(itemID);
+            return Ok(item);
+        }
+
 
         // Might want endpoint that returns all bids for an item
         // GET '/items/{id}/bids
+        //[HttpGet("/items/{itemID}/bids")]
+        //public IActionResult GetAllBids()
+        //{
+        //    return Ok();
+        //}
 
         // Add new bid
         // POST '/items/{id}/bids
         [Authorize]
         [HttpPost("/items/{itemID}/bids")]
-        public ActionResult<Bid> AddNewBid(int itemID, Bid bid)
+        [Authorize]
+        public ActionResult<Bid> AddNewBid(int itemID, Bid bid, string userId)
         {
 
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )
             {
-                bid.User_ID = int.Parse(UserId);
-                ReturnBid returnedBid = bidDao.AddBid(bid);
-                returnedBid.User_Name = Username;
+                ReturnBid returnedBid = bidDao.AddBid(bid, userId);
                 return Created("", returnedBid);
             }
           else

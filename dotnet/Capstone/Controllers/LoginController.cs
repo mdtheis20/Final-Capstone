@@ -79,7 +79,6 @@ namespace Capstone.Controllers
             {
                 result = BadRequest(new { message = "An error occurred and user was not created." });
             }
-
             return result;
         }
     }

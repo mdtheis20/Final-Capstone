@@ -1,10 +1,7 @@
 ﻿using Capstone.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Net;
 
 namespace Capstone.DAO
 {
@@ -66,7 +63,87 @@ namespace Capstone.DAO
                 throw;
             }
         }
-        private static Item RowToObject(SqlDataReader rdr) 
+
+        public Item GetSingleItem(int item_Id)
+        {
+            Item returnItem = new Item();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand($"Select * From Item order by title WHERE item_id = @item_Id; " +
+                                                     "Select * From item_category IC " +
+                                                     "JOIN Category C on IC.category_id = c.category_id; " +
+                                                     "SELECT  * From bid " +
+                                                     "JOIN item on bid.item_id = item.item_id " +
+                                                     "JOIN users on users.user_id = bid.user_id Order by amount desc", conn);
+                    cmd.Parameters.AddWithValue("@item_id", item_Id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Item item = RowToObject(reader);
+                        returnItem = item;
+                    }
+                    reader.NextResult();
+                    while (reader.Read())
+                    {
+                        int item_ID = Convert.ToInt32(reader["item_id"]);
+                        string name = Convert.ToString(reader["name"]);
+                        // TODO: find the item with the id of 'item_id'
+                        Item foundItem = returnItem;
+                        // TODO: add name to list of categories
+                        foundItem.Categories.Add(name);
+                    }
+                    reader.NextResult();
+                    while (reader.Read())
+                    {
+                        ReturnBid bid = BidRowToObject(reader);
+                        int item_ID = Convert.ToInt32(reader["item_ID"]);
+                        // Attach bids to each item as list
+                        Item foundBid = returnItem;
+                        foundBid.Bids.Add(bid);
+                    }
+                    return returnItem;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public Item AddNewItem(Item item)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO item (item_id, donor, auction_id, title, subtitle, description, pic, starting_bid) VALUES (@item_id, @donor, @auction_id, @title, @subtitle, @description, @pic, @starting_bid)", conn);
+                    cmd.Parameters.AddWithValue("@item_id", item.Item_ID);
+                    cmd.Parameters.AddWithValue("@donor", item.Donor);
+                    cmd.Parameters.AddWithValue("@auction_id", item.Auction_ID);
+                    cmd.Parameters.AddWithValue("@title", item.Title);
+                    cmd.Parameters.AddWithValue("@subtitle", item.Subtitle);
+                    cmd.Parameters.AddWithValue("@description", item.Description);
+                    cmd.Parameters.AddWithValue("@pic", item.Pic);
+                    cmd.Parameters.AddWithValue("@starting_bid", item.Starting_Bid);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return GetSingleItem(item.Item_ID);
+        }
+
+        private static Item RowToObject(SqlDataReader rdr)
         {
             Item item = new Item();
             item.Item_ID = Convert.ToInt32(rdr["item_id"]);
