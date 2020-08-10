@@ -35,7 +35,10 @@ export default {
 <style>
 #item-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 0px;
 }
 #item-list >  li {

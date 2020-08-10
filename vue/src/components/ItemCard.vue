@@ -45,7 +45,8 @@ export default {
 <style>
  #item-card {
     height: 400px;
-    width: 95%;
+    width: 520px;
+    /* margin: 20px; */
     background-color: lightblue; 
     border-radius: 5px;
     border: 1px solid navy;
@@ -60,6 +61,7 @@ export default {
     "sub sub sub"
     ;
  }
+/* TODO: make breakpoint for small screens */
  #item-card.has-bid {
      border: 5px solid greenyellow;
  }

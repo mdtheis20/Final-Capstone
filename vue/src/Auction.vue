@@ -43,6 +43,7 @@ export default {
 body {
   background-color: #1b262c;
   text-align: center;
+  padding: 10px;
 }
 #auction {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -50,7 +51,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #e7dfd5;  
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto 0 auto;
 }
 #nav {
