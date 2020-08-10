@@ -35,23 +35,23 @@ namespace Capstone.Controllers
             this.bidDao = bidDAO;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            var UserName = HttpContext.User.Identity.Name;
-            return Ok(UserName);
-        }
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    var UserName = HttpContext.User.Identity.Name;
+        //    return Ok(UserName);
+        //}
 
         [HttpGet("/items")] 
         public IActionResult GetAllItemsForDisplay()
         {
             List<Item> itemList = itemDao.GetAllItems();
             return Ok(itemList);
-        }         
+        }
 
         // Might want endpoint to add an item
         // POST '/items'
-        [HttpPost("/items")]
+        [HttpPost("/items")] //TODO: Finish implementing
         [Authorize]
         public IActionResult AddItem(Item item)
         {
@@ -83,7 +83,8 @@ namespace Capstone.Controllers
         [HttpGet("/items/{itemID}")]
         public IActionResult GetSingleItem(int itemID)
         {
-            return Ok();
+            Item item = itemDao.GetSingleItem(itemID);
+            return Ok(item);
         }
 
 
