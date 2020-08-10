@@ -134,5 +134,20 @@ namespace Capstone.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpGet("/update")]
+        public ActionResult<List<Bid>> GetAllTopBids()
+        {
+            List<Bid> topBids = bidDao.GetHighestBidForAllItems();
+            if (topBids != null && topBids.Count > 0)
+            {
+                return Ok(topBids);
+            }
+            else
+            {
+                // TODO: should a different code be sent back?
+                return Unauthorized();
+            }
+        }
     }
 }

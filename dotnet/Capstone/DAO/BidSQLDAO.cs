@@ -45,36 +45,7 @@ namespace Capstone.DAO
                 throw;
             }
         }
-        // TODO: Fix this!
-        //public int UserId
-        //{
-        //    get
-        //    {
-        //        int userId = 0;
-        //        Claim subjectClaim = User?.Claims?.Where(cl => cl.Type == "sub").FirstOrDefault();
-        //        if (subjectClaim != null)
-        //        {
-        //            int.TryParse(subjectClaim.Value, out userId);
-        //        }
-        //        return userId;
-        //    }
-        //}
 
-        // Alternate non-working method
-        //private int userId
-        //{
-        //    get
-        //    {
-        //        foreach (Claim claim in )
-        //        {
-        //            if (claim.Type == "sub")
-        //            {
-        //                return Convert.ToInt32(claim.Value);
-        //            }
-        //        }
-        //        return 0;
-        //    }
-        //}
         public ReturnBid AddBid(Bid bid) 
         {
             
@@ -106,6 +77,7 @@ namespace Capstone.DAO
                 throw;
             }
         }
+
         public decimal GetHighestBidAmountForItem(int id)
         {
             try
@@ -138,6 +110,34 @@ namespace Capstone.DAO
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@userID", user_ID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result.Add(RowToObject(reader));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public List<Bid> GetHighestBidForAllItems()
+        {
+            List<Bid> result = new List<Bid>();
+            const string query = "Select * from bid " +
+                "Join(Select item_id, Max(amount) as maxAmount from bid Group By item_id) as topBids " +
+                "on bid.item_id = topBids.item_id and bid.amount = topBids.maxAmount";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
