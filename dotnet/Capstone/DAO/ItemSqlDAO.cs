@@ -115,7 +115,7 @@ namespace Capstone.DAO
             }
         }
 
-        public void AddNewItem(Item item)
+        public Item AddNewItem(Item item)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace Capstone.DAO
             {
                 throw;
             }
-            return;
+            return GetSingleItem(item.Item_ID);
         }
 
         private static Item RowToObject(SqlDataReader rdr)

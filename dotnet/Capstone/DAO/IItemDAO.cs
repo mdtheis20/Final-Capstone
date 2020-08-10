@@ -8,7 +8,7 @@ namespace Capstone.DAO
 {
     public interface IItemDAO
     {
-        void AddNewItem(Item item);
+        Item AddNewItem(Item item);
         List<Item> GetAllItems();
         Item GetSingleItem(int item_Id);
     }

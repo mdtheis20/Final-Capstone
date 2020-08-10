@@ -47,26 +47,26 @@ namespace Capstone.Controllers
         {
             List<Item> itemList = itemDao.GetAllItems();
             return Ok(itemList);
-        }         
+        }
 
         // Might want endpoint to add an item
         // POST '/items'
-        //[HttpPost("/items")] //TODO: Finish implementing
-        //[Authorize]
-        //public IActionResult AddItem(Item item)
-        //{
-        //    IActionResult result;
-        //    Item newItem = itemDao.AddNewItem(item);
-        //    if (item != null)
-        //    {
-        //        result = Created(item.Title, null);
-        //    }
-        //    else
-        //    {
-        //        result = BadRequest(new { message = "An error occurred and the item was not added." });
-        //    }
-        //    return result;
-        //}
+        [HttpPost("/items")] //TODO: Finish implementing
+        [Authorize]
+        public IActionResult AddItem(Item item)
+        {
+            IActionResult result;
+            Item newItem = itemDao.AddNewItem(item);
+            if (item != null)
+            {
+                result = Created(item.Title, null);
+            }
+            else
+            {
+                result = BadRequest(new { message = "An error occurred and the item was not added." });
+            }
+            return result;
+        }
 
         // Might want endpoint to update existing item
         // PUT '/items/{id}
