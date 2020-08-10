@@ -84,7 +84,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     
-                    DateTime timeStamp = DateTime.Now;
+                    string timeStamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", bid.User_ID);  
@@ -137,15 +137,5 @@ namespace Capstone.DAO
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
         }
-
-        //ReturnBid IBidDAO.AddBid(Bid bid, string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //Bid IBidDAO.AddBid(Bid bid)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
