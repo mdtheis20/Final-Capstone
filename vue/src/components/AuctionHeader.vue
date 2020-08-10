@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header v-on:click="() => this.$router.push({name: 'home'})">
       <h1>{{organizationName}}</h1>
       <p>Time Remaining: {{countdown}}</p>
       
@@ -49,6 +49,7 @@ export default {
 <style>
 header {
   background-color: #1b262c;
+  cursor: pointer;
 }
 header h1 {
     color: #e7dfd5;
