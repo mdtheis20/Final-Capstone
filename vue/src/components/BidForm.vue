@@ -1,6 +1,7 @@
 <template>
   <form v-on:submit.prevent="placeBid">
     <h3>Place Bid</h3>
+    <h4 id="highest-bid">Current Bid: ${{findHighestBid()}}</h4>
     <div id="bid-form">
       <div id="left-bid">
         <div>
@@ -14,7 +15,7 @@
       </div>
 
       <div id="right-bid">
-        <h4 id="highest-bid">Current Bid: ${{findHighestBid()}}</h4>
+        
         <label for="amount">Enter Amount:</label>
         <input
           type="number"
@@ -46,7 +47,7 @@ export default {
       newBid: {
         bid_ID: 0,
         item_ID: this.$route.params.itemID,
-        user_ID: 1, //TODO: make dynamic in API
+        user_ID: 0, //TODO: make null
         amount: 0,
         time_placed: null,
       },
@@ -98,6 +99,8 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
 }
 #left-bid {
   display: flex;
@@ -105,6 +108,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin: 8px auto;
 }
 button {
   padding: 20px;
@@ -120,6 +124,7 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  margin: 8px auto;
 }
 input {
   width: 100%;
