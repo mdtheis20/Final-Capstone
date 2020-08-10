@@ -62,7 +62,7 @@ export default new Vuex.Store({
     },
     ADD_BID(state, bid) {
       let foundItem = state.listOfItems.find(i => i.item_ID === bid.item_ID);
-      foundItem.bids.push(bid);
+      foundItem.bids.unshift(bid);
     }
   },
   getters: {
