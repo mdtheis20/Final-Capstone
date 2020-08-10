@@ -6,6 +6,9 @@ export default {
     getAllItems() {
         return axios.get('/items')
       },
+    getSingleItem(id) {
+        return axios.get(`/items/${id}`);
+    },
     getAllCategories() {
         return axios.get('/auction/categories')
     },

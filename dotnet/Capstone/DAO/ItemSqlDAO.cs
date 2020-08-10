@@ -74,13 +74,13 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand($"Select * From Item order by title WHERE item_id = @item_Id; " +
+                    SqlCommand cmd = new SqlCommand($"Select * From Item WHERE item_id = @item_Id order by title; " +
                                                      "Select * From item_category IC " +
-                                                     "JOIN Category C on IC.category_id = c.category_id; " +
+                                                     "JOIN Category C on IC.category_id = c.category_id WHERE IC.item_id = @item_Id; " +
                                                      "SELECT  * From bid " +
                                                      "JOIN item on bid.item_id = item.item_id " +
-                                                     "JOIN users on users.user_id = bid.user_id Order by amount desc", conn);
-                    cmd.Parameters.AddWithValue("@item_id", item_Id);
+                                                     "JOIN users on users.user_id = bid.user_id WHERE item.item_id = @item_Id Order by amount desc", conn);
+                    cmd.Parameters.AddWithValue("@item_Id", item_Id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
