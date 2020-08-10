@@ -64,7 +64,7 @@ namespace Capstone.DAO
             }
         }
 
-        public Item GetSingleItem()
+        public Item GetSingleItem(int item_Id)
         {
             Item returnItem = new Item();
 
@@ -74,14 +74,38 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand($"Select {} From item_category IC " +
-                                                     "JOIN Category C on IC.category_id = c.category_id;", conn);
+                    SqlCommand cmd = new SqlCommand($"Select * From Item order by title WHERE item_id = @item_Id; " +
+                                                     "Select * From item_category IC " +
+                                                     "JOIN Category C on IC.category_id = c.category_id; " +
+                                                     "SELECT  * From bid " +
+                                                     "JOIN item on bid.item_id = item.item_id " +
+                                                     "JOIN users on users.user_id = bid.user_id Order by amount desc", conn);
+                    cmd.Parameters.AddWithValue("@item_id", item_Id);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         Item item = RowToObject(reader);
                         returnItem = item;
-                    }                    
+                    }
+                    reader.NextResult();
+                    while (reader.Read())
+                    {
+                        int item_ID = Convert.ToInt32(reader["item_id"]);
+                        string name = Convert.ToString(reader["name"]);
+                        // TODO: find the item with the id of 'item_id'
+                        Item foundItem = returnItem;
+                        // TODO: add name to list of categories
+                        foundItem.Categories.Add(name);
+                    }
+                    reader.NextResult();
+                    while (reader.Read())
+                    {
+                        ReturnBid bid = BidRowToObject(reader);
+                        int item_ID = Convert.ToInt32(reader["item_ID"]);
+                        // Attach bids to each item as list
+                        Item foundBid = returnItem;
+                        foundBid.Bids.Add(bid);
+                    }
                     return returnItem;
                 }
             }
@@ -91,7 +115,7 @@ namespace Capstone.DAO
             }
         }
 
-        public Item AddNewItem(Item item)
+        public void AddNewItem(Item item)
         {
             try
             {
@@ -116,7 +140,7 @@ namespace Capstone.DAO
             {
                 throw;
             }
-            return ;
+            return;
         }
 
         private static Item RowToObject(SqlDataReader rdr)

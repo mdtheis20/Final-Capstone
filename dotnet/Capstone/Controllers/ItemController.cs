@@ -35,12 +35,12 @@ namespace Capstone.Controllers
             this.bidDao = bidDAO;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            var UserName = HttpContext.User.Identity.Name;
-            return Ok(UserName);
-        }
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    var UserName = HttpContext.User.Identity.Name;
+        //    return Ok(UserName);
+        //}
 
         [HttpGet("/items")] 
         public IActionResult GetAllItemsForDisplay()
@@ -51,22 +51,22 @@ namespace Capstone.Controllers
 
         // Might want endpoint to add an item
         // POST '/items'
-        [HttpPost("/items")]
-        [Authorize]
-        public IActionResult AddItem(Item item)
-        {
-            IActionResult result;
-            Item newItem = itemDao.AddNewItem(item);
-            if (item != null)
-            {
-                result = Created(item.Title, null);
-            }
-            else
-            {
-                result = BadRequest(new { message = "An error occurred and the item was not added." });
-            }
-            return result;
-        }
+        //[HttpPost("/items")] //TODO: Finish implementing
+        //[Authorize]
+        //public IActionResult AddItem(Item item)
+        //{
+        //    IActionResult result;
+        //    Item newItem = itemDao.AddNewItem(item);
+        //    if (item != null)
+        //    {
+        //        result = Created(item.Title, null);
+        //    }
+        //    else
+        //    {
+        //        result = BadRequest(new { message = "An error occurred and the item was not added." });
+        //    }
+        //    return result;
+        //}
 
         // Might want endpoint to update existing item
         // PUT '/items/{id}
@@ -83,7 +83,8 @@ namespace Capstone.Controllers
         [HttpGet("/items/{itemID}")]
         public IActionResult GetSingleItem(int itemID)
         {
-            return Ok();
+            Item item = itemDao.GetSingleItem(itemID);
+            return Ok(item);
         }
 
 
