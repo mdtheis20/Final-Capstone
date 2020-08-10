@@ -137,15 +137,5 @@ namespace Capstone.DAO
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
         }
-
-        //ReturnBid IBidDAO.AddBid(Bid bid, string userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //Bid IBidDAO.AddBid(Bid bid)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
