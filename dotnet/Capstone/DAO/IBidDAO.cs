@@ -9,7 +9,7 @@ namespace Capstone.DAO
 {
     public interface IBidDAO 
     {
-        ReturnBid AddBid(Bid bid, string userId); //TODO: Need to change return type
+        ReturnBid AddBid(Bid bid);
         List<Bid> GetBidsByItem(int id);
         decimal GetHighestBidAmountForItem(int id);
     }

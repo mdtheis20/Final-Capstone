@@ -101,13 +101,13 @@ namespace Capstone.Controllers
         [Authorize]
         [HttpPost("/items/{itemID}/bids")]
         [Authorize]
-        public ActionResult<Bid> AddNewBid(int itemID, Bid bid, string userId)
+        public ActionResult<Bid> AddNewBid(int itemID, Bid bid)
         {
-
+            bid.User_ID = int.Parse(UserId);
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )
             {
-                ReturnBid returnedBid = bidDao.AddBid(bid, userId);
+                ReturnBid returnedBid = bidDao.AddBid(bid);
                 return Created("", returnedBid);
             }
           else
