@@ -84,7 +84,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     
-                    DateTime timeStamp = DateTime.Now;
+                    string timeStamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", bid.User_ID);  
@@ -125,6 +125,32 @@ namespace Capstone.DAO
             {
                 throw;
             }
+        }
+
+        public List<Bid> GetBidHistoryForUser(int user_ID)
+        {
+            const string query = "Select * from bid where user_id = @userID Order By time_placed desc";
+            List<Bid> result = new List<Bid>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@userID", user_ID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result.Add(RowToObject(reader));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
         }
        
         private static Bid RowToObject(SqlDataReader rdr)

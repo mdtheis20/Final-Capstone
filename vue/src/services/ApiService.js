@@ -14,5 +14,9 @@ export default {
     },
     postBid(id, bid) {
         return axios.post(`/items/${id}/bids`, bid);
+    },
+
+    getBidsForSingleUser(){
+        return axios.get('/user/bids');
     }
 }

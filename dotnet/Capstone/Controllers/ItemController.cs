@@ -51,7 +51,7 @@ namespace Capstone.Controllers
 
         // Might want endpoint to add an item
         // POST '/items'
-        [HttpPost("/items")] //TODO: Finish implementing
+        [HttpPost("/items")] 
         [Authorize]
         public IActionResult AddItem(Item item)
         {
@@ -117,6 +117,22 @@ namespace Capstone.Controllers
 
             // Error check that item_id inside the bid object matches url item_id
             // User id will be pulled by authorized logged in user, not userid from json  
+        }
+
+        [HttpGet("/user/bids")]
+        [Authorize]
+        public ActionResult<List<Bid>> GetBidHistory()
+        {
+            List<Bid> bidHistory = bidDao.GetBidHistoryForUser(int.Parse(UserId));
+            if (bidHistory != null && bidHistory.Count > 0)
+            {
+                return Ok(bidHistory);
+            }
+            else
+            {
+                // TODO: should a different code be sent back?
+                return Unauthorized();
+            }
         }
     }
 }
