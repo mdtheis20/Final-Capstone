@@ -9,7 +9,7 @@
     <p>{{item.description}}</p>
     <h4> Donated by: {{item.donor}}</h4>
     
-    <category-bar :item_ID="this.item.item_ID" />
+    <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
     <bid-form :item_ID="item_ID" />
 
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import CategoryBar from '@/components/CategoryBar.vue';
+
 import BidForm from './BidForm.vue'
 
 export default {
   components: {
-    CategoryBar,
+    
     BidForm
   },
   title () {

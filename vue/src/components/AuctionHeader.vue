@@ -1,7 +1,7 @@
 <template>
   <header>
       <h1>{{organizationName}}</h1>
-      <!-- <p>Time Remaining: {{countdown}}</p> -->
+      <p>Time Remaining: {{countdown}}</p>
       
   </header>
 </template>
@@ -20,9 +20,9 @@ export default {
       return this.$store.state.auctionInfo.orgName;
     },
     // TODO: finish countdown
-    /* setInterval(countdown(){
+   countdown(){
       const endTime = this.$store.state.auctionInfo.endTime;
-
+      
       let now = new Date().getTime();
       let t = endTime - now;
       let days = Math.floor(t/ (1000 * 60 * 60 * 24));
@@ -30,10 +30,20 @@ export default {
       let minutes = Math.floor((t%(1000*60*60))/(1000*60));
       let seconds = Math.floor((t%(1000*60))/1000);
 
-      return `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`
-    }, 1000) */
-  }
+      let timeRemaining = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+
+      return timeRemaining
+    }
+  },
+
+  methods: {
+    tick(){
+      setInterval(function(){
+        this.timeRemaining}, 1000)
+      }
+    },
 }
+
 </script>
 
 <style>
