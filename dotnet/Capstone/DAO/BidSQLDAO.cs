@@ -84,7 +84,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     
-                    DateTime timeStamp = DateTime.Now;
+                    string timeStamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", bid.User_ID);  

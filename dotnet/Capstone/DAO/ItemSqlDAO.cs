@@ -168,7 +168,7 @@ namespace Capstone.DAO
             bid.Item_ID = Convert.ToInt32(rdr["item_ID"]);
             bid.Amount = Convert.ToInt32(rdr["amount"]);
             bid.User_Name = Convert.ToString(rdr["username"]);
-            bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
+            bid.Time_Placed = Convert.ToString(rdr["time_placed"]);
             return bid;
         }
     }

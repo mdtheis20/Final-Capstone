@@ -38,7 +38,7 @@ export default {
   data() {
     return {
 
-      //item: this.$store.state.listOfItems.find(i => i.item_ID === this.item_ID),
+      item: this.$store.state.listOfItems.find(i => i.item_ID === this.item_ID),
      
     };
   },
