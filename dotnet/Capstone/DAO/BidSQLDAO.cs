@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
+
 namespace Capstone.DAO
 {
     public class BidSqlDAO : IBidDAO
@@ -76,6 +77,7 @@ namespace Capstone.DAO
         //}
         public ReturnBid AddBid(Bid bid, string userId) //TODO: Need to change return type
         {
+            
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -85,7 +87,7 @@ namespace Capstone.DAO
                     DateTime timeStamp = DateTime.Now;
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
-                    cmd.Parameters.AddWithValue("@user_id", int.Parse(userId));  
+                    cmd.Parameters.AddWithValue("@user_id", bid.User_ID);  
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", timeStamp);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());

@@ -106,12 +106,12 @@
         </select>
       </div>
 
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Email address:</label>
       <input
         type="email"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="email"
         v-model="user.username"
         required
         autofocus
@@ -126,8 +126,7 @@
           placeholder="Password"
           v-model="user.password"
           required
-          minlength="8"
-          pattern =""
+          pattern ="(?=.*?[!?@#$%^*])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}"
           title="Must contain at least one number, one symbol, one uppercase letter, one lowercase letter, and at least 8 or more characters"
         />
         <input
@@ -140,6 +139,13 @@
         />
       </div>
 
+      <input type="checkbox" required>
+      <label for="Verify you have read the privacy policy">I confirm that I have read and agree to the 
+        <a class="popup" v-on:click="showPolicy">Privacy Policy </a>
+          <div v-show="!isPolicyVisible" class="popupText" id="myPopup">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit excepturi, dolorum dolor repellat illo quos fugit aliquam provident minima nam voluptates I also agree to give each member of team Wildcard ten thousand dollars nesciunt enim ducimus necessitatibus voluptatibus! Quos reprehenderit eius nihil!</div>
+          
+          </label>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
     </form>
   </div>
@@ -152,6 +158,7 @@ export default {
   name: "register",
   data() {
     return {
+      isPolicyVisible: true,
       user: {
         username: "",
         password: "",
@@ -211,8 +218,13 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
+
+    showPolicy(){
+      this.isPolicyVisible = !this.isPolicyVisible;
+    }
   },
 };
+
 </script>
 
 <style>

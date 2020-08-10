@@ -12,7 +12,20 @@ namespace Capstone.Controllers
     [ApiController]
     
     public class ItemController : SilentAuctionController
-    {        
+    {
+        //private readonly UserManager<User> _userManager;
+
+        //public ItemController(UserManager<User> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+        [HttpGet]
+        public ActionResult<IEnumerable<string>> Get()
+        {
+           var UserName = HttpContext.User.Identity.Name;
+            return Ok(UserName);
+        }
+
         private readonly IItemDAO itemDao;
         private readonly IBidDAO bidDao;
 
@@ -84,6 +97,7 @@ namespace Capstone.Controllers
 
         // Add new bid
         // POST '/items/{id}/bids
+        [Authorize]
         [HttpPost("/items/{itemID}/bids")]
         [Authorize]
         public ActionResult<Bid> AddNewBid(int itemID, Bid bid, string userId)

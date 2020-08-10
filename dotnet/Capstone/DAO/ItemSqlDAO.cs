@@ -29,7 +29,7 @@ namespace Capstone.DAO
                                                      "JOIN Category C on IC.category_id = c.category_id; " +
                                                      "SELECT  * From bid " +
                                                      "JOIN item on bid.item_id = item.item_id " +
-                                                     "JOIN users on users.user_id = bid.user_id", conn);
+                                                     "JOIN users on users.user_id = bid.user_id Order by amount desc", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -144,6 +144,7 @@ namespace Capstone.DAO
             bid.Item_ID = Convert.ToInt32(rdr["item_ID"]);
             bid.Amount = Convert.ToInt32(rdr["amount"]);
             bid.User_Name = Convert.ToString(rdr["username"]);
+            bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
             return bid;
         }
     }
