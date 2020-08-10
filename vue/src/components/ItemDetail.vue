@@ -16,19 +16,25 @@
     <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
     <bid-form :item_ID="item_ID" />
-
-    <div class="bid-container" v-for="(bid) in bids" :key="bid.bid_ID">
-      <div class="bid-row">
-        <span>{{bid.amount}}</span>&nbsp;
-        <span>{{bid.user_Name}}</span>&nbsp;
-        <span>{{bid.time_Placed}}</span>
-      </div>
-    </div>
-    <a
+<table>
+  <thead>
+    <tr>
+      <th>Bid Amount</th>
+      <th>UserName</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+   <tr v-for="(bid) in bids" :key="bid.bid_ID" class="bid-container" >      
+       <td> ${{bid.amount}}</td>
+        <td>{{bid.user_Name}}&nbsp;</td>
+        <td>{{bid.time_Placed}}</td>    
+     </tr>
+    </table>
+    <button
       href="javascript:void(0)"
-      class="mt-1"
+      id="bid-button"
       @click="simple_toggle(default_limit, item.bids.length)" v-if="item.bids.length > 5"
-    >{{ limit_by===5?'Show all bids': 'Show 5 most recent bids'}}</a>
+    >{{ limit_by===5?'Show all bids': 'Show \'Top 5\' Bids'}}</button>
   </div>
 </template>
 
@@ -87,5 +93,11 @@ p {
 #please-log-in {
   width: 100%;
   background-color: red;
+}
+#bid-button {
+  color: azure;
+}
+table {
+  border-spacing: 15px 5px;
 }
 </style>
