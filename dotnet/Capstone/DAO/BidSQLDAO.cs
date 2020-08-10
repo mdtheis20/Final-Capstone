@@ -75,7 +75,7 @@ namespace Capstone.DAO
         //        return 0;
         //    }
         //}
-        public ReturnBid AddBid(Bid bid, string userId) //TODO: Need to change return type
+        public ReturnBid AddBid(Bid bid) 
         {
             
             try
@@ -83,7 +83,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    //TODO: Add logic to ensure bid is $1 higher than current bid
+                    
                     DateTime timeStamp = DateTime.Now;
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
@@ -91,10 +91,14 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", timeStamp);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());
-                    bid.Bid_ID = newID;
-                    bid.Time_Placed = timeStamp;
+
                     ReturnBid returnedBid = new ReturnBid();
-                    return returnedBid; // bid; //TODO: Need to change return type
+                    returnedBid.Amount = bid.Amount;
+                    returnedBid.Item_ID = bid.Item_ID;
+                    returnedBid.Time_Placed = timeStamp;
+                    returnedBid.Bid_ID = newID;
+                    
+                    return returnedBid; 
                 }
             }
             catch (SqlException)
