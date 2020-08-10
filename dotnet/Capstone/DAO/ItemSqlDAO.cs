@@ -1,10 +1,7 @@
 ﻿using Capstone.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Net;
 
 namespace Capstone.DAO
 {
@@ -66,7 +63,63 @@ namespace Capstone.DAO
                 throw;
             }
         }
-        private static Item RowToObject(SqlDataReader rdr) 
+
+        public Item GetSingleItem()
+        {
+            Item returnItem = new Item();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand($"Select {} From item_category IC " +
+                                                     "JOIN Category C on IC.category_id = c.category_id;", conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Item item = RowToObject(reader);
+                        returnItem = item;
+                    }                    
+                    return returnItem;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public Item AddNewItem(Item item)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO item (item_id, donor, auction_id, title, subtitle, description, pic, starting_bid) VALUES (@item_id, @donor, @auction_id, @title, @subtitle, @description, @pic, @starting_bid)", conn);
+                    cmd.Parameters.AddWithValue("@item_id", item.Item_ID);
+                    cmd.Parameters.AddWithValue("@donor", item.Donor);
+                    cmd.Parameters.AddWithValue("@auction_id", item.Auction_ID);
+                    cmd.Parameters.AddWithValue("@title", item.Title);
+                    cmd.Parameters.AddWithValue("@subtitle", item.Subtitle);
+                    cmd.Parameters.AddWithValue("@description", item.Description);
+                    cmd.Parameters.AddWithValue("@pic", item.Pic);
+                    cmd.Parameters.AddWithValue("@starting_bid", item.Starting_Bid);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return ;
+        }
+
+        private static Item RowToObject(SqlDataReader rdr)
         {
             Item item = new Item();
             item.Item_ID = Convert.ToInt32(rdr["item_id"]);

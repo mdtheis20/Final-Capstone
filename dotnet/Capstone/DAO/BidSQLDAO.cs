@@ -74,7 +74,7 @@ namespace Capstone.DAO
         //        return 0;
         //    }
         //}
-        public void AddBid(Bid bid, string userId) //TODO: Need to change return type
+        public ReturnBid AddBid(Bid bid, string userId) //TODO: Need to change return type
         {
             try
             {
@@ -89,11 +89,10 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@bid_amount", bid.Amount);
                     cmd.Parameters.AddWithValue("@now", timeStamp);
                     int newID = Convert.ToInt32(cmd.ExecuteScalar());
-
                     bid.Bid_ID = newID;
                     bid.Time_Placed = timeStamp;
-
-                    return; // bid; //TODO: Need to change return type
+                    ReturnBid returnedBid = new ReturnBid();
+                    return returnedBid; // bid; //TODO: Need to change return type
                 }
             }
             catch (SqlException)
@@ -131,6 +130,11 @@ namespace Capstone.DAO
             bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
+        }
+
+        ReturnBid IBidDAO.AddBid(Bid bid, string userId)
+        {
+            throw new NotImplementedException();
         }
 
         //Bid IBidDAO.AddBid(Bid bid)
