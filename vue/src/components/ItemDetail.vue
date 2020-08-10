@@ -28,7 +28,7 @@
       href="javascript:void(0)"
       class="mt-1"
       @click="simple_toggle(default_limit, item.bids.length)" v-if="item.bids.length > 5"
-    >{{ limit_by===5?'Show all bids': 'Show 5 most recent bids'}}</a>
+    >{{ limit_by===5?'Show all bids': ''}}</a>
   </div>
 </template>
 
