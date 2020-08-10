@@ -126,6 +126,32 @@ namespace Capstone.DAO
                 throw;
             }
         }
+
+        public List<Bid> GetBidHistoryForUser(int user_ID)
+        {
+            const string query = "Select * from bid where user_id = @userID Order By time_placed desc";
+            List<Bid> result = new List<Bid>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@userID", user_ID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        result.Add(RowToObject(reader));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
+        }
        
         private static Bid RowToObject(SqlDataReader rdr)
         {
