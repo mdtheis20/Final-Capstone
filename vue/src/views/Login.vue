@@ -12,6 +12,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
+      <div id="">
       <div>
       <label for="username" class="sr-only">Email Address: </label>
       <input
@@ -35,7 +36,7 @@
         required
       />
       </div>
-      
+      </div>
       <button type="submit">Sign in</button>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
     </form>

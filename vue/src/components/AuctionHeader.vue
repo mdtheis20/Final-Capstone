@@ -59,7 +59,7 @@ export default {
 
 <style>
 header {
-  background-color: #1b262c;
+  /* background-color: #1b262c; */
   cursor: pointer;
 }
 header h1 {
