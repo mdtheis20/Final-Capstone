@@ -18,5 +18,10 @@ export default {
 
     getBidsForSingleUser(){
         return axios.get('/user/bids');
+    },
+    getHighestBidPerItemForSingleUser(){
+        return axios.get('/user/bids/current')
     }
+
+    
 }
