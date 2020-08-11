@@ -41,9 +41,9 @@ CREATE TABLE item (
 	item_id int IDENTITY(1, 1) NOT NULL,
 	donor varchar(100) NOT NULL,
 	auction_id int NOT NULL,
-	title varchar(50) NOT NULL,
+	title varchar(100) NOT NULL,
 	subtitle varchar(240) NOT NULL,
-	description varchar(400) NOT NULL,
+	description varchar(1000) NOT NULL,
 	pic varchar(200) NOT NULL,
 	starting_bid decimal NOT NULL,
 	--is_sold bit
@@ -93,67 +93,138 @@ GO
 
 INSERT INTO auction (start_time, end_time) VALUES ('2020-08-15T09:00:00', '2020-08-16T09:00:00');
 
+--INSERT INTO category (name) VALUES ('Horcrux');
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO category (name) VALUES ('Sports Memorabilia');
 INSERT INTO category (name) VALUES ('Musical Instrument');
 INSERT INTO category (name) VALUES ('Clothes');
-INSERT INTO category (name) VALUES ('Horcrux');
 INSERT INTO category (name) VALUES ('Animals');
 INSERT INTO category (name) VALUES ('Relaxation');
 INSERT INTO category (name) VALUES ('Vacation');
 INSERT INTO category (name) VALUES ('Food');
+INSERT INTO category (name) VALUES ('Entertainment Memorabilia');
+INSERT INTO category (name) VALUES ('Electronics');
+INSERT INTO category (name) VALUES ('Shoes');
+INSERT INTO category (name) VALUES ('Sporting Goods');
+INSERT INTO category (name) VALUES ('Motors');
+INSERT INTO category (name) VALUES ('Toys');
+INSERT INTO category (name) VALUES ('Hobbies');
+INSERT INTO category (name) VALUES ('Exercise');
+INSERT INTO category (name) VALUES ('Tickets & Experiences');
+
 
 
 
 --Commit Tran
-Select * From item 
-	Join auction on item.auction_id = auction.auction_id
-	Join item_category as ic on ic.item_id = item.item_id
-	Join category on category.category_id = ic.category_id
+
 
 	
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Michael Scott', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski.', 
+	VALUES ('Josh Tulcholski', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
-	150, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
+	150, 'Quench your thirst and learn to code! This waterbottle is infused with electrolytes and electrobytes! You will naturally get better at coding, simply by using this waterbottle. Tall. Hollow. A cap to close it. Yes, this waterbottle truly has it all.');
 	
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Michael Scott', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
+	VALUES ('Amy Cave', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
 	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
-	10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
+	10, 'Clyde has been around for a long time (in cat years) and he knows good catnip when he smells it! This catnip will make your cat soar and go places only a cat under the strong effects that only Clyde''s Special Catnip can provide. (Note, do not let your cat operate heavy machinery under the effects of catnip. On second thought, never let your cat operate heavy machinery)');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Michael Scott', 1, 'Hotel Stay at the beach for 2', 'One night with a lovely ocean view', 
+	VALUES ('Mike Morel', 1, 'Hotel Stay at the Beach for Two', 'One night with a lovely ocean view in Myrtle Beach', 
 	'https://www.simplemost.com/wp-content/uploads/2016/08/beach-vacation-e1470663653924.jpeg',
-	150, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
+	150, 'This beachfront Myrtle Beach property offers suites with a kitchen. A large outdoor pool is featured. Myrtle Beach Boardwalk Promenade shops and restaurants are 2 minutes’ walk away.');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Michael Scott', 1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
-	'https://i1.wp.com/www.cooperstowncred.com/wp-content/uploads/2018/12/OMAR-VIZQUEL-CHUCK-CROW.png?fit=922%2C644&ssl=1',
-	250, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
+	VALUES ('José Mesa', 1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
+	'https://i.imgur.com/pbJBzl2.png',
+	250, 'When José Mesa blew the save for Cleveland in Game 7 of the 1997 World Series, it started a chain of events that would end with him getting traded within a year and beginning a very, very long feud with former teammate and friend Omar Vizquel. Before the feud began, José Mesa snagged a signed ball from Omar Vizquel, and now, it can be yours.');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Michael Scott', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
+	VALUES ('Carmen Miranda', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
 	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
-	10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultricies sit amet nisi ac consectetur. Curabitur finibus tortor vitae orci elementum porta ac a metus. Sed pharetra pretium erat at lacinia. Suspendisse euismod et nisi nec ultrices. Maecenas et dolor pretium massa placerat tincidunt. Donec ut nunc tincidunt, volutpat ligula.');
+	10, 'I''m a Chiquita Banana and I''m here to say: there is a lot of fruit in this basket! Pineapple, plums, apples, grapes, kiwi, mango, grapes, pears... Got fruit? You will soon, if you snag this delicious fruit basket!');
 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Chauncey Leopardi', 1, 'Squints'' Hat', 'The iconic hat that Michael ''Squints'' Palledorous wore in the film The Sandlot', 
+	'https://i.imgur.com/AuevVUs.jpg',
+	10, 'Michael ''Squints'' Palledorous is a smart aleck kid who wears glasses with thick black frames. Squints wears a plain black hat. Squints was portrayed by Chauncey Leopardi. You could own this hat for-ev-ver. For-ev-ver. For-ev-ver.');
 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Arthur C. Clarke', 1, 'HAL 9000 Replica', 'HAL 9000 is a fictional artificial intelligence character', 
+	'https://i.imgur.com/L5n3KDi.png',
+	10, '"I''m afraid I can''t do that Dave." This is a replica of the HAL 9000 from the film 2001: A Space Odyssey. As long as your superiors don''t order you to disconnect HAL, you have nothing to worry about.');
 
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Stanley Yelnats IV', 1, 'Clyde "Sweet Feet" Livingston''s Shoes from the film Holes', 'These are the shoes modeled after the shoes from the 2003 film Holes', 
+	'https://i.imgur.com/Bwg3I5G.png',
+	10, '"Sweet Feet" Livingston was a Major League baseball player for the Texas Rangers. He got his name from having a foot fungus that made his feet smell bad. Rest assured, these were not actually worn by fictional character Clyde Livingston, and smell just fine! Note: If you steal these shoes from the auction, you may be forced to attend Camp Green Lake');
+
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Dooley Wilson', 1, 'Piano from ''Casablanca''', 'The painted upright piano that adorned Rick''s Cafe in the classic movie "Casablanca"', 
+	'https://i.imgur.com/i2MqD9p.png',
+	10, 'The orange piano -- on which Sam famously plays "As Time Goes By" at the request of his one-time love Ilsa from the film ''Casablanca.'' The piano featured prominently in the Oscar-winning 1942 romantic drama, with leading man Humphrey Bogart using it as a hiding place for the letters of transit that ultimately secure his former lover''s safe passage to the United States. Last sold at auction for $3.4 million, own it today!');
+
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Buddy Love', 1, 'Sweat Shout: An Aerobic Workout', 'Richard Simmons brings us yet another aerobic workout to dance and shout to and work off all that bodyfat', 
+	'https://i.imgur.com/fHOWyxY.png',
+	10, '"People are still grasping for the miracle, and unfortunately, there are no miracles, if you do not exercise for a year, and let your body remain dormant, then you will gain weight." This is what Richard Simmons has to say on finding a weight-loss strategy that works for you, and look no further than this classic VHS!');
+
+INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
+	VALUES ('Bob Elk', 1, 'John Deere Ground Force Tractor with Trailer', 'Peg Perego''s rideable tractor perfect for the young one in your family', 
+	'https://i.imgur.com/xjYMtRA.png',
+	10, '"It ain''t much, but it''s honest work." Teach the little one in your life how to plow the fields. The best way to build grit and character, is a childhood spent on the farm. 2 speeds plus reverse (2¼ & 4½ mph). Accelerator pedal with automatic brakes. Farm tractor wheels provide traction on grass, dirt, pavement, or gravel. Working FM radio!');
 
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
-INSERT INTO item_category (item_id, category_id) VALUES (2, 6);
-INSERT INTO item_category (item_id, category_id) VALUES (2, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (1, 8);
+
+INSERT INTO item_category (item_id, category_id) VALUES (2, 5);
+
+INSERT INTO item_category (item_id, category_id) VALUES (3, 6);
 INSERT INTO item_category (item_id, category_id) VALUES (3, 7);
-INSERT INTO item_category (item_id, category_id) VALUES (3, 8);
-INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (3, 17);
+
 INSERT INTO item_category (item_id, category_id) VALUES (4, 2);
-INSERT INTO item_category (item_id, category_id) VALUES (5, 9);
+INSERT INTO item_category (item_id, category_id) VALUES (4, 12);
+
+INSERT INTO item_category (item_id, category_id) VALUES (5, 8);
+
+INSERT INTO item_category (item_id, category_id) VALUES (6, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (6, 4);
+INSERT INTO item_category (item_id, category_id) VALUES (6, 9);
+
+INSERT INTO item_category (item_id, category_id) VALUES (7, 9);
+INSERT INTO item_category (item_id, category_id) VALUES (7, 10);
+
+INSERT INTO item_category (item_id, category_id) VALUES (8, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (8, 9);
+INSERT INTO item_category (item_id, category_id) VALUES (8, 11);
+
+INSERT INTO item_category (item_id, category_id) VALUES (9, 3);
+INSERT INTO item_category (item_id, category_id) VALUES (9, 9);
+INSERT INTO item_category (item_id, category_id) VALUES (9, 15);
+
+INSERT INTO item_category (item_id, category_id) VALUES (10, 1);
+INSERT INTO item_category (item_id, category_id) VALUES (10, 12);
+INSERT INTO item_category (item_id, category_id) VALUES (10, 16);
+
+INSERT INTO item_category (item_id, category_id) VALUES (11, 10);
+INSERT INTO item_category (item_id, category_id) VALUES (11, 13);
+INSERT INTO item_category (item_id, category_id) VALUES (11, 14);
+
+
+
+--INSERT INTO item_category (item_id, category_id) VALUES (5, 1);
+--INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+--INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+--INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+--INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+
 
 
 
@@ -184,12 +255,6 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 265.00, '2
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 270.00, '2020-08-15T09:03:00' )
 
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 10.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 11.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 1, 21.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '2020-08-15T09:03:00' )
-
-
 
 
 
@@ -198,3 +263,4 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 2, 26.00, '20
 
 
 select * from item
+select * from category
