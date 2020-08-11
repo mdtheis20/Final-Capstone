@@ -155,11 +155,12 @@ namespace Capstone.DAO
        
         private static Bid RowToObject(SqlDataReader rdr)
         {
+            DateTime date = Convert.ToDateTime(rdr["time_placed"]);
             Bid bid = new Bid();
             bid.Amount = Convert.ToDecimal(rdr["amount"]);
             bid.Bid_ID = Convert.ToInt32(rdr["bid_id"]);
             bid.Item_ID = Convert.ToInt32(rdr["Item_id"]);
-            bid.Time_Placed = Convert.ToDateTime(rdr["time_placed"]);
+            bid.Time_Placed = date.ToString("MM/dd/yyyy HH:mm:ss");
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
         }
