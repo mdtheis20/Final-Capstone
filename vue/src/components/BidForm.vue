@@ -62,20 +62,7 @@ export default {
     
     };
   },
-  computed: {
-    topBidOfUser() {
-      // Find the first bid from user
-      let userBid = this.item.bids.find(
-        (bid) => bid.user_Name === this.$store.state.user.username
-      );
-      if (!userBid) {
-        return 0; //You haven't bid
-      }
-      if (userBid === this.item.bids[0]) {
-        return 1; //`You have top bid!`
-      }
-      return 2; //`You've been outbid!`
-    },
+  computed: {    
   },
   props: {
     topBid: Number,
@@ -86,12 +73,8 @@ export default {
       if (this.$store.state.token == "") {
         this.$router.push({ name: "login" });
       } else if (this.newBid.amount < this.topBid + 1) {
-<<<<<<< HEAD
-        alert("You must bid at least $1 more than the current bid");
-=======
         this.bidErrors = true;
         this.bidErrorMsg = 'New bids must be at least $1 higher than the current bid';
->>>>>>> 4bf2d2239fbcdeb3138ec1162244dade23133504
       } else {
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
