@@ -15,7 +15,6 @@
       </div>
 
       <div id="right-bid">
-        
         <label for="amount">Enter Amount:</label>
         <input
           type="number"
@@ -24,6 +23,7 @@
           v-model.number="newBid.amount"
           :min="topBid + 1"
         />
+        
         <input type="submit" value="Submit" id="btn-submit" />
         <input
           id="btn-clear"
@@ -35,6 +35,7 @@
 
       <div></div>
     </div>
+    
   </form>
 </template>
 
@@ -53,6 +54,21 @@ export default {
       },
     };
   },
+  computed: {
+    topBidOfUser() {
+      // Find the first bid from user
+      let userBid = this.item.bids.find(
+        (bid) => bid.user_Name === this.$store.state.user.username
+      );
+      if (!userBid) {
+        return 0; //You haven't bid
+      }
+      if (userBid === this.item.bids[0]) {
+        return 1; //`You have top bid!`
+      }
+      return 2; //`You've been outbid!`
+    },
+  },
   props: {
     topBid: Number,
     item_ID: Number,
@@ -62,7 +78,7 @@ export default {
       if (this.$store.state.token == "") {
         this.$router.push({ name: "login" });
       } else if (this.newBid.amount < this.topBid + 1) {
-        alert('You must bid at least $1 more than the current bid')
+        alert("You must bid at least $1 more than the current bid");
       } else {
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
