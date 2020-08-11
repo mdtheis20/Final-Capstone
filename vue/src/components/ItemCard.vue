@@ -32,9 +32,9 @@ export default {
     },
     currentBid() {
       if (this.item.bids.length > 0) {
-        return `Current Bid: ${this.item.bids[0].amount}`;
+        return `Current Bid: $${this.item.bids[0].amount}`;
       } else {
-        return `Starting Bid: ${this.item.starting_Bid}`;
+        return `Starting Bid: $${this.item.starting_Bid}`;
       }
     },
     topBid() {

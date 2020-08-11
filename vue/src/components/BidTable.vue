@@ -4,13 +4,13 @@
   <thead>
     <tr>
       <th>Bid Amount</th>
-      <th>Item ID</th>
+      <th>Item Name</th>
       <th>Time</th>
     </tr>
   </thead>
    <tr v-for="(bid) in bids" :key="bid.bid_ID" class="bid-container" >      
        <td> ${{bid.amount}}</td>
-        <td>{{bid.item_ID}}&nbsp;</td>
+        <td>{{getItemTitle(bid.item_ID)}}&nbsp;</td>
         <td>{{bid.time_Placed}}</td>    
      </tr>
     </table>
@@ -21,6 +21,23 @@
 export default {
 props: {
     bids: Array,
+},
+methods: {
+  getItemTitle(itemID){
+    if (this.$store.state.listOfItems === null || this.$store.state.listOfItems.length === 0){
+      this.$store.dispatch('getAllItems').then(() => {
+         let item = this.$store.state.listOfItems.find(i => i.item_ID === itemID);
+         if (!item){
+           return ``;
+         }
+    return item.title;
+      });
+    }
+    else {
+      let item = this.$store.state.listOfItems.find(i => i.item_ID === itemID);
+    return item.title;
+    }
+  }
 }
 }
 </script>

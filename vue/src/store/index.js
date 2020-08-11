@@ -33,6 +33,7 @@ export default new Vuex.Store({
       endTime: new Date(2020, 7, 14, 12)
     },
     listOfBids: [],
+    // Bid at index0 is top bid see if current user name = top user name
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
