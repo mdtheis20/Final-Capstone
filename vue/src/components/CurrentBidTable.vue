@@ -6,12 +6,15 @@
       <th>Bid Amount</th>
       <th>Item Name</th>
       <th>Time</th>
+      <th>Jump To Item</th>
     </tr>
   </thead>
    <tr v-for="(bid) in currentBids" :key="bid.bid_ID" class="bid-container" >      
        <td> ${{bid.amount}}</td>
         <td>{{getItemTitle(bid.item_ID)}}&nbsp;</td>
-        <td>{{bid.time_Placed}}</td>    
+        <td>{{bid.time_Placed}}</td>
+        <td><router-link id="jump-button" tag="button" :to="{name: 'item', params: {itemID: bid.item_ID}}"
+    >Go</router-link></td>    
      </tr>
     </table>
   </div>
