@@ -1,19 +1,20 @@
 <template>
   <div>
-      <item-detail :item="item"/>
+      <item-detail :item_ID="item_ID"/>
 
   </div>
 </template>
 
 <script>
 import ItemDetail from '@/components/ItemDetail.vue';
-import api from '@/services/ApiService.js';
+
 
 export default {
     name: 'item',
     data() {
         return {
-            item: Object,
+            item_ID: 0,
+
         }
     },
     components: {
@@ -25,20 +26,7 @@ export default {
         }
     }, */
     created() {
-        // TODO: should this update the list of all items?
-        api.getSingleItem(this.$route.params.itemID).then( r => {
-            if (r.status === 200){
-                this.item = r.data;
-            }
-        }).catch(e => {
-        if (e.response) {
-          console.error(e.response)
-        } else if (e.request) {
-          console.error(e.request)
-        } else {
-          console.error('There was an error!')
-        }
-      });
+        this.item_ID = this.$route.params.itemID;
     }
 }
 </script>
