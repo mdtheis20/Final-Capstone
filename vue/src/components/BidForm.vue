@@ -1,7 +1,7 @@
 <template>
   <form v-on:submit.prevent="placeBid">
     <h3>Place Bid</h3>
-    <h4 id="highest-bid">Current Bid: ${{findHighestBid()}}</h4>
+    <h4 id="highest-bid">Current Bid: ${{topBid}}</h4>
     <div id="bid-form">
       <div id="left-bid">
         <div>
@@ -22,14 +22,14 @@
           name="amount"
           id="custom-bid-amount"
           v-model.number="newBid.amount"
-          :min="findHighestBid + 1"
+          :min="topBid + 1"
         />
         <input type="submit" value="Submit" id="btn-submit" />
         <input
           id="btn-clear"
           type="reset"
           value="Clear"
-          v-on:click.prevent="() => newBid.amount = findHighestBid()"
+          v-on:click.prevent="() => newBid.amount = topBid"
         />
       </div>
 
@@ -46,28 +46,29 @@ export default {
     return {
       newBid: {
         bid_ID: 0,
-        item_ID: this.$route.params.itemID,
+        item_ID: this.item_ID,
         user_ID: 0, //TODO: make null
-        amount: 0,
+        amount: this.topBid,
         time_placed: null,
       },
     };
   },
   props: {
+    topBid: Number,
     item_ID: Number,
   },
   methods: {
     placeBid() {
       if (this.$store.state.token == "") {
         this.$router.push({ name: "login" });
-      } else if (this.newBid.amount < this.findHighestBid() + 1) {
+      } else if (this.newBid.amount < this.topBid + 1) {
         alert('You must bid at least $1 more than the current bid')
       } else {
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
           .then((r) => {
             if (r.status === 201) {
-              this.$store.commit("ADD_BID", r.data);
+              this.$emit("bidPlaced");
             }
           })
           .catch((e) => {
@@ -81,16 +82,20 @@ export default {
           });
       }
     },
-    findHighestBid() {
+    /* findHighestBid() {
       const foundItem = this.$store.state.listOfItems.find(
         (item) => item.item_ID === this.$route.params.itemID
       );
-      return foundItem.bids[0].amount;
-    },
+      if (foundItem.bids.length > 0){
+        return foundItem.bids[0].amount;
+      } else {
+        return foundItem.starting_Bid;
+      }
+    }, */
   },
-  created() {
-    this.newBid.amount = this.findHighestBid();
-  },
+  /* created() {
+    this.newBid.amount = this.topBid;
+  }, */
 };
 </script>
 

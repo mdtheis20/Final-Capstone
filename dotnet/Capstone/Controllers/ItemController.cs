@@ -149,5 +149,21 @@ namespace Capstone.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpGet("/user/bids/current")]
+        [Authorize]
+        public ActionResult<List<Bid>> GetBidHistoryPeritem()
+        {
+            List<Bid> currentBid = bidDao.GetHighestUserBidForEachItem(int.Parse(UserId));
+            if (currentBid != null && currentBid.Count > 0)
+            {
+                return Ok(currentBid);
+            }
+            else
+            {
+                // TODO: should a different code be sent back?
+                return Unauthorized();
+            }
+        }
     }
 }

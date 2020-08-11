@@ -86,7 +86,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("Select MAX(amount) from bid where item_id = @item_id", conn);
+                    SqlCommand cmd = new SqlCommand("Select isnull(MAX(amount), 0) from bid where item_id = @item_id", conn);
                     cmd.Parameters.AddWithValue("@item_id", id);
                     decimal topAmount = Convert.ToDecimal(cmd.ExecuteScalar());
 
@@ -124,6 +124,31 @@ namespace Capstone.DAO
             }
             return result;
         }
+        public List<Bid> GetHighestUserBidForEachItem(int user_ID)
+        {
+            const string query = "select * from bid Join(Select item_id, Max(amount) as maxAmount from bid where user_id = @user_id group by item_id) as topBids on bid.item_id = topBids.item_id and bid.amount = topBids.maxAmount";
+            List<Bid> result = new List<Bid>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@user_id", user_ID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        result.Add(RowToObject(reader));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result; 
+        }
+
 
         public List<Bid> GetHighestBidForAllItems()
         {
