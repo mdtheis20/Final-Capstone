@@ -13,5 +13,6 @@ namespace Capstone.DAO
         List<Bid> GetBidsByItem(int id);
         decimal GetHighestBidAmountForItem(int id);
         List<Bid> GetBidHistoryForUser(int user_ID);
+        List<Bid> GetHighestBidForAllItems();
     }
 }

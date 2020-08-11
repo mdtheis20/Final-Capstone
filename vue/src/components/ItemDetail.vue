@@ -30,11 +30,11 @@
         <td>{{bid.time_Placed}}</td>    
      </tr>
     </table>
-    <a
+    <button
       href="javascript:void(0)"
-      class="mt-1"
+      id="bid-button"
       @click="simple_toggle(default_limit, item.bids.length)" v-if="item.bids.length > 5"
-    >{{ limit_by===5?'Show all bids': ''}}</a>
+    >{{ limit_by===5?'Show all bids': 'Show \'Top 5\' Bids'}}</button>
   </div>
 </template>
 
@@ -94,7 +94,9 @@ p {
   width: 100%;
   background-color: red;
 }
-
+#bid-button {
+  color: azure;
+}
 table {
   border-spacing: 15px 5px;
 }
