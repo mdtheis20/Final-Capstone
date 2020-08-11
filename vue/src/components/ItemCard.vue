@@ -7,7 +7,7 @@
       <h4 id="out-bid-message" v-if="topBid === 2">You've been outbid!</h4>
       <h4 id="no-bid-message" v-if="topBid === 0"></h4>
       <!-- You have top bid message or you've been outbid message, only shown if you have placed bid in first place-->
-      <category-bar :item_ID="this.item.item_ID" />
+      
     </div>
     <img :src="item.pic" :alt="item.subtitle" />
     <p>{{item.subtitle}}</p>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CategoryBar from "./CategoryBar.vue";
+
 
 export default {
   data() {
@@ -78,7 +78,7 @@ export default {
     item_ID: Number,
   },
   components: {
-    CategoryBar,
+    
   },
 };
 </script>

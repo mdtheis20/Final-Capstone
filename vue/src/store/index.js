@@ -30,7 +30,7 @@ export default new Vuex.Store({
     auctionInfo: {
       // TODO: get this data from database
       orgName: 'TE: Bay',
-      endTime: new Date(2020, 7, 14, 12)
+      endTime: new Date(2020, 7, 28, 12)
     },
     listOfBids: [],
     // Bid at index0 is top bid see if current user name = top user name
