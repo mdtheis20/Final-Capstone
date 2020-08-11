@@ -86,7 +86,7 @@ export default {
 <style>
 #item-card {
   height: 400px;
-  width: 520px;
+  width: 450px;
   /* margin: 20px; */
   background-color: lightblue;
   border-radius: 5px;
@@ -107,6 +107,8 @@ export default {
 }
 #item-card > h3 {
   grid-area: title;
+  align-self: center;
+  text-align: center;
 }
 #item-card > img {
   grid-area: img;
@@ -118,6 +120,7 @@ export default {
 }
 #item-card > p {
   grid-area: sub;
+  text-align: center;
 }
 #card-stats {
   grid-area: stats;
@@ -128,4 +131,5 @@ export default {
 #out-bid-message {
   color: red;
 }
+
 </style>

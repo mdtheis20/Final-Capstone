@@ -43,5 +43,6 @@ export default {
 }
 #item-list >  li {
   list-style-type: none;
+  
 }
 </style>
