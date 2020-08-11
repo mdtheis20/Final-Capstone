@@ -85,7 +85,11 @@ export default {
       const foundItem = this.$store.state.listOfItems.find(
         (item) => item.item_ID === this.$route.params.itemID
       );
-      return foundItem.bids[0].amount;
+      if (foundItem.bids.length > 0){
+        return foundItem.bids[0].amount;
+      } else {
+        return foundItem.starting_Bid;
+      }
     },
   },
   created() {

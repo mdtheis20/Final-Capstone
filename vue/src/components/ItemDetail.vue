@@ -35,7 +35,9 @@
       id="bid-button"
       @click="simple_toggle(default_limit, item.bids.length)" v-if="item.bids.length > 5"
     >{{ limit_by===5?'Show all bids': 'Show \'Top 5\' Bids'}}</button>
+  <p v-if="item.bids.length == 0">There are currently no bids</p>
   </div>
+  
 </template>
 
 <script>
@@ -73,10 +75,10 @@ export default {
 </script>
 
 <style scoped>
-#item-detail div.bid-container {
+/* #item-detail div.bid-container {
   display: flex;
   flex-direction: column-reverse;
-}
+} */
 h2,
 h3,
 h4,
