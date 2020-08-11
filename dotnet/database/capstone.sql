@@ -178,7 +178,7 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Bob Elk', 1, 'John Deere Ground Force Tractor with Trailer', 'Peg Perego''s rideable tractor perfect for the young one in your family', 
 	'https://i.imgur.com/xjYMtRA.png',
-	10, '"It ain''t much, but it''s honest work." Teach the little one in your life how to plow the fields. The best way to build grit and character, is a childhood spent on the farm. 2 speeds plus reverse (2¼ & 4½ mph). Accelerator pedal with automatic brakes. Farm tractor wheels provide traction on grass, dirt, pavement, or gravel. Working FM radio!');
+	10, '"It ain''t much, but it''s honest work." Teach the little one in your life how to plow the fields. The best way to build grit and character, is a childhood spent on the farm. 2 speeds plus reverse (2¼ & 4½ mph). Accelerator pedal with automatic brakes. Farm tractor wheels provide traction on grass, dirt, pavement, or gravel. Working FM radio! (Child not included)');
 
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
 INSERT INTO item_category (item_id, category_id) VALUES (1, 8);
