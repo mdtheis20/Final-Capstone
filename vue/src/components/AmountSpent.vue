@@ -9,18 +9,18 @@ export default {
 //TODO: Bring in the stuff from elsewhere, not the $store!!
   data(){
    return {
-     items: this.$store.state.listOfItems,
-
+     
    }
  },
 
 computed: {
   totalAmount(){
+    let items =  this.$store.state.listOfItems
     let topBids = []
     let topBidsOfUser = []
     let total = 0
 
-    this.items.forEach(i => {
+    items.forEach(i => {
       topBids.push(i.bids[0])
     })
 
@@ -34,13 +34,17 @@ computed: {
       total === 0
     }
     else {
-   total = topBidsOfUser.reduce((reducer, amount) => {
-      return reducer + amount;
+   total = topBidsOfUser.reduce((reducer, bid) => {
+      return reducer + bid.amount;
     }, 0)
     }
-    return 45678;
-  }
-}
+    return total;
+  },
+
+  
+},
+
+
 }
 </script>
 
