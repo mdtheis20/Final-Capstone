@@ -15,7 +15,7 @@
 
     <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
-    <bid-form :item_ID="item_ID" />
+    <bid-form :topBid="topBid" :item_ID="item_ID" @bidPlaced="refreshItem()" />
 <table>
   <thead>
     <tr>
@@ -42,6 +42,7 @@
 
 <script>
 import BidForm from "./BidForm.vue";
+import api from '@/services/ApiService.js';
 
 export default {
   components: {
@@ -52,25 +53,47 @@ export default {
   },
   data() {
     return {
+      item: Object,
       default_limit: 5,
       limit_by: 5,
       //item: this.$store.state.listOfItems.find(i => i.item_ID === this.item_ID),
     };
   },
   props: {
-    item: Object,
+    item_ID: Number,
   },
   computed: {
     bids() {
       return this.item.bids.slice(0, this.limit_by);
     },
+    topBid() {
+      return (this.item.bids.length > 0) ? this.item.bids[0].amount : this.item.starting_Bid;
+    }
   },
   methods: {
     simple_toggle(default_limit, filters_length) {
       this.limit_by =
         this.limit_by === default_limit ? filters_length : default_limit;
     },
+    refreshItem() {
+        api.getSingleItem(this.item_ID).then( r => {
+            if (r.status === 200){
+                this.item = r.data;
+            }
+        }).catch(e => {
+        if (e.response) {
+          console.error(e.response)
+        } else if (e.request) {
+          console.error(e.request)
+        } else {
+          console.error('There was an error!')
+        }
+      });
+    }
   },
+   created() {
+        this.refreshItem();
+    }
 };
 </script>
 

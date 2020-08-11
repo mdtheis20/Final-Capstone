@@ -86,7 +86,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("Select MAX(amount) from bid where item_id = @item_id", conn);
+                    SqlCommand cmd = new SqlCommand("Select isnull(MAX(amount), 0) from bid where item_id = @item_id", conn);
                     cmd.Parameters.AddWithValue("@item_id", id);
                     decimal topAmount = Convert.ToDecimal(cmd.ExecuteScalar());
 
