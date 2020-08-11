@@ -67,6 +67,7 @@ export default {
   props: {
     topBid: Number,
     item_ID: Number,
+    isUserWinning: Number,
   },
   methods: {
     placeBid() {
