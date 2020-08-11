@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Item from '../views/Item.vue'
+import Activity from '../views/Activity.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ const router = new Router({
       name: 'item',
       component: Item,
      
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      component: Activity,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
