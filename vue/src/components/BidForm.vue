@@ -1,6 +1,12 @@
 <template>
   <form v-on:submit.prevent="placeBid">
     <h3>Place Bid</h3>
+    <div
+        class="alert alert-danger"
+        role="alert"
+        v-if="bidErrors"
+      >{{ bidErrorMsg }}</div>
+
     <h4 id="highest-bid">Current Bid: ${{topBid}}</h4>
     <div id="bid-form">
       <div id="left-bid">
@@ -20,8 +26,7 @@
           type="number"
           name="amount"
           id="custom-bid-amount"
-          v-model.number="newBid.amount"
-          :min="topBid + 1"
+          v-model.number="newBid.amount"          
         />
         
         <input type="submit" value="Submit" id="btn-submit" />
@@ -29,7 +34,7 @@
           id="btn-clear"
           type="reset"
           value="Clear"
-          v-on:click.prevent="() => newBid.amount = topBid"
+          v-on:click.prevent="clearForm"
         />
       </div>
 
@@ -52,6 +57,9 @@ export default {
         amount: this.topBid,
         time_placed: null,
       },
+      bidErrors: false,
+      bidErrorMsg: ''
+    
     };
   },
   computed: {
@@ -78,14 +86,21 @@ export default {
       if (this.$store.state.token == "") {
         this.$router.push({ name: "login" });
       } else if (this.newBid.amount < this.topBid + 1) {
+<<<<<<< HEAD
         alert("You must bid at least $1 more than the current bid");
+=======
+        this.bidErrors = true;
+        this.bidErrorMsg = 'New bids must be at least $1 higher than the current bid';
+>>>>>>> 4bf2d2239fbcdeb3138ec1162244dade23133504
       } else {
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
           .then((r) => {
             if (r.status === 201) {
               this.$emit("bidPlaced");
+              this.clearForm();
             }
+            
           })
           .catch((e) => {
             if (e.response) {
@@ -97,6 +112,11 @@ export default {
             }
           });
       }
+
+    },
+    clearForm() {
+      this.newBid.amount = this.topBid;
+      this.bidErrors = false;
     },
     /* findHighestBid() {
       const foundItem = this.$store.state.listOfItems.find(
@@ -160,5 +180,9 @@ h4 {
 }
 #btn-submit {
   background-color: green;
+}
+.alert {
+  color: red;
+  text-align: center;
 }
 </style>
