@@ -49,12 +49,6 @@ export default {
         return 1; //`You have top bid!`
       }
       return 2; //`You've been outbid!`
-
-      // If it's empty they haven't bid
-
-      //if [0] top bid,
-
-      //otherwise they've been outbid
     },
 
     // topBid() {
