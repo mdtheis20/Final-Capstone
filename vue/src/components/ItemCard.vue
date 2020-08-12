@@ -82,7 +82,7 @@ export default {
 
 <style>
 #item-card {
-  /* max-height: 100%; */
+  height: 550px;
   width: 450px;
   /* margin: 20px; */
   border-radius: 5px;

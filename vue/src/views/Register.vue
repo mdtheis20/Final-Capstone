@@ -13,11 +13,14 @@
       >{{ registrationErrorMsg }}</div>
 
       <div id="enterName">
-        <label for="first name">First Name:</label>
-        <input type="text" required placeholder="First Name" v-model="name.firstName" />
-
-        <label for="last name">Last Name:</label>
-        <input type="text" required placeholder="Last Name" v-model="name.lastName" />
+        <div>
+          <label for="first name">First Name:</label>
+          <input type="text" required placeholder="First Name" v-model="name.firstName" />
+        </div>
+        <div>
+          <label for="last name">Last Name:</label>
+          <input type="text" required placeholder="Last Name" v-model="name.lastName" />
+        </div>
       </div>
 
       <div id="streetAddress">
@@ -25,10 +28,12 @@
         <input type="text" required placeholder="Address" v-model="address.streetAddress" />
       </div>
 
-      <div id="cityStateZip">
+      
+        <div>
         <label for="city">City:</label>
         <input type="text" required placeholder="City" v-model="address.city" />
-
+        </div>
+        <div>
         <label for="state">State:</label>
         <select required v-model="address.state">
           <option value="AL">Alabama</option>
@@ -83,10 +88,10 @@
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
-
+        </div>
         <label for="zip code">Zip Code:</label>
         <input type="text" required placeholder="Zip" pattern="[0-9]*" v-model="address.zip" />
-      </div>
+     
 
       <div id="phoneContact">
         <label for="phone number">Phone Number (xxx-xxx-xxxx):</label>
@@ -97,13 +102,14 @@
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           v-model="user.phone_number"
         />
-
+        <div>
         <label for="available times">Best time to contact you:</label>
         <select name="times" id="times" required v-model="user.contact_times">
           <option value="morning">Morning</option>
           <option value="afternoon">Afternoon</option>
           <option value="evening">Evening</option>
         </select>
+        </div>
       </div>
 
       <label for="username" class="sr-only">Email address:</label>
@@ -126,9 +132,10 @@
           placeholder="Password"
           v-model="user.password"
           required
-          pattern ="(?=.*?[!?@#$%^*])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}"
+          pattern="(?=.*?[!?@#$%^*])(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{8,}"
           title="Must contain at least one number, one symbol, one uppercase letter, one lowercase letter, and at least 8 or more characters"
         />
+        <br>
         <input
           type="password"
           id="confirmPassword"
@@ -139,14 +146,21 @@
         />
       </div>
 
-      <input type="checkbox" required>
-      <label for="Verify you have read the privacy policy">I confirm that I have read and agree to the 
-        <a class="popup" v-on:click="showPolicy">Privacy Policy </a>
-          <div v-show="!isPolicyVisible" class="popupText" id="myPopup">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit excepturi, dolorum dolor repellat illo quos fugit aliquam provident minima nam voluptates I also agree to give each member of team Wildcard ten thousand dollars nesciunt enim ducimus necessitatibus voluptatibus! Quos reprehenderit eius nihil!</div>
-          
-          </label>
-      
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+      <input type="checkbox" required />
+      <label id="privacy-label" for="Verify you have read the privacy policy">
+        I confirm that I have read and agree to the
+        <a
+          class="popup"
+          v-on:click="showPolicy"
+        >Privacy Policy</a>
+        <div
+          v-show="!isPolicyVisible"
+          class="popupText"
+          id="myPopup"
+        >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit excepturi, dolorum dolor repellat illo quos fugit aliquam provident minima nam voluptates I also agree to give each member of team Wildcard ten thousand dollars nesciunt enim ducimus necessitatibus voluptatibus! Quos reprehenderit eius nihil!</div>
+      </label>
+<br>
+      <button id="account-button" class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
     </form>
   </div>
 </template>
@@ -172,14 +186,14 @@ export default {
 
       name: {
         firstName: "",
-        lastName: ""
+        lastName: "",
       },
 
       address: {
         streetAddress: "",
-          city: "",
-          state: "",
-          zip: "",
+        city: "",
+        state: "",
+        zip: "",
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
@@ -191,8 +205,15 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
-        this.user.name = this.name.firstName + " " + this.name.lastName
-        this.user.address = this.address.streetAddress + " " + this.address.city + " " + this.address.state + " " + this.address.zip
+        this.user.name = this.name.firstName + " " + this.name.lastName;
+        this.user.address =
+          this.address.streetAddress +
+          " " +
+          this.address.city +
+          " " +
+          this.address.state +
+          " " +
+          this.address.zip;
         authService
           .register(this.user)
           .then((response) => {
@@ -213,22 +234,34 @@ export default {
       }
     },
 
-
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
 
-    showPolicy(){
+    showPolicy() {
       this.isPolicyVisible = !this.isPolicyVisible;
-    }
+    },
   },
 };
-
 </script>
 
 <style>
 #topOfPage {
   display: flexbox;
+}
+
+form div{
+  margin: 20px 0px;
+}
+
+form label{
+  display: block;
+}
+#privacy-label{
+  display: inline;
+}
+#account-button{
+  margin-left: 0px;
 }
 </style>
