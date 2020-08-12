@@ -21,7 +21,11 @@ computed: {
     let total = 0
 
     items.forEach(i => {
+      if (i.bids.length > 0){
       topBids.push(i.bids[0])
+      }
+      total === 0
+      
     })
 
     topBids.forEach(bid => {
