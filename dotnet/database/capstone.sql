@@ -1,19 +1,19 @@
---Begin tran
-USE master
-GO
+----Begin tran
+--USE master
+--GO
 
---drop database if it exists
-IF DB_ID('final_capstone') IS NOT NULL
-BEGIN
-	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-	DROP DATABASE final_capstone;
-END
+----drop database if it exists
+--IF DB_ID('final_capstone') IS NOT NULL
+--BEGIN
+--	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+--	DROP DATABASE final_capstone;
+--END
 
-CREATE DATABASE final_capstone
-GO
+--CREATE DATABASE final_capstone
+--GO
 
-USE final_capstone
-GO
+--USE final_capstone
+--GO
 
 --create tables
 CREATE TABLE users (
@@ -84,8 +84,8 @@ Create Table bid (
 --)
 
 --populate default data
-INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
-INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('admin', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+--INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('admin', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'mAedat2HHvUYPW7tzPmaz7oxjSI=', 'MGPhTggCRKc=','admin');
 
 GO
 
@@ -254,13 +254,20 @@ INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 255.00, '2
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 265.00, '2020-08-15T09:02:00' )
 INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 270.00, '2020-08-15T09:03:00' )
 
+Go
+CREATE PROCEDURE GetAllItems
+AS Begin
+	Select * From Item order by title; 
+
+	Select * From item_category IC 
+	JOIN Category C on IC.category_id = c.category_id;
+
+	SELECT  * From bid 
+	JOIN item on bid.item_id = item.item_id
+	JOIN users on users.user_id = bid.user_id Order by amount desc
+End
 
 
 
 
 
-
-
-
-select * from item
-select * from category
