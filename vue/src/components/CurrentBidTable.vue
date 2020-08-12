@@ -49,5 +49,25 @@ methods: {
 
 table {
   border-spacing: 15px 5px;
+  flex-wrap:wrap;
+ 
+}
+thead {
+   text-decoration: underline;
+}
+#jump-button {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  
+  animation: glow .75s ease-in-out infinite alternate;
+    color: #e7dfd5;
+        font-family: Arial, Helvetica, sans-serif; font-size: 50px; font-style: normal; font-variant: normal; ;
+    text-align: center;
+
+
+  color: #fff;
+  text-align: center;
+ text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
 }
 </style>

@@ -79,12 +79,13 @@ export default {
 
 <style>
 #item-card {
-  height: 400px;
+  
   width: 450px;
   /* margin: 20px; */
-  background-color: lightblue;
+  /* background-color: #0072B0; */
   border-radius: 5px;
-  border: 1px solid navy;
+  /* border: 3px solid #B0690E; */
+  background-color: #0072B0;
   padding: 30px;
   margin: 15px auto;
   display: grid;
@@ -96,6 +97,7 @@ export default {
     "img img img"
     "sub sub sub"
     "stats stats stats";
+  
 }
 /* TODO: make breakpoint for small screens */
 #item-card.has-bid {
@@ -105,10 +107,11 @@ export default {
   grid-area: title;
   align-self: center;
   text-align: center;
+  color: aliceblue
 }
 #item-card > img {
   grid-area: img;
-  border: 1px solid navy;
+  /* border: 1px solid navy; */
   border-radius: 5px;
   max-height: 250px;
   max-width: 100%;
@@ -117,6 +120,8 @@ export default {
 #item-card > p {
   grid-area: sub;
   text-align: center;
+  color: aliceblue;
+  height: 20px;
 }
 #card-stat {
   grid-area: stats;
@@ -124,10 +129,14 @@ export default {
   justify-content: space-between;
 }
 #top-bid-message {
-  color: green;
+  color: rgb(80, 219, 80);
 }
 #out-bid-message {
   color: red;
+}
+
+h4{
+  color:aliceblue;
 }
 
 </style>
