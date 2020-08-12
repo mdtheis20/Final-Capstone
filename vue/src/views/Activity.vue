@@ -1,6 +1,8 @@
 <template>
   <div id="active-bids">
+    <div id="CAB">Current Active Bids</div>
     <current-bid-table v-bind:currentBids="currentBids"/>
+    <div id="FBH">Full Bid History</div>
       <bid-table  v-bind:bids="bids"/>
     </div>
 </template>
@@ -65,6 +67,35 @@ export default {
   align-content: center;
   justify-content: right;
     
-  border: cadetblue ridge;
+  border: #B0690E ridge;
+  border-width: 10px;
+  font-size: 20px;
+}
+
+#current-bid-table {
+    display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: right;
+    
+  border: #B0690E ridge;
+  border-width: 10px;
+  font-size: 20px;
+}
+#CAB {
+  display: flex;
+  color:#28B2FC;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  font-size: 40px;
+}
+#FBH {
+    display: flex;
+  color:#28B2FC;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  font-size: 40px;
 }
 </style>

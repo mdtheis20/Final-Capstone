@@ -47,4 +47,7 @@ methods: {
 table {
   border-spacing: 15px 5px;
 }
+thead {
+   text-decoration: underline;
+}
 </style>
