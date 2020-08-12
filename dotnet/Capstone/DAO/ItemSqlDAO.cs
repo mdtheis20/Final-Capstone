@@ -24,12 +24,8 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("Select * From Item order by title; " +
-                                                     "Select * From item_category IC " +
-                                                     "JOIN Category C on IC.category_id = c.category_id; " +
-                                                     "SELECT  * From bid " +
-                                                     "JOIN item on bid.item_id = item.item_id " +
-                                                     "JOIN users on users.user_id = bid.user_id Order by amount desc", conn);
+                    SqlCommand cmd = new SqlCommand("GetAllItems", conn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
