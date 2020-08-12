@@ -85,6 +85,7 @@ export default {
   background-color: lightblue;
   border-radius: 5px;
   border: 1px solid navy;
+  padding: 30px;
   margin: 15px auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -92,8 +93,9 @@ export default {
   grid-gap: 10px;
   grid-template-areas:
     "title title title"
-    "img img stats"
-    "sub sub sub";
+    "img img img"
+    "sub sub sub"
+    "stats stats stats";
 }
 /* TODO: make breakpoint for small screens */
 #item-card.has-bid {
@@ -116,8 +118,10 @@ export default {
   grid-area: sub;
   text-align: center;
 }
-#card-stats {
+#card-stat {
   grid-area: stats;
+  display: flex;
+  justify-content: space-between;
 }
 #top-bid-message {
   color: green;

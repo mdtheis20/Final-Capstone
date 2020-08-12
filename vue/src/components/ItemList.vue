@@ -40,6 +40,7 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   padding: 0px;
+  
 }
 #item-list >  li {
   list-style-type: none;
