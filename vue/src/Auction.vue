@@ -45,7 +45,7 @@ body {
   /* background-color: #1b262c; */
   text-align: center;
   padding: 10px;
-  background-image: linear-gradient(#1b262c, #0f4c75);
+  background-image: linear-gradient( #0f4c75, #1b262c );
 }
 #auction {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
