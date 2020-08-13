@@ -1,19 +1,19 @@
-----Begin tran
---USE master
---GO
+--Begin tran
+USE master
+GO
 
-----drop database if it exists
---IF DB_ID('final_capstone') IS NOT NULL
---BEGIN
---	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
---	DROP DATABASE final_capstone;
---END
+--drop database if it exists
+IF DB_ID('final_capstone') IS NOT NULL
+BEGIN
+	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE final_capstone;
+END
 
---CREATE DATABASE final_capstone
---GO
+CREATE DATABASE final_capstone
+GO
 
---USE final_capstone
---GO
+USE final_capstone
+GO
 
 --create tables
 CREATE TABLE users (
@@ -84,7 +84,7 @@ Create Table bid (
 --)
 
 --populate default data
---INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('admin', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'mAedat2HHvUYPW7tzPmaz7oxjSI=', 'MGPhTggCRKc=','admin');
 
 GO
@@ -123,31 +123,31 @@ INSERT INTO category (name) VALUES ('Tickets & Experiences');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Marty Mordarski', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski', 
-	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
+	'https://i.imgur.com/uVQERGW.png', 
 	150, 'Quench your thirst and learn to code! This waterbottle is infused with electrolytes and electrobytes! You will naturally get better at coding, simply by using this waterbottle. Tall. Hollow. A cap to close it. Yes, this waterbottle truly has it all.');
 	
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Amy Cave', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
-	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
+	'https://i.imgur.com/ijv1ZpX.png', 
 	10, 'Clyde has been around for a long time (in cat years) and he knows good catnip when he smells it! This catnip will make your cat soar, and go places a cat can only go while under the strong effects that only Clyde''s Special Catnip can provide. (Note, do not let your cat operate heavy machinery under the effects of catnip. On second thought, never let your cat operate heavy machinery)');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Mike Morel', 1, 'Hotel Stay at the Beach for Two', 'One night with a lovely ocean view in Myrtle Beach', 
-	'https://www.simplemost.com/wp-content/uploads/2016/08/beach-vacation-e1470663653924.jpeg',
-	150, 'This beachfront Myrtle Beach property offers suites with a kitchen. A large outdoor pool is featured. Myrtle Beach Boardwalk Promenade shops and restaurants are 2 minutes’ walk away.');
+	'https://i.imgur.com/kkw3OkM.png',
+	150, 'Can''t travel internationally because of COVID-19? Has a trip to Africa been taken off this summer''s itinerary? This beachfront Myrtle Beach property offers suites with a kitchen. A large outdoor pool is featured. Myrtle Beach Boardwalk Promenade shops and restaurants are 2 minutes’ walk away.');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('José Mesa', 1, 'Baseball signed by Omar Vizquel', 'Signed by the world''s greatest shortstop', 
-	'https://i.imgur.com/pbJBzl2.png',
+	'https://i.imgur.com/IxU9PSA.png',
 	250, 'When José Mesa blew the save for Cleveland in Game 7 of the 1997 World Series, it started a chain of events that would end with him getting traded within a year and beginning a very, very long feud with former teammate and friend Omar Vizquel. Before the feud began, José Mesa snagged a signed ball from Omar Vizquel, and now, it can be yours.');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Carmen Miranda', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
-	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
+	'https://i.imgur.com/nqNjfwu.png',
 	10, 'I''m a Chiquita Banana and I''m here to say: there is a lot of fruit in this basket! Pineapple, plums, apples, grapes, kiwi, mango, grapes, oranges, pears... Got fruit? You will soon, if you snag this delicious fruit basket!');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
@@ -162,12 +162,12 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Stanley Yelnats IV', 1, 'Clyde "Sweet Feet" Livingston''s Shoes', 'These are the shoes modeled after the shoes from the 2003 film Holes', 
-	'https://i.imgur.com/Bwg3I5G.png',
+	'https://i.imgur.com/J6UL3Yp.png',
 	10, '"Sweet Feet" Livingston was a "Major League" baseball player for the Texas Rangers. He got his name from having a foot fungus that made his feet smell bad. Rest assured, these were not actually worn by fictional character Clyde Livingston, and smell just fine! Note: If you steal these shoes from the auction, you may be forced to attend Camp Green Lake');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Dooley Wilson', 1, 'Piano from ''Casablanca''', 'The painted upright piano that adorned Rick''s Cafe in the classic movie "Casablanca"', 
-	'https://i.imgur.com/i2MqD9p.png',
+	'https://i.imgur.com/fPQ0RP6.png',
 	10, 'The orange piano -- on which Sam famously plays "As Time Goes By" at the request of his one-time love Ilsa from the film ''Casablanca.'' The piano featured prominently in the Oscar-winning 1942 romantic drama, with leading man Humphrey Bogart using it as a hiding place for the letters of transit that ultimately secure his former lover''s safe passage to the United States. Last sold at auction for $3.4 million, own it today!');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
@@ -177,7 +177,7 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Bob Elk', 1, 'John Deere Ground Force Tractor with Trailer', 'Peg Perego''s rideable tractor perfect for the young one in your family', 
-	'https://i.imgur.com/xjYMtRA.png',
+	'https://i.imgur.com/oBPDRVP.png',
 	10, '"It ain''t much, but it''s honest work." Teach the little one in your life how to plow the fields. The best way to build grit and character, is a childhood spent on the farm. 2 speeds plus reverse (2¼ & 4½ mph). Accelerator pedal with automatic brakes. Farm tractor wheels provide traction on grass, dirt, pavement, or gravel. Working FM radio! (Child not included)');
 
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
