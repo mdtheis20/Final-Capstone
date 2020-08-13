@@ -53,21 +53,6 @@ export default {
   padding: 0px;
   
 }
-<<<<<<< HEAD
-.loading {
-  width: 100vw;
-  height: 100vh;
-  position: absolute; top: 0; left: 0;
-   z-index: 1000;
-}
-.loading img {
-  width: 100%;
-  height: 100%;
- 
-}
-=======
-
->>>>>>> 8d8308d8f3e0e1e1fee9c16877264423dea6d0e3
 #item-list >  li {
   list-style-type: none;
 }

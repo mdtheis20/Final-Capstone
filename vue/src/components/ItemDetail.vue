@@ -165,22 +165,6 @@ export default {
   font-weight: 700;
   margin-bottom: 0px;
 }
-<<<<<<< HEAD
-.loading {
-  width: 100vw;
-  height: 100vh;
-  position: absolute; top: 0; left: 0;
-   z-index: 1000;
-}
-.loading img {
-  width: 100%;
-  height: 100%;
- 
-}
-
-.img-container img {
-  max-width: 75%;
-=======
 #item-detail h3 {
   margin-top: 0px;
   font-size: 0.75em;
@@ -193,7 +177,6 @@ export default {
   max-width: 95%;
   border-radius: 8px;
   box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
->>>>>>> 8d8308d8f3e0e1e1fee9c16877264423dea6d0e3
 }
 #please-log-in {
   width: 100%;
