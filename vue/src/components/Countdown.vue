@@ -81,13 +81,14 @@ export default {
 }
 #countdown ul {
   width: 30%;
-  position: fixed;
+  position: absolute;
   top: 0px;
   right: 10px;
   text-align: center;
   z-index: 2;
-  color: #FCA028;
-
+  color: #fca028;
+  /* 
+  background-color: rgba(0, 0, 0, 0.267); */
 }
 
 #countdown div {
@@ -104,8 +105,9 @@ export default {
   #countdown ul {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 30%;
-
+    width: 100%;
+    position: static;
+    align-items: center;
   }
 
   #countdown li {
