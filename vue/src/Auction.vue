@@ -2,13 +2,6 @@
   <div id="auction">
     <auction-header />
 
-    <!-- <nav id="nav" :class="{'nav-active': isShow}">
-      <img
-        src="@/assets/icons8-menu-384.png"
-        alt="hamburger menu icon"
-        id="hamburger-menu"
-        "
-    />-->
     <div id="nav-icon3" :class="{'open' : isShow}" v-on:click="showHide">
       <span></span>
       <span></span>
@@ -32,24 +25,7 @@
         <a>Register</a>
       </router-link>
     </ul>
-    <!-- <div id="nav-menu" v-if="isShow" v-on:click="showHide">
-      <router-link class="link-box" :to="{ name: 'home' }">
-        <button>Home</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'activity' }" v-if="isLoggedIn">
-        <button>View My Bid History</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'login' }" v-if="!isLoggedIn">
-        <button>Login</button>
-      </router-link>
-      <router-link class="link-box" v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">
-        <button>Logout</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'register'}" v-if="!isLoggedIn">
-        <button>Register</button>
-      </router-link>
-    </div>-->
-    <!-- </nav> -->
+
     <router-view />
   </div>
 </template>
