@@ -1,6 +1,6 @@
 <template>
   <div id="filter" class="menu-bar">
-      <button v-on:click="toggleVisible">{{isFilterVisible ? 'Filter by Category' : 'Hide Filter'}}</button>
+      <button v-on:click="toggleVisible">{{isFilterVisible ? 'FILTER BY CATEGORY' : 'HIDE FILTER'}}</button>
       <div v-show="!isFilterVisible">
 
       <ul>

@@ -5,17 +5,22 @@
       v-show="this.$store.state.token == ''"
       v-on:click="() => this.$router.push({name: 'login'})"
     >Log in to Place a Bid</button>
-    <h2>{{item.title}}</h2>
-    <div class="img-container">
-      <img :src="item.pic" :alt="item.subtitle" />
-    </div>
-    <h3>{{item.subtitle}}</h3>
+
+    <a href="#bid-form">
+      <div
+        id="bid-message"
+        :class="{'top-bid-message': topBidOfUser === 1, 'out-bid-message': topBidOfUser === 2}"
+      >
+        <h5 id="top-bid-message" v-if="topBidOfUser === 1">Winning!</h5>
+        <h5 id="out-bid-message" v-if="topBidOfUser === 2">Losing!</h5>
+        <h5 id="no-bid-message" v-if="topBidOfUser === 0"></h5>
+      </div>
+    </a>
+    <h1>{{item.title}}</h1>
+    <img :src="item.pic" :alt="item.title" />
+    <h3>Donated by: {{item.donor}}</h3>
+    <h2>{{item.subtitle}}</h2>
     <p>{{item.description}}</p>
-    <h4>Donated by: {{item.donor}}</h4>
-    
-    <h4 id="top-bid-message" v-if="topBidOfUser === 1">You have the top bid!</h4>
-    <h4 id="out-bid-message" v-if="topBidOfUser === 2">You've been outbid!</h4>
-    <h4 id="no-bid-message" v-if="topBidOfUser === 0"></h4>
 
     <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
@@ -77,10 +82,13 @@ export default {
     },
     topBidOfUser() {
       // Find the first bid from user
+      if (this.item.bids == undefined){
+        return 0;
+      }
       let userBid = this.item.bids.find(
         (bid) => bid.user_Name === this.$store.state.user.username
       );
-      if (!userBid) {
+      if (!userBid || userBid == undefined) {
         return 0; //You haven't bid
       }
       if (userBid === this.item.bids[0]) {
@@ -120,22 +128,25 @@ export default {
 </script>
 
 <style scoped>
-/* #item-detail div.bid-container {
-  display: flex;
-  flex-direction: column-reverse;
-} */
-h2,
-h3,
-h4,
-p {
-  color: #e7dfd5;
+#item-detail {
+  text-align: center;
 }
-.img-container {
+#item-detail h1 {
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+#item-detail h3 {
+  margin-top: 0px;
+  font-size: 0.75em;
+  text-align: right;
+}
+#item-detail h2 {
+  font-size: 1.25em;
+}
+#item-detail img {
   max-width: 95%;
-}
-
-.img-container img {
-  max-width: 75%;
+  border-radius: 8px;
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
 #please-log-in {
   width: 100%;
@@ -145,12 +156,35 @@ p {
   color: azure;
 }
 table {
-  border-spacing: 15px 5px;
+  border-spacing: 10px 5px;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
-#top-bid-message {
-  color: green;
+#bid-message {
+  text-align: center;
+  color: #1b262c;
+  padding: 8px;
+  border-radius: 8px;
 }
-#out-bid-message {
-  color: red;
+#bid-message h5 {
+  margin: 2px;
+  cursor: pointer;
+  font-size: 1.15em;
+}
+.top-bid-message {
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(0, 200, 0),
+    rgb(2, 134, 2)
+  );
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+}
+.out-bid-message {
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(255, 87, 87),
+    rgb(243, 2, 2)
+  );
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
 </style>

@@ -4,17 +4,18 @@
   <thead>
     <tr>
       <th>Bid Amount</th>
-      <th>Item Name</th>
+      <th id="cbtin-head">Item Name</th>
       <th>Time</th>
-      <th id="jump-header">Jump To Item</th>
+      <!-- <th id="jump-header">Jump To Item</th> -->
     </tr>
   </thead>
    <tr v-for="(bid) in currentBids" :key="bid.bid_ID" class="bid-container" >      
-       <td> ${{bid.amount}}</td>
-        <td>{{getItemTitle(bid.item_ID)}}&nbsp;</td>
-        <td>{{bid.time_Placed}}</td>
-        <td><router-link id="jump-button" tag="button" :to="{name: 'item', params: {itemID: bid.item_ID}}"
-    >Go</router-link></td>    
+       <td id="b-amount"> ${{bid.amount}}</td>
+<td><router-link id="item-title"  :to="{name: 'item', params: {itemID: bid.item_ID}}"
+    >{{getItemTitle(bid.item_ID)}}</router-link></td>        
+    <td id="b-time">{{bid.time_Placed}}</td>
+        <!-- <td><router-link id="jump-button" tag="button" :to="{name: 'item', params: {itemID: bid.item_ID}}"
+    >{{getItemTitle(bid.item_ID)}}</router-link></td>     -->
      </tr>
     </table>
   </div>
@@ -56,7 +57,40 @@ table {
 thead {
    text-decoration: underline;
 }
-#jump-button {
+#cbtin-head {
+    display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#item-title{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: right;
+  
+ 
+  border-width: 5px;
+    color: #fff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+  
+  animation: glow .75s ease-in-out infinite alternate;
+    color: #e7dfd5;
+        font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-style: normal; font-variant: normal; ;
+    text-align: center;
+
+
+  color: #fff;
+  text-align: center;
+ text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+#b-amount {
+  font-size: 20px;
+}
+#b-time {
+  font-size: 20px;
+}
+/* #jump-button {
   max-width: 100%;
   color: #fff;
   text-align: center;
@@ -71,7 +105,7 @@ thead {
   color: #fff;
   text-align: center;
  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-}
+} */
 
 @media only screen and (max-width: 500px) {
   table {

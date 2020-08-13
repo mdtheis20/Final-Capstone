@@ -154,6 +154,7 @@ border: 1px solid grey; */
   margin: 20px;
   background-color: #0eb029;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .link-box {

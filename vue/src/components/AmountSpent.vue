@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5>Total Value of All Winning Items: ${{totalAmount}}</h5>
+    <h5 id="total-amount-spent">Total Value of All Winning Items: ${{totalAmount}}</h5>
   </div>
 </template>
 
@@ -53,4 +53,7 @@ computed: {
 </script>
 
 <style>
+#total-amount-spent {
+  font-size: 25px;
+}
 </style>

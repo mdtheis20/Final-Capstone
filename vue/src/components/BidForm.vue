@@ -1,46 +1,24 @@
 <template>
-  <form v-on:submit.prevent="placeBid">
-    <h3>Place Bid</h3>
-    <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="bidErrors"
-      >{{ bidErrorMsg }}</div>
+  <form v-on:submit.prevent="placeBid" id="bid-form">
+    <!-- <h2>Place Bid</h2> -->
+    <div class="alert alert-danger" role="alert" v-if="bidErrors">{{ bidErrorMsg }}</div>
 
-    <h4 id="highest-bid">Current Bid: ${{topBid}}</h4>
-    <div id="bid-form">
+    <h2 id="highest-bid">Current Bid: ${{topBid}}</h2>
+    <div class="bid-container">
       <div id="left-bid">
-        <div>
-          <button name="easyButton" v-on:click.prevent="() => newBid.amount += 1">$1</button>
-          <button name="easyButton" v-on:click.prevent="() => newBid.amount += 5">$5</button>
-        </div>
-        <div>
-          <button name="easyButton" v-on:click.prevent="() => newBid.amount += 10">$10</button>
-          <button name="easyButton" v-on:click.prevent="() => newBid.amount += 20">$20</button>
-        </div>
+        <button name="easyButton" v-on:click.prevent="() => newBid.amount += 1">$1</button>
+        <button name="easyButton" v-on:click.prevent="() => newBid.amount += 5">$5</button>
+        <button name="easyButton" v-on:click.prevent="() => newBid.amount += 10">$10</button>
+        <button name="easyButton" v-on:click.prevent="() => newBid.amount += 20">$20</button>
       </div>
 
       <div id="right-bid">
         <label for="amount">Enter Amount:</label>
-        <input
-          type="number"
-          name="amount"
-          id="custom-bid-amount"
-          v-model.number="newBid.amount"          
-        />
-        
+        <input type="number" name="amount" id="custom-bid-amount" v-model.number="newBid.amount" />
         <input type="submit" value="Submit" id="btn-submit" />
-        <input
-          id="btn-clear"
-          type="reset"
-          value="Clear"
-          v-on:click.prevent="clearForm"
-        />
+        <input id="btn-clear" type="reset" value="Clear" v-on:click.prevent="clearForm" />
       </div>
-
-      <div></div>
     </div>
-    
   </form>
 </template>
 
@@ -58,12 +36,10 @@ export default {
         time_placed: null,
       },
       bidErrors: false,
-      bidErrorMsg: ''
-    
+      bidErrorMsg: "",
     };
   },
-  computed: {    
-  },
+  computed: {},
   props: {
     topBid: Number,
     item_ID: Number,
@@ -75,7 +51,8 @@ export default {
         this.$router.push({ name: "login" });
       } else if (this.newBid.amount < this.topBid + 1) {
         this.bidErrors = true;
-        this.bidErrorMsg = 'New bids must be at least $1 higher than the current bid';
+        this.bidErrorMsg =
+          "New bids must be at least $1 higher than the current bid";
       } else {
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
@@ -84,7 +61,6 @@ export default {
               this.$emit("bidPlaced");
               this.clearForm();
             }
-            
           })
           .catch((e) => {
             if (e.response) {
@@ -96,7 +72,6 @@ export default {
             }
           });
       }
-
     },
     clearForm() {
       this.newBid.amount = this.topBid;
@@ -121,35 +96,50 @@ export default {
 
 <style scoped>
 #bid-form {
+  margin: 40px auto;
+}
+
+button {
+  font-size: 1.25em;
+  padding: 20px;
+  width: 70px;
+  height: 60px;
+  background-image: linear-gradient(
+    to bottom right,
+    silver,
+    rgb(148, 148, 148)
+  );
+  border-radius: 12px;
+}
+#custom-bid-amount {
+  text-align: center;
+  font-size: 1.25em;
+  padding: 10px;
+  width: 60%;
+  margin: 15px auto;
+  border-radius: 5px;
+}
+.bid-container {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-bottom: 20px;
 }
 #left-bid {
+  width: 35%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 8px auto;
-}
-button {
-  padding: 20px;
-  margin: 15px;
-  width: 60px;
-  height: 60px;
-}
-#custom-bid-amount {
-  margin: 15px;
+  margin: 8px 0;
 }
 #right-bid {
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  margin: 8px auto;
+  margin: 8px 0;
 }
 input {
   width: 100%;
@@ -160,10 +150,26 @@ h4 {
   text-align: center;
 }
 #btn-clear {
-  background-color: red;
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(255, 87, 87),
+    rgb(243, 2, 2)
+  );
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  padding: 12px;
+  margin: 8px auto;
+  border-radius: 5px;
 }
 #btn-submit {
-  background-color: green;
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(0, 200, 0),
+    rgb(2, 134, 2)
+  );
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  padding: 12px;
+  margin: 8px auto;
+  border-radius: 5px;
 }
 .alert {
   color: red;

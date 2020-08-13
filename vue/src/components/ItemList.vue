@@ -42,8 +42,8 @@ export default {
   padding: 0px;
   
 }
+
 #item-list >  li {
   list-style-type: none;
-  
 }
 </style>
