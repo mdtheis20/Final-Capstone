@@ -65,6 +65,12 @@ export default new Vuex.Store({
     ADD_BID(state, bid) {
       let foundItem = state.listOfItems.find(i => i.item_ID === bid.item_ID);
       foundItem.bids.unshift(bid);
+    },
+    END_AUCTIONS(state){
+      state.isAuctionOpen = false;
+      state.listOfItems = [];
+      state.listOfCategories = [];
+      state.listOfBids = [];
     }
   },
   getters: {
@@ -121,6 +127,11 @@ export default new Vuex.Store({
           console.error('There was an error!')
         }
       });
+    },
+    getAllWinnings() {
+      apiService.getWinnings().then(r =>{
+        this.commit
+      })
     }
   },
 })

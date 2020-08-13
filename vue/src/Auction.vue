@@ -60,7 +60,8 @@ export default {
       this.isShow = !this.isShow;
     },
     endOfAuction() {
-          
+          this.$store.state.isAuctionOpen = 'false';
+        
     }
   },
 };
