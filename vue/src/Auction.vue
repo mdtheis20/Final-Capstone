@@ -2,8 +2,14 @@
   <div id="auction">
     <auction-header />
     <countdown />
-
-    <div id="nav-icon3" :class="{'open' : isShow}" v-on:click="showHide">
+    <!-- <nav id="nav" :class="{'nav-active': isShow}">
+      <img
+        src="@/assets/icons8-menu-384.png"
+        alt="hamburger menu icon"
+        id="hamburger-menu"
+        "
+    />-->
+    <div id="nav-icon" :class="{'open' : isShow}" v-on:click="showHide">
       <span></span>
       <span></span>
       <span></span>
@@ -80,7 +86,7 @@ body {
   max-width: 90%;
   margin: 0 auto 0 auto;
 }
-#nav-icon3 {
+#nav-icon {
   display: inline-block;
   overflow: hidden;
   flex-wrap: nowrap;
@@ -88,7 +94,7 @@ body {
   margin-bottom: 10px;
   /* width: 50%; */
 }
-#nav-icon3 a {
+#nav-icon a {
   padding: 5px;
   margin: 5px;
   color: white;
@@ -120,6 +126,10 @@ border: 1px solid grey; */
   box-sizing: border-box;
   padding: 10px 20px;
   padding-inline-start: 0px;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 #nav-menu > li {
   list-style: none;
@@ -149,18 +159,51 @@ border: 1px solid grey; */
   color: #B0690E;
    */
 }
-.link-box button {
-  color: #28b2fc;
+button {
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:linear-gradient(to bottom, #ce6336 5%, #d3531a 100%);
+	background-color:#d3531a;
+	border-radius:10px;
+	border:1px solid #d3531a;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;
+  outline: 0 none;
+}
+button:hover {
+	background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+	background-color:#fb9e25;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+/* button {
+  color: #ff7b00;
+  background-color: #ffffff00;
+  margin: 5px;
+
+}
+button:hover {
+  color: #ffffff;
+  background-color: #1b262c;
   text-decoration-line: underline;
   margin: 5px;
-}
+} */
 
 * {
   margin: 0;
   padding: 0;
 }
 
-#nav-icon3 {
+#nav-icon {
   width: 60px;
   height: 45px;
   position: relative;
@@ -176,7 +219,7 @@ border: 1px solid grey; */
   cursor: pointer;
 }
 
-#nav-icon3 span {
+#nav-icon span {
   display: block;
   position: absolute;
   height: 9px;
@@ -195,40 +238,40 @@ border: 1px solid grey; */
   transition: 0.25s ease-in-out;
 }
 
-#nav-icon3 span:nth-child(1) {
+#nav-icon span:nth-child(1) {
   top: 0px;
 }
 
-#nav-icon3 span:nth-child(2),
-#nav-icon3 span:nth-child(3) {
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
   top: 18px;
 }
 
-#nav-icon3 span:nth-child(4) {
+#nav-icon span:nth-child(4) {
   top: 36px;
 }
 
-#nav-icon3.open span:nth-child(1) {
+#nav-icon.open span:nth-child(1) {
   top: 18px;
   width: 0%;
   left: 50%;
 }
 
-#nav-icon3.open span:nth-child(2) {
+#nav-icon.open span:nth-child(2) {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-#nav-icon3.open span:nth-child(3) {
+#nav-icon.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
-#nav-icon3.open span:nth-child(4) {
+#nav-icon.open span:nth-child(4) {
   top: 18px;
   width: 0%;
   left: 50%;
