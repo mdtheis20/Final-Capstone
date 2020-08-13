@@ -86,6 +86,10 @@ export default {
 <style>
 body {
   /* background-color: #1b262c; */
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   text-align: center;
   padding: 10px;
   background-image: linear-gradient(#0f4c75, #1b262c);
