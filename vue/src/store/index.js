@@ -24,6 +24,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    isAuctionOpen: true,
     listOfItems: [],
     listOfCategories: [],
     categoriesToFilter: [],

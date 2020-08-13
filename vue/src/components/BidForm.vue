@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="placeBid" id="bid-form">
+  <form v-on:submit.prevent="placeBid" id="bid-form" v-show="this.$store.state.isAuctionOpen">
     <!-- <h2>Place Bid</h2> -->    
 
     <h2 id="highest-bid">Current Bid: ${{topBid}}</h2>
