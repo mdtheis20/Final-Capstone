@@ -145,7 +145,9 @@ p {
   color: azure;
 }
 table {
-  border-spacing: 15px 5px;
+  border-spacing: 10px 5px;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 #top-bid-message {
   color: green;
