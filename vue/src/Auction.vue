@@ -1,7 +1,7 @@
 <template>
   <div id="auction">
     <auction-header />    
-    
+    <countdown />
     <nav id="nav" :class="{'nav-active': isShow}">
       <img src="@/assets/icons8-menu-384.png" alt="hamburger menu icon" id="hamburger-menu" v-on:click="showHide()" />
       <div id="nav-menu" v-if="isShow" v-on:click="showHide()">
@@ -17,10 +17,12 @@
 </template>
 
 <script>
-import AuctionHeader from './components/AuctionHeader.vue'
+import AuctionHeader from './components/AuctionHeader.vue';
+import Countdown from './components/Countdown.vue';
 export default {
   components: {
-    AuctionHeader
+    AuctionHeader,
+    Countdown,
   },
   data() {
     return {
