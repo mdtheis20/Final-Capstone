@@ -95,6 +95,7 @@ button {
   margin: 20px;
   background-color: #B0690E;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .link-box{

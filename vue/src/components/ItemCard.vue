@@ -54,13 +54,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #item-card {
   height: 560px;
   width: 400px;
   padding: 0px;
-  margin: 20px auto;
+  margin: 20px 25px;
   position: relative;
+  bottom: 50px;
+  left: 20px;
 }
 /* TODO: make breakpoint for small screens */
 #item-card.has-bid {
@@ -75,6 +77,7 @@ export default {
   box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
   border-radius: 5px;
   padding: 10px;
+  margin-top: 0px;
   position: relative;
   top: 50px;
   right: 20px;
@@ -84,6 +87,7 @@ export default {
   max-height: 100%;
   border-radius: 10px;
   z-index: -1;
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
 #item-card > p {
   width: 90%;
@@ -136,10 +140,18 @@ export default {
   margin: 2px;
 }
 
-@media screen and (max-width: 630px) {
+ @media screen and (max-width: 480px) {
   #item-card {
-    height: 350px;
     width: 300px;
+    height: 420px;
+    margin-bottom: auto;
   }
+
+/*   #bid-message {
+  top: 140px;  
 }
+#item-card h4 {
+  top: 140px;
+} */
+} 
 </style>
