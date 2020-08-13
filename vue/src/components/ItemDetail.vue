@@ -72,6 +72,9 @@ export default {
     item_ID: Number,
   },
   computed: {
+    userNameWithStars(){
+      return this.item.bids.user_Name
+    },
     bids() {
       return this.item.bids.slice(0, this.limit_by);
     },
