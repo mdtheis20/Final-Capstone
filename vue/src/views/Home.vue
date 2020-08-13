@@ -2,6 +2,7 @@
   <div class="home">
     <filter-bar />
     <amount-spent />
+    <h2 id="items-won" v-show="!this.$store.state.isAuctionOpen">{{itemsWon}}</h2>
     <item-list />
   </div>
 </template>
@@ -18,6 +19,11 @@ export default {
     ItemList,
     AmountSpent,
   },
+  computed: { 
+    itemsWon() {
+      return this.$store.state.listOfItems.length > 0 ? 'Here are the items you won!' : 'The Auction has ended.';
+    }
+  },
   created() {
     if (this.$store.state.isAuctionOpen) {
       this.$store.dispatch("getAllItems");
@@ -32,4 +38,8 @@ export default {
 </script>
 
 <style>
+div.home h2#items-won {
+text-align: center;
+font-size: 2em;
+}
 </style>

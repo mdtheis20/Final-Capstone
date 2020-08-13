@@ -1,9 +1,8 @@
 <template>
-
   <div id="item-detail">
-                  <div class="loading" v-if="isLoading">
-        <img src="../assets/colorWheel.gif" />
-      </div>
+    <div class="loading" v-if="isLoading">
+      <img src="../assets/colorWheel.gif" />
+    </div>
     <button
       id="please-log-in"
       v-show="this.$store.state.token == ''"
@@ -14,6 +13,7 @@
       <div
         id="bid-message"
         :class="{'top-bid-message': topBidOfUser === 1, 'out-bid-message': topBidOfUser === 2}"
+        v-show="this.$store.state.isAuctionOpen"
       >
         <h5 id="top-bid-message" v-if="topBidOfUser === 1">Winning!</h5>
         <h5 id="out-bid-message" v-if="topBidOfUser === 2">Losing!</h5>
@@ -29,7 +29,7 @@
     <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
     <bid-form :topBid="topBid" :item_ID="item_ID" :isStart="isStart" @bidPlaced="refreshItem()" />
-
+    <h1 v-show="!this.$store.state.isAuctionOpen">The Auction has ended.</h1>
     <table>
       <thead>
         <tr>
@@ -78,8 +78,8 @@ export default {
     item_ID: Number,
   },
   computed: {
-    bids() {      
-      if (this.item.bids != undefined){
+    bids() {
+      if (this.item.bids != undefined) {
         return this.item.bids.slice(0, this.limit_by);
       } else {
         return null;
@@ -144,15 +144,17 @@ export default {
   },
   created() {
     this.refreshItem();
-    api.getSingleItem().then(response => {
-    this.item = response.data;
-  }).finally(() => { 
-    setTimeout(() => {
-      this.isLoading = false;
-  //your code to be executed after 1 second
-}, 500);
-     })
-    
+    api
+      .getSingleItem()
+      .then((response) => {
+        this.item = response.data;
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.isLoading = false;
+          //your code to be executed after 1 second
+        }, 500);
+      });
   },
 };
 </script>
@@ -164,17 +166,19 @@ export default {
 #item-detail h1 {
   font-weight: 700;
   margin-bottom: 0px;
+  padding: 15px;
 }
 .loading {
   width: 100vw;
   height: 100vh;
-  position: absolute; top: 0; left: 0;
-   z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 .loading img {
   width: 100%;
   height: 100%;
- 
 }
 #item-detail h3 {
   margin-top: 0px;
@@ -229,9 +233,7 @@ table {
   box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
 template a:visited {
- 
   color: rgb(243, 243, 243);
   text-decoration: none;
-
 }
 </style>
