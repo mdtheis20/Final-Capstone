@@ -4,13 +4,13 @@
   <thead>
     <tr>
       <th>Bid Amount</th>
-      <th>Item Name</th>
+      <th id="i-n-head">Item Name</th>
       <th>Time</th>
     </tr>
   </thead>
    <tr v-for="(bid) in bids" :key="bid.bid_ID" class="bid-container" >      
        <td> ${{bid.amount}}</td>
-        <td>{{getItemTitle(bid.item_ID)}}&nbsp;</td>
+        <td id="bt-it">{{getItemTitle(bid.item_ID)}}&nbsp;</td>
         <td>{{bid.time_Placed}}</td>    
      </tr>
     </table>
@@ -49,6 +49,17 @@ table {
 }
 thead {
    text-decoration: underline;
+}
+#i-n-head {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#bt-it {
+    display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
 }
 @media only screen and (max-width: 500px) {
   table {

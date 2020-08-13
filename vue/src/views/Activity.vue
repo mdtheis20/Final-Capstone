@@ -62,22 +62,26 @@ export default {
 
 <style>
 #bid-table {
+  display: flex;
+  flex-direction: column;
 
   align-content: center;
   justify-content: right;
     
-  border: #B0690E ridge;
-  border-width: 10px;
+  /* border: #B0690E ridge;
+  border-width: 10px; */
   font-size: 20px;
 }
 
 #current-bid-table {
+  display: flex;
+  flex-direction: column;
 
   align-content: center;
   justify-content: right;
     
-  border: #B0690E ridge;
-  border-width: 10px;
+  /* border: #B0690E ridge;
+  border-width: 10px; */
   font-size: 20px;
 }
 #CAB {
@@ -86,6 +90,8 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  text-align: center;
+ border-bottom: ridge  #b0690e; 
   font-size: 40px;
 }
 #FBH {
@@ -94,6 +100,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  border-bottom: ridge  #b0690e; 
   font-size: 40px;
 }
 </style>
