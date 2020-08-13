@@ -19,6 +19,8 @@ export default {
     FilterBar,
     ItemList,
     AmountSpent,
+   
+
 
   },
   created() {

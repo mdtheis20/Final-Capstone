@@ -55,7 +55,7 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     
-                    string timeStamp = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+                    string timeStamp = DateTime.Now.ToString("MM/dd/yy HH:mm");
                     SqlCommand cmd = new SqlCommand($"INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (@item_id, @user_id, @bid_amount, @now); Select @@IDENTITY;", conn);
                     cmd.Parameters.AddWithValue("@item_id", bid.Item_ID);
                     cmd.Parameters.AddWithValue("@user_id", bid.User_ID);  
@@ -185,7 +185,7 @@ namespace Capstone.DAO
             bid.Amount = Convert.ToDecimal(rdr["amount"]);
             bid.Bid_ID = Convert.ToInt32(rdr["bid_id"]);
             bid.Item_ID = Convert.ToInt32(rdr["Item_id"]);
-            bid.Time_Placed = date.ToString("MM/dd/yyyy HH:mm:ss");
+            bid.Time_Placed = date.ToString("MM/dd/yy HH:mm");
             bid.User_ID = Convert.ToInt32(rdr["user_id"]);
             return bid;
         }
