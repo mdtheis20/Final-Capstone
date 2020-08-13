@@ -2,7 +2,6 @@
   <div id="auction">
     <auction-header />
     <countdown />
-
     <!-- <nav id="nav" :class="{'nav-active': isShow}">
       <img
         src="@/assets/icons8-menu-384.png"
@@ -10,7 +9,7 @@
         id="hamburger-menu"
         "
     />-->
-    <div id="nav-icon3" :class="{'open' : isShow}" v-on:click="showHide">
+    <div id="nav-icon" :class="{'open' : isShow}" v-on:click="showHide">
       <span></span>
       <span></span>
       <span></span>
@@ -106,7 +105,7 @@ body {
   max-width: 90%;
   margin: 0 auto 0 auto;
 }
-#nav-icon3 {
+#nav-icon {
   display: inline-block;
   overflow: hidden;
   flex-wrap: nowrap;
@@ -114,7 +113,7 @@ body {
   margin-bottom: 10px;
   /* width: 50%; */
 }
-#nav-icon3 a {
+#nav-icon a {
   padding: 5px;
   margin: 5px;
   color: white;
@@ -223,7 +222,7 @@ button:hover {
   padding: 0;
 }
 
-#nav-icon3 {
+#nav-icon {
   width: 60px;
   height: 45px;
   position: relative;
@@ -239,7 +238,7 @@ button:hover {
   cursor: pointer;
 }
 
-#nav-icon3 span {
+#nav-icon span {
   display: block;
   position: absolute;
   height: 9px;
@@ -258,40 +257,40 @@ button:hover {
   transition: 0.25s ease-in-out;
 }
 
-#nav-icon3 span:nth-child(1) {
+#nav-icon span:nth-child(1) {
   top: 0px;
 }
 
-#nav-icon3 span:nth-child(2),
-#nav-icon3 span:nth-child(3) {
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
   top: 18px;
 }
 
-#nav-icon3 span:nth-child(4) {
+#nav-icon span:nth-child(4) {
   top: 36px;
 }
 
-#nav-icon3.open span:nth-child(1) {
+#nav-icon.open span:nth-child(1) {
   top: 18px;
   width: 0%;
   left: 50%;
 }
 
-#nav-icon3.open span:nth-child(2) {
+#nav-icon.open span:nth-child(2) {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-#nav-icon3.open span:nth-child(3) {
+#nav-icon.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
-#nav-icon3.open span:nth-child(4) {
+#nav-icon.open span:nth-child(4) {
   top: 18px;
   width: 0%;
   left: 50%;
