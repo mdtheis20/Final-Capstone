@@ -1,7 +1,7 @@
 <template>
   <div id="auction">
     <auction-header />
-    <countdown />
+    <countdown v-on:startEndOfAuction="endOfAuction()" />
     <!-- <nav id="nav" :class="{'nav-active': isShow}">
       <img
         src="@/assets/icons8-menu-384.png"
