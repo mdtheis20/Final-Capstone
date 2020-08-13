@@ -111,6 +111,34 @@ namespace Capstone.DAO
             }
         }
 
+        public List<Item> GetCurrentUserWinnings(int userID)
+        {
+            List<Item> result = new List<Item>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("EndForUser", conn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Item item = RowToObject(reader);
+                        result.Add(item);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
+
         public Item AddNewItem(Item item)
         {
             try

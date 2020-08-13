@@ -28,7 +28,8 @@
 
     <!-- <category-bar :item_ID="this.item.item_ID" /> -->
 
-    <bid-form :topBid="topBid" :item_ID="item_ID" @bidPlaced="refreshItem()" />
+    <bid-form :topBid="topBid" :item_ID="item_ID" :isStart="isStart" @bidPlaced="refreshItem()" />
+
     <table>
       <thead>
         <tr>
@@ -77,20 +78,25 @@ export default {
     item_ID: Number,
   },
   computed: {
-    userNameWithStars(){
-      return this.item.bids.user_Name
-    },
-    bids() {
-      return this.item.bids.slice(0, this.limit_by);
+    bids() {      
+      if (this.item.bids != undefined){
+        return this.item.bids.slice(0, this.limit_by);
+      } else {
+        return null;
+      }
     },
     topBid() {
-      return this.item.bids.length > 0
-        ? this.item.bids[0].amount
-        : this.item.starting_Bid;
+      if (this.item.bids != undefined) {
+        return this.item.bids.length > 0
+          ? this.item.bids[0].amount
+          : this.item.starting_Bid;
+      } else {
+        return 0;
+      }
     },
     topBidOfUser() {
       // Find the first bid from user
-      if (this.item.bids == undefined){
+      if (this.item.bids == undefined) {
         return 0;
       }
       let userBid = this.item.bids.find(
@@ -103,6 +109,13 @@ export default {
         return 1; //`You have top bid!`
       }
       return 2; //`You've been outbid!`
+    },
+    isStart() {
+      if (this.item.bids != undefined) {
+        return this.item.bids.length < 1;
+      } else {
+        return true;
+      }
     },
   },
   methods: {
