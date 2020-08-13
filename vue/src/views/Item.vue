@@ -1,6 +1,6 @@
 <template>
   <div>
-      <item-detail :item_ID="item_ID"/>
+      <item-detail :item_ID="parseInt(item_ID)"/>
 
   </div>
 </template>

@@ -21,6 +21,9 @@ export default {
     },
     getHighestBidPerItemForSingleUser(){
         return axios.get('/user/bids/current')
+    },
+    getWinnings() {
+        return axios.get('/end-of-auction')
     }
 
     

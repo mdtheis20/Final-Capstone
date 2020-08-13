@@ -19,9 +19,6 @@ export default {
     FilterBar,
     ItemList,
     AmountSpent,
-   
-
-
   },
   created() {
     // This uses an action in Vuex to call API and load to listOfItems

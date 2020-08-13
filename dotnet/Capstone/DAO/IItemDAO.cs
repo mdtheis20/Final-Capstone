@@ -11,5 +11,6 @@ namespace Capstone.DAO
         Item AddNewItem(Item item);
         List<Item> GetAllItems();
         Item GetSingleItem(int item_Id);
+        List<Item> GetCurrentUserWinnings(int userID);
     }
 }

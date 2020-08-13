@@ -32,24 +32,7 @@
         <a>Register</a>
       </router-link>
     </ul>
-    <!-- <div id="nav-menu" v-if="isShow" v-on:click="showHide">
-      <router-link class="link-box" :to="{ name: 'home' }">
-        <button>Home</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'activity' }" v-if="isLoggedIn">
-        <button>View My Bid History</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'login' }" v-if="!isLoggedIn">
-        <button>Login</button>
-      </router-link>
-      <router-link class="link-box" v-bind:to="{ name: 'logout' }" v-if="isLoggedIn">
-        <button>Logout</button>
-      </router-link>
-      <router-link class="link-box" :to="{ name: 'register'}" v-if="!isLoggedIn">
-        <button>Register</button>
-      </router-link>
-    </div>-->
-    <!-- </nav> -->
+
     <router-view />
   </div>
 </template>
@@ -75,12 +58,10 @@ export default {
   methods: {
     showHide() {
       this.isShow = !this.isShow;
-      // if (e.currentTarget.classList.contains("open")) {
-      //   e.currentTarget.classList.remove("open");
-      // } else {
-      //   e.currentTarget.classList.add("open");
-      // }
     },
+    endOfAuction() {
+          
+    }
   },
 };
 </script>

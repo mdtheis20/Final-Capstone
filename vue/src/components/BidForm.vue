@@ -1,9 +1,9 @@
 <template>
   <form v-on:submit.prevent="placeBid" id="bid-form">
-    <!-- <h2>Place Bid</h2> -->
-    <div class="alert alert-danger" role="alert" v-if="bidErrors">{{ bidErrorMsg }}</div>
+    <!-- <h2>Place Bid</h2> -->    
 
     <h2 id="highest-bid">Current Bid: ${{topBid}}</h2>
+    <div class="alert alert-danger" role="alert" v-if="bidErrors">{{ bidErrorMsg }}</div>
     <div class="bid-container">
       <div id="left-bid">
         <button name="easyButton" v-on:click.prevent="() => newBid.amount += 1">$1</button>
@@ -44,16 +44,18 @@ export default {
     topBid: Number,
     item_ID: Number,
     isUserWinning: Number,
+    isStart: Boolean
   },
   methods: {
     placeBid() {
       if (this.$store.state.token == "") {
         this.$router.push({ name: "login" });
-      } else if (this.newBid.amount < this.topBid + 1) {
+      } else if ((!this.isStart && this.newBid.amount < this.topBid + 1) || (this.isStart && this.newBid.amount < this.topBid)) {
         this.bidErrors = true;
-        this.bidErrorMsg =
+        this.bidErrorMsg = (this.isStart) ?
+          "Bids must be equal to or higher than the starting bid" :
           "New bids must be at least $1 higher than the current bid";
-      } else {
+      } else {        
         apiService
           .postBid(this.newBid.item_ID, this.newBid)
           .then((r) => {
@@ -77,20 +79,7 @@ export default {
       this.newBid.amount = this.topBid;
       this.bidErrors = false;
     },
-    /* findHighestBid() {
-      const foundItem = this.$store.state.listOfItems.find(
-        (item) => item.item_ID === this.$route.params.itemID
-      );
-      if (foundItem.bids.length > 0){
-        return foundItem.bids[0].amount;
-      } else {
-        return foundItem.starting_Bid;
-      }
-    }, */
   },
-  /* created() {
-    this.newBid.amount = this.topBid;
-  }, */
 };
 </script>
 
@@ -174,5 +163,6 @@ h4 {
 .alert {
   color: red;
   text-align: center;
+  font-size: 1.25em;
 }
 </style>
