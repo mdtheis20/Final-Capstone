@@ -53,6 +53,7 @@ export default {
   padding: 0px;
   
 }
+<<<<<<< HEAD
 .loading {
   width: 100vw;
   height: 100vh;
@@ -64,9 +65,11 @@ export default {
   height: 100%;
  
 }
+=======
+
+>>>>>>> 8d8308d8f3e0e1e1fee9c16877264423dea6d0e3
 #item-list >  li {
   list-style-type: none;
-  
 }
 
 </style>
