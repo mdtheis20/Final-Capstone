@@ -60,8 +60,8 @@ export default {
       this.isShow = !this.isShow;
     },
     endOfAuction() {
-          this.$store.state.isAuctionOpen = 'false';
-        
+          this.$store.commit('END_AUCTIONS');
+          this.$store.dispatch("getAllWinnings")  
     }
   },
 };

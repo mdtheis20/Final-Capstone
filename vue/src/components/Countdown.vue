@@ -32,6 +32,7 @@ export default {
       seconds: "",
       counter: 0,
       timer: null,
+      countdownPolling: null,
       /*   organizationName: this.$store.state.auctionInfo.orgName,
       endTime: this.$store.state.auctionInfo.endTime */
       //TODO: let's try to make this a countdown
@@ -54,15 +55,16 @@ export default {
       this.minutes = `${minutes}`;
       this.seconds = `${seconds}`;
 
-      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0){
-          this.$emit("startEndOfAuction")
+      if (seconds < 0){
+          this.$emit("startEndOfAuction");
+          clearInterval(this.countdownPolling);
       }
     },
 
   },
 
   created() {
-    setInterval(
+    this.countdownPolling = setInterval(
       function (vue) {
         vue.countdown();
       },

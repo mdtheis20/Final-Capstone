@@ -31,7 +31,7 @@ export default new Vuex.Store({
     auctionInfo: {
       // TODO: get this data from database
       orgName: 'TE: Bay',
-      endTime: new Date(2020, 7, 28, 12)
+      endTime: new Date(2020, 7, 14, 10, 6)
     },
     listOfBids: [],
     // Bid at index0 is top bid see if current user name = top user name
@@ -130,8 +130,16 @@ export default new Vuex.Store({
     },
     getAllWinnings() {
       apiService.getWinnings().then(r =>{
-        this.commit
-      })
+        this.commit('SET_ITEM_LIST', r.data);      
+      }).catch(e => {
+        if (e.response) {
+          console.error(e.response)
+        } else if (e.request) {
+          console.error(e.request)
+        } else {
+          console.error('There was an error!')
+        }
+      });
     }
   },
 })
