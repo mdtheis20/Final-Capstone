@@ -122,7 +122,7 @@ INSERT INTO category (name) VALUES ('Tickets & Experiences');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Josh Tulcholski', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski', 
+	VALUES ('Marty Mordarski', 1, 'Josh''s Waterbottle', 'This waterbottle was drunk from by the one and only Josh Tucholski', 
 	'https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1493&q=80', 
 	150, 'Quench your thirst and learn to code! This waterbottle is infused with electrolytes and electrobytes! You will naturally get better at coding, simply by using this waterbottle. Tall. Hollow. A cap to close it. Yes, this waterbottle truly has it all.');
 	
@@ -130,7 +130,7 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Amy Cave', 1, 'Clyde''s Special Catnip', 'A secret blend of herbs, spices, and proteins that every cat will love.', 
 	'https://i.insider.com/5b2d07195e48eca9028b458d?width=750&format=jpeg&auto=webp', 
-	10, 'Clyde has been around for a long time (in cat years) and he knows good catnip when he smells it! This catnip will make your cat soar and go places only a cat under the strong effects that only Clyde''s Special Catnip can provide. (Note, do not let your cat operate heavy machinery under the effects of catnip. On second thought, never let your cat operate heavy machinery)');
+	10, 'Clyde has been around for a long time (in cat years) and he knows good catnip when he smells it! This catnip will make your cat soar, and go places a cat can only go while under the strong effects that only Clyde''s Special Catnip can provide. (Note, do not let your cat operate heavy machinery under the effects of catnip. On second thought, never let your cat operate heavy machinery)');
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
@@ -148,12 +148,12 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Carmen Miranda', 1, 'Fruit Basket', 'You may not eat it all, but it looks nice', 
 	'https://www.bachatagifts.com/124-thickbox_default/fruit-basket-big-delivered-in-dominican-republic.jpg',
-	10, 'I''m a Chiquita Banana and I''m here to say: there is a lot of fruit in this basket! Pineapple, plums, apples, grapes, kiwi, mango, grapes, pears... Got fruit? You will soon, if you snag this delicious fruit basket!');
+	10, 'I''m a Chiquita Banana and I''m here to say: there is a lot of fruit in this basket! Pineapple, plums, apples, grapes, kiwi, mango, grapes, oranges, pears... Got fruit? You will soon, if you snag this delicious fruit basket!');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Chauncey Leopardi', 1, 'Squints'' Hat', 'The iconic hat that Michael ''Squints'' Palledorous wore in the film The Sandlot', 
 	'https://i.imgur.com/AuevVUs.jpg',
-	10, 'Michael ''Squints'' Palledorous is a smart aleck kid who wears glasses with thick black frames. Squints wears a plain black hat. Squints was portrayed by Chauncey Leopardi. You could own this hat for-ev-ver. For-ev-ver. For-ev-ver.');
+	10, 'Michael ''Squints'' Palledorous is a smart aleck kid who wears glasses with thick black frames. Squints wears a plain black hat. He was portrayed by Chauncey Leopardi. You could own this hat for-ev-ver. For-ev-ver. For-ev-ver.');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Arthur C. Clarke', 1, 'HAL 9000 Replica', 'HAL 9000 is a fictional artificial intelligence character', 
@@ -161,9 +161,9 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 	10, '"I''m afraid I can''t do that Dave." This is a replica of the HAL 9000 from the film 2001: A Space Odyssey. As long as your superiors don''t order you to disconnect HAL, you have nothing to worry about.');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
-	VALUES ('Stanley Yelnats IV', 1, 'Clyde "Sweet Feet" Livingston''s Shoes from the film Holes', 'These are the shoes modeled after the shoes from the 2003 film Holes', 
+	VALUES ('Stanley Yelnats IV', 1, 'Clyde "Sweet Feet" Livingston''s Shoes', 'These are the shoes modeled after the shoes from the 2003 film Holes', 
 	'https://i.imgur.com/Bwg3I5G.png',
-	10, '"Sweet Feet" Livingston was a Major League baseball player for the Texas Rangers. He got his name from having a foot fungus that made his feet smell bad. Rest assured, these were not actually worn by fictional character Clyde Livingston, and smell just fine! Note: If you steal these shoes from the auction, you may be forced to attend Camp Green Lake');
+	10, '"Sweet Feet" Livingston was a "Major League" baseball player for the Texas Rangers. He got his name from having a foot fungus that made his feet smell bad. Rest assured, these were not actually worn by fictional character Clyde Livingston, and smell just fine! Note: If you steal these shoes from the auction, you may be forced to attend Camp Green Lake');
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
 	VALUES ('Dooley Wilson', 1, 'Piano from ''Casablanca''', 'The painted upright piano that adorned Rick''s Cafe in the classic movie "Casablanca"', 

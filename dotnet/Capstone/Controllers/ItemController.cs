@@ -5,6 +5,7 @@ using Capstone.Security;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Capstone.Controllers
 {
@@ -83,8 +84,16 @@ namespace Capstone.Controllers
         [HttpGet("/items/{itemID}")]
         public IActionResult GetSingleItem(int itemID)
         {
-            Item item = itemDao.GetSingleItem(itemID);
-            return Ok(item);
+            try
+            {
+                Item item = itemDao.GetSingleItem(itemID);
+                return Ok(item);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(501, e);
+            }
+            
         }
 
 
@@ -103,6 +112,11 @@ namespace Capstone.Controllers
         [Authorize]
         public ActionResult<Bid> AddNewBid(int itemID, Bid bid)
         {
+            if (UserId == null)
+            {
+                return Unauthorized();
+            }
+
             bid.User_ID = int.Parse(UserId);
             decimal amountToCheck = bidDao.GetHighestBidAmountForItem(itemID) + 1m;
             if (bid.Amount >= amountToCheck )

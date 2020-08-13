@@ -162,7 +162,7 @@ namespace Capstone.DAO
             ReturnBid bid = new ReturnBid();
             bid.Bid_ID = Convert.ToInt32(rdr["bid_id"]);
             bid.Item_ID = Convert.ToInt32(rdr["item_ID"]);
-            bid.Amount = Convert.ToInt32(rdr["amount"]);
+            bid.Amount = Convert.ToDecimal(rdr["amount"]);
             bid.User_Name = Convert.ToString(rdr["username"]);
             bid.Time_Placed = Convert.ToString(rdr["time_placed"]);
             return bid;
