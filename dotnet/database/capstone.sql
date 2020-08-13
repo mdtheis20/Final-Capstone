@@ -1,19 +1,19 @@
-----Begin tran
---USE master
---GO
+--Begin tran
+USE master
+GO
 
-----drop database if it exists
---IF DB_ID('final_capstone') IS NOT NULL
---BEGIN
---	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
---	DROP DATABASE final_capstone;
---END
+--drop database if it exists
+IF DB_ID('final_capstone') IS NOT NULL
+BEGIN
+	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE final_capstone;
+END
 
---CREATE DATABASE final_capstone
---GO
+CREATE DATABASE final_capstone
+GO
 
---USE final_capstone
---GO
+USE final_capstone
+GO
 
 --create tables
 CREATE TABLE users (
