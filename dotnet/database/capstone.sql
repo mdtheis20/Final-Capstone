@@ -16,6 +16,10 @@ USE final_capstone
 GO
 
 --create tables
+DECLARE @startTime datetime; SET @startTime = '2020-08-10T09:00:00'
+DECLARE @endTime datetime; SET @endTime = '2020-08-14T10:08:00'
+--the above variables cannot be set into a check constraint
+
 CREATE TABLE users (
 	user_id int IDENTITY(1,1) NOT NULL,
 	username varchar(50) NOT NULL,
@@ -36,6 +40,8 @@ CREATE TABLE auction (
 	end_time datetime NOT NULL
 	CONSTRAINT PK_auction_id PRIMARY KEY (auction_id)
 )
+
+INSERT INTO auction (start_time, end_time) VALUES (@startTime, @endTime);
 
 CREATE TABLE item (
 	item_id int IDENTITY(1, 1) NOT NULL,
@@ -71,29 +77,21 @@ Create Table bid (
 	time_placed datetime NOT NULL,
 	CONSTRAINT pk_bid PRIMARY KEY (bid_id),
 	CONSTRAINT fk_bid_item FOREIGN KEY (item_id) References item(item_id),
-	CONSTRAINT fk_bid_user FOREIGN KEY (user_id) References users(user_id)
+	CONSTRAINT fk_bid_user FOREIGN KEY (user_id) References users(user_id),
+	CHECK (time_placed >= '2020-08-10T09:00:00' and time_placed <= '2020-08-14T10:08:00')
 	)
 
---CREATE TABLE auction_item (
---	auction_id int NOT NULL,
---	item_id int NOT NULL
---	CONSTRAINT PK_auction_item PRIMARY KEY (auction_id, item_id),
---	CONSTRAINT FK_auction_item_auction FOREIGN KEY (auction_id) REFERENCES auction(auction_id),
---	CONSTRAINT FK_auction_item_item FOREIGN KEY (item_id) REFERENCES item(item_id)
 
---)
 
 --populate default data
 INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('user', 'Tom Hanks', '123 Dummydata Ave. North Canton OH, 44720', '330-867-5309', 'Evenings', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('admin', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'mAedat2HHvUYPW7tzPmaz7oxjSI=', 'MGPhTggCRKc=','admin');
-
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('bill', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'mAedat2HHvUYPW7tzPmaz7oxjSI=', 'MGPhTggCRKc=','user');
+INSERT INTO users (username, name, address, phone_number, contact_times, password_hash, salt, user_role) VALUES ('george', 'Daniel Data', '135 Dummydata Ave. North Canton OH, 44720', '330-876-5903', 'Evenings', 'mAedat2HHvUYPW7tzPmaz7oxjSI=', 'MGPhTggCRKc=','user');
 GO
 
 --Dummy Data--
 
-INSERT INTO auction (start_time, end_time) VALUES ('2020-08-15T09:00:00', '2020-08-16T09:00:00');
-
---INSERT INTO category (name) VALUES ('Horcrux');
 INSERT INTO category (name) VALUES ('Celebrity');
 INSERT INTO category (name) VALUES ('Sports Memorabilia');
 INSERT INTO category (name) VALUES ('Musical Instrument');
@@ -111,14 +109,6 @@ INSERT INTO category (name) VALUES ('Toys');
 INSERT INTO category (name) VALUES ('Hobbies');
 INSERT INTO category (name) VALUES ('Exercise');
 INSERT INTO category (name) VALUES ('Tickets & Experiences');
-
-
-
-
---Commit Tran
-
-
-	
 
 
 INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, description) 
@@ -180,6 +170,7 @@ INSERT INTO item (donor, auction_id, title, subtitle, pic, starting_bid, descrip
 	'https://i.imgur.com/oBPDRVP.png',
 	10, '"It ain''t much, but it''s honest work." Teach the little one in your life how to plow the fields. The best way to build grit and character, is a childhood spent on the farm. 2 speeds plus reverse (2¼ & 4½ mph). Accelerator pedal with automatic brakes. Farm tractor wheels provide traction on grass, dirt, pavement, or gravel. Working FM radio! (Child not included)');
 
+--categories
 INSERT INTO item_category (item_id, category_id) VALUES (1, 1);
 INSERT INTO item_category (item_id, category_id) VALUES (1, 8);
 
@@ -217,42 +208,62 @@ INSERT INTO item_category (item_id, category_id) VALUES (11, 10);
 INSERT INTO item_category (item_id, category_id) VALUES (11, 13);
 INSERT INTO item_category (item_id, category_id) VALUES (11, 14);
 
+--bids
+-- 11 items
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 150.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 155.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 160.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 170.00, '2020-08-13T09:03:00' )
 
 
---INSERT INTO item_category (item_id, category_id) VALUES (5, 1);
---INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
---INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
---INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
---INSERT INTO item_category (item_id, category_id) VALUES (4, 1);
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 10.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 11.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 15.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 20.00, '2020-08-13T09:03:00' )
+																					   
+
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 150.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 160.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 161.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 170.00, '2020-08-13T09:03:00' )
 
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 250.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 255.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 265.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 3, 270.00, '2020-08-13T09:03:00' )
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 4, 20.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (5, 3, 25.00, '2020-08-13T09:01:00' )
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 400.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 4, 450.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (6, 2, 500.00, '2020-08-13T09:03:00' )
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (7, 3, 1000.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (7, 2, 1200.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (7, 4, 1225.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (7, 2, 1250.00, '2020-08-13T09:03:00' )
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (8, 3, 750.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (8, 2, 800.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (8, 1, 900.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (8, 3, 1000.00, '2020-08-13T09:03:00' )
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 150.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 155.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 1, 160.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (1, 2, 170.00, '2020-08-15T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (9, 4, 7500.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (9, 1, 8000.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (9, 4, 9000.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (9, 3, 10000.00, '2020-08-13T09:03:00' )
 
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (11, 3, 25.00, '2020-08-13T09:03:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (11, 1, 30.00, '2020-08-13T09:00:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (11, 3, 35.00, '2020-08-13T09:01:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (11, 2, 45.00, '2020-08-13T09:02:00' )
+INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (11, 1, 50.00, '2020-08-13T09:03:00' )
 
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 10.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 11.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 1, 15.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (2, 2, 20.00, '2020-08-15T09:03:00' )
+																
 
-
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 150.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 160.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 1, 161.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (3, 2, 171.00, '2020-08-15T09:03:00' )
-
-
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 250.00, '2020-08-15T09:00:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 255.00, '2020-08-15T09:01:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 1, 265.00, '2020-08-15T09:02:00' )
-INSERT INTO bid (item_id, user_id, amount, time_placed) VALUES (4, 2, 270.00, '2020-08-15T09:03:00' )
 
 Go
 CREATE PROCEDURE GetAllItems
@@ -267,7 +278,18 @@ AS Begin
 	JOIN users on users.user_id = bid.user_id Order by amount desc
 End
 
-
-
-
+Go
+CREATE PROCEDURE EndForUser
+@userID int
+As Begin
+select * from bid 
+	join (select item_id, Max(amount) as winningBid from bid group by item_id) as topBids
+	on bid.item_id = topBids.item_id and bid.amount = topBids.winningBid
+	Join item on bid.item_id = item.item_id
+	Where user_id = @userID
+End
+		--1 wins 11
+	--2 wins 1,2,3,6,7
+	--3 wins 4,5,8,9
+	--4 wins none
 

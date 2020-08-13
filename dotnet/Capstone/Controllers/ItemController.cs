@@ -14,12 +14,7 @@ namespace Capstone.Controllers
     
     public class ItemController : SilentAuctionController
     {
-        //private readonly UserManager<User> _userManager;
-
-        //public ItemController(UserManager<User> userManager)
-        //{
-        //    _userManager = userManager;
-        //}
+        //TODO: Create a Stored Procedure to add a CHECK constraint to the database that keep bids in the correct time
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -178,6 +173,21 @@ namespace Capstone.Controllers
                 // TODO: should a different code be sent back?
                 return Unauthorized();
             }
+        }
+
+        [HttpGet("/end-of-auction")]
+        public ActionResult<List<Item>> GetEndOfAuction()
+        {
+            List<Item> winningItemsForUser;
+            try
+            {
+                winningItemsForUser = itemDao.GetCurrentUserWinnings(int.Parse(UserId));
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+            return winningItemsForUser;
         }
     }
 }

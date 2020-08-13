@@ -52,12 +52,10 @@ export default {
   methods: {
     showHide() {
       this.isShow = !this.isShow;
-      // if (e.currentTarget.classList.contains("open")) {
-      //   e.currentTarget.classList.remove("open");
-      // } else {
-      //   e.currentTarget.classList.add("open");
-      // }
     },
+    endOfAuction() {
+          
+    }
   },
 };
 </script>
