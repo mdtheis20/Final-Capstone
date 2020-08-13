@@ -61,33 +61,31 @@ export default {
   padding: 0px;
   margin: 20px 25px;
   position: relative;
-  bottom: 50px;
-  left: 20px;
 }
 /* TODO: make breakpoint for small screens */
 #item-card.has-bid {
   border: 5px solid greenyellow;
 }
 #item-card > h3 {
+  text-align: center;
   font-weight: 400;
   font-size: 2em;
   width: 90%;
   color: #1b262c;
   background-image: linear-gradient(to bottom left, rgba(192, 192, 192, 0.876),  rgba(167, 164, 164, 0.876));
-  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  /* box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356); */
   border-radius: 5px;
   padding: 10px;
   margin-top: 0px;
-  position: relative;
-  top: 50px;
-  right: 20px;
+  margin-bottom: -4px;
+
 }
 #item-card > img {
   max-width: 95%;
   max-height: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   z-index: -1;
-  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+ /*  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356); */
 }
 #item-card > p {
   width: 90%;
@@ -96,9 +94,8 @@ export default {
   box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
   border-radius: 5px;
   padding: 10px;
-  position: relative;
-  bottom: 30px;
-  left: 20px;
+  margin-top: -8px;
+  
 }
 #card-stat {
   grid-area: stats;
