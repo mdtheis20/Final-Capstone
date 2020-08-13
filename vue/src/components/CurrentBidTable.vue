@@ -6,7 +6,7 @@
       <th>Bid Amount</th>
       <th>Item Name</th>
       <th>Time</th>
-      <th>Jump To Item</th>
+      <th id="jump-header">Jump To Item</th>
     </tr>
   </thead>
    <tr v-for="(bid) in currentBids" :key="bid.bid_ID" class="bid-container" >      
@@ -49,13 +49,15 @@ methods: {
 
 table {
   border-spacing: 15px 5px;
-  flex-wrap:wrap;
+  justify-content: center;
+ align-content: right;
  
 }
 thead {
    text-decoration: underline;
 }
 #jump-button {
+  max-width: 100%;
   color: #fff;
   text-align: center;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
@@ -69,5 +71,28 @@ thead {
   color: #fff;
   text-align: center;
  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+@media only screen and (max-width: 500px) {
+  table {
+  border-spacing: 10px 5px;
+
+  max-width: 100%;
+  font-size: 60%;
+ overflow-wrap: break-word;
+}
+#jump-button {
+  width: 40%;
+  height: 30px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+
+}
+#jump-header {
+  
+  justify-content: center;
+  overflow-wrap: break-word;
+}
 }
 </style>

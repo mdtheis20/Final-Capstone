@@ -50,4 +50,13 @@ table {
 thead {
    text-decoration: underline;
 }
+@media only screen and (max-width: 500px) {
+  table {
+  border-spacing: 10px 5px;
+
+  max-width: 100%;
+  font-size: 60%;
+ overflow-wrap: break-word;
+}
+}
 </style>

@@ -62,8 +62,7 @@ export default {
 
 <style>
 #bid-table {
-  display: flex;
-  flex-direction: column;
+
   align-content: center;
   justify-content: right;
     
@@ -73,8 +72,7 @@ export default {
 }
 
 #current-bid-table {
-    display: flex;
-  flex-direction: column;
+
   align-content: center;
   justify-content: right;
     
