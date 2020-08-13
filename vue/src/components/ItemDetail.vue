@@ -165,6 +165,17 @@ export default {
   font-weight: 700;
   margin-bottom: 0px;
 }
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; top: 0; left: 0;
+   z-index: 1000;
+}
+.loading img {
+  width: 100%;
+  height: 100%;
+ 
+}
 #item-detail h3 {
   margin-top: 0px;
   font-size: 0.75em;
