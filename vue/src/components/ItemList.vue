@@ -1,5 +1,8 @@
 <template>
   <ul id="item-list">
+              <div class="loading" v-if="isLoading">
+        <img src="../assets/colorWheel.gif" />
+      </div>
       <li v-for="item in items" :key="item.item_ID">
         <router-link tag="a" :to="{name: 'item', params: {itemID: item.item_ID}}" >
         <item-card :item_ID="item.item_ID" />
@@ -10,12 +13,13 @@
 <!-- this.$store.getters.filteredItems()" -->
 <script>
 import itemCard from '@/components/ItemCard.vue'
+import api from "@/services/ApiService.js";
 
 
 export default {
   data() {
     return {
-      
+      isLoading: true,
     }
   },
   computed: {
@@ -26,9 +30,16 @@ export default {
   components: {
     itemCard
   },
-/*   created() {
-    this.items = this.$store.state.listOfItems;
-  } */
+   created() {
+    api.getAllItems().then(response => {
+    this.item = response.data;
+  }).finally(() => { 
+    setTimeout(() => {
+      this.isLoading = false;
+  //your code to be executed after 1 second
+}, 500);
+     })
+  } 
 }
 </script>
 
@@ -42,8 +53,20 @@ export default {
   padding: 0px;
   
 }
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; top: 0; left: 0;
+   z-index: 1000;
+}
+.loading img {
+  width: 100%;
+  height: 100%;
+ 
+}
 #item-list >  li {
   list-style-type: none;
   
 }
+
 </style>
