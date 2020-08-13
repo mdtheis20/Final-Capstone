@@ -1,6 +1,7 @@
 <template>
   <div id="auction">
     <auction-header />
+    <countdown />
 
     <div id="nav-icon3" :class="{'open' : isShow}" v-on:click="showHide">
       <span></span>
@@ -32,9 +33,11 @@
 
 <script>
 import AuctionHeader from "./components/AuctionHeader.vue";
+import Countdown from "./components/Countdown.vue";
 export default {
   components: {
     AuctionHeader,
+    Countdown,
   },
   data() {
     return {
