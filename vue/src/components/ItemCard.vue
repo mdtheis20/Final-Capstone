@@ -1,25 +1,18 @@
 <template>
   <div id="item-card">
     <h3>{{item.title}}</h3>
-    <div id="card-stat">
-      <h4>{{currentBid}}</h4>
-      
-      <div id="bid-message">
-      <h4 id="top-bid-message" v-if="topBid === 1">You have the top bid!</h4>
-      <h4 id="out-bid-message" v-if="topBid === 2">You've been outbid!</h4>
-      <h4 id="no-bid-message" v-if="topBid === 0"></h4>
-      </div>
-      <!-- You have top bid message or you've been outbid message, only shown if you have placed bid in first place-->
-      </div>
-    
-    <img :src="item.pic" :alt="item.subtitle" />
+    <h4>{{currentBid}}</h4>
+    <div id="bid-message" :class="{'top-bid-message': topBid === 1, 'out-bid-message': topBid === 2}">
+      <h5 id="top-bid-message" v-if="topBid === 1">Winning!</h5>
+      <h5 id="out-bid-message" v-if="topBid === 2">Losing!</h5>
+      <h5 id="no-bid-message" v-if="topBid === 0"></h5>
+    </div>
+    <img :src="item.pic" :alt="item.title" />
     <p>{{item.subtitle}}</p>
   </div>
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
@@ -35,9 +28,9 @@ export default {
     },
     currentBid() {
       if (this.item.bids.length > 0) {
-        return `Current Bid: $${this.item.bids[0].amount}`;
+        return `$${this.item.bids[0].amount}`;
       } else {
-        return `Starting Bid: $${this.item.starting_Bid}`;
+        return `$${this.item.starting_Bid}`;
       }
     },
     topBid() {
@@ -53,99 +46,94 @@ export default {
       }
       return 2; //`You've been outbid!`
     },
-
-    // topBid() {
-    //   // See if item has any bids at all
-    //   if (this.item.bids.length === 0) {
-    //     // If 'yes', return empty string message
-    //     return ``;
-    //     // If 'no, then see if logged in user has placed bid on item
-    //   } else if (this.item.bids[0].user !== this.$store.state.user) {
-    //     // If user has not placed bid on item, return empty string message
-    //     return ``;
-    //     // If user has placed bid on item, check to see if they are the current bid at this.item.bids[0]
-    //   } else if (this.item.bids[0].user === this.$store.state.user) {
-    //     // If 'yes', return message 'You have top bid!'
-    //     return "You have the top bid!";
-    //     // If 'no', return message, 'You've been outbid!'
-    //   } else return `You've been outbid!`;
-    // },
   },
   props: {
     item_ID: Number,
   },
-  components: {
-    
-  },
+  components: {},
 };
 </script>
 
 <style>
 #item-card {
-  height: 550px;
-  width: 450px;
-  /* margin: 20px; */
-  border-radius: 5px;
-  /* border: 3px solid #B0690E; */
-  background-color: #0072B0;
-  padding: 30px;
-  margin: 15px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: 1fr 2fr 1fr 1fr; */
-  grid-gap: 10px;
-  grid-template-areas:
-    "title title title"
-    "img img img"
-    "sub sub sub"
-    "stats stats stats"
-    "bid bid bid";
-  
+  height: 560px;
+  width: 400px;
+  padding: 0px;
+  margin: 20px auto;
+  position: relative;
 }
 /* TODO: make breakpoint for small screens */
 #item-card.has-bid {
   border: 5px solid greenyellow;
 }
 #item-card > h3 {
-  grid-area: title;
-  align-self: center;
-  text-align: center;
-  color: aliceblue
+  font-weight: 400;
+  font-size: 2em;
+  width: 90%;
+  color: #1b262c;
+  background-image: linear-gradient(to bottom left, rgba(192, 192, 192, 0.876),  rgba(167, 164, 164, 0.876));
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  top: 50px;
+  right: 20px;
 }
 #item-card > img {
-  grid-area: img;
-  /* border: 1px solid navy; */
-  border-radius: 5px;
-  max-height: 250px;
-  max-width: 100%;
-  margin: 0px auto;
+  max-width: 95%;
+  max-height: 100%;
+  border-radius: 10px;
+  z-index: -1;
 }
 #item-card > p {
-  grid-area: sub;
-  text-align: center;
-  color: aliceblue;
-  height: 20px;
+  width: 90%;
+  color: #1b262c;
+  background-image: linear-gradient(to bottom left, rgba(192, 192, 192, 0.876),  rgba(167, 164, 164, 0.876));
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  bottom: 30px;
+  left: 20px;
 }
 #card-stat {
   grid-area: stats;
   display: flex;
   flex-direction: column;
 }
-#top-bid-message {
-  color: rgb(80, 219, 80);
+.top-bid-message {
+  background-image: linear-gradient(to bottom left, rgb(0, 200, 0), rgb(2, 134, 2));
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
-#out-bid-message {
-  color: red;
-}
-
-h4{
-  color:aliceblue;
-  text-align: center;
+.out-bid-message {
+  background-image: linear-gradient(to bottom left, rgb(255, 87, 87), rgb(243, 2, 2));
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
 }
 
-#bid-message{
-  grid-area: bid;
+#item-card h4 {
+  color: #1b262c;
+  font-size: 1.75em;
+  position: absolute;
+  right: 0px;
+  top: 140px;
+  background-image: linear-gradient(to bottom left, silver, rgb(148, 148, 148));  
+  box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+#bid-message {
   text-align: center;
+  color: #1b262c;
+  position: absolute;
+  right: 0px;
+  top: 240px;  
+  padding: 8px;
+  border-radius: 8px;
+}
+
+#bid-message h5{
+  margin: 2px;
 }
 
 @media screen and (max-width: 630px) {
