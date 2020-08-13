@@ -1,5 +1,9 @@
 <template>
+
   <div id="item-detail">
+                  <div class="loading" v-if="isLoading">
+        <img src="../assets/colorWheel.gif" />
+      </div>
     <button
       id="please-log-in"
       v-show="this.$store.state.token == ''"
@@ -66,6 +70,7 @@ export default {
       item: Object,
       default_limit: 5,
       limit_by: 5,
+      isLoading: true,
       //item: this.$store.state.listOfItems.find(i => i.item_ID === this.item_ID),
     };
   },
@@ -139,6 +144,15 @@ export default {
   },
   created() {
     this.refreshItem();
+    api.getSingleItem().then(response => {
+    this.item = response.data;
+  }).finally(() => { 
+    setTimeout(() => {
+      this.isLoading = false;
+  //your code to be executed after 1 second
+}, 500);
+     })
+    
   },
 };
 </script>
@@ -150,6 +164,17 @@ export default {
 #item-detail h1 {
   font-weight: 700;
   margin-bottom: 0px;
+}
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; top: 0; left: 0;
+   z-index: 1000;
+}
+.loading img {
+  width: 100%;
+  height: 100%;
+ 
 }
 #item-detail h3 {
   margin-top: 0px;
@@ -202,5 +227,11 @@ table {
     rgb(243, 2, 2)
   );
   box-shadow: 1px 1px 4px rgba(192, 192, 192, 0.356);
+}
+template a:visited {
+ 
+  color: rgb(243, 243, 243);
+  text-decoration: none;
+
 }
 </style>

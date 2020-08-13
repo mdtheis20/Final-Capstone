@@ -1,5 +1,8 @@
 <template>
   <div id="current-bid-table">
+          <div class="loading" v-if="isLoading">
+        <img src="../assets/colorWheel.gif" />
+      </div>
 <table>
   <thead>
     <tr>
@@ -22,7 +25,13 @@
 </template>
 
 <script>
+import APIService from "@/services/ApiService.js";
 export default {
+    data() {
+    return {
+      isLoading: true,
+    }
+  },
 props: {
     currentBids: Array,
 },
@@ -42,6 +51,16 @@ methods: {
     return item.title;
     }
   }
+},
+created() {
+      APIService.getHighestBidPerItemForSingleUser().then(response => {
+    this.bid = response.data;
+  }).finally(() => { 
+    setTimeout(() => {
+      this.isLoading = false;
+  //your code to be executed after 1 second
+}, 500);
+     });
 }
 }
 </script>
@@ -56,6 +75,17 @@ table {
 }
 thead {
    text-decoration: underline;
+}
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; top: 0; left: 0;
+   z-index: 1000;
+}
+.loading img {
+  width: 100%;
+  height: 100%;
+ 
 }
 #cbtin-head {
     display: flex;
