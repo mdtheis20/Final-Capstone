@@ -13,7 +13,7 @@
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
       <div id="">
-      <div>
+      <div id="email">
       <label for="username" class="sr-only">Email Address: </label>
       <input
         type="text"
@@ -80,3 +80,10 @@ export default {
   }
 };
 </script>
+<style>
+
+#email{
+
+  margin: 50px 0px;
+}
+</style>
