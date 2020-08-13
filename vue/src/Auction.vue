@@ -1,6 +1,7 @@
 <template>
   <div id="auction">
     <auction-header />
+    <countdown />
 
     <!-- <nav id="nav" :class="{'nav-active': isShow}">
       <img
@@ -56,9 +57,11 @@
 
 <script>
 import AuctionHeader from "./components/AuctionHeader.vue";
+import Countdown from "./components/Countdown.vue";
 export default {
   components: {
     AuctionHeader,
+    Countdown,
   },
   data() {
     return {
