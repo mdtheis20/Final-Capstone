@@ -1,4 +1,5 @@
 ﻿using Capstone.Models;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -187,11 +188,17 @@ namespace Capstone.DAO
         }
         private static ReturnBid BidRowToObject(SqlDataReader rdr)
         {
+            string wholeAddress = Convert.ToString(rdr["username"]);
+            string bit = wholeAddress.Substring(0, 2);
+            string emailProvider = wholeAddress.Substring(wholeAddress.IndexOf("@"), 2);
+            string anonymousUser = bit + "**" + emailProvider + "****.com";
+
+
             ReturnBid bid = new ReturnBid();
             bid.Bid_ID = Convert.ToInt32(rdr["bid_id"]);
             bid.Item_ID = Convert.ToInt32(rdr["item_ID"]);
             bid.Amount = Convert.ToDecimal(rdr["amount"]);
-            bid.User_Name = Convert.ToString(rdr["username"]);
+            bid.User_Name = anonymousUser;
             bid.Time_Placed = Convert.ToString(rdr["time_placed"]);
             return bid;
         }
